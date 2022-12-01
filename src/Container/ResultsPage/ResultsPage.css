@@ -1,0 +1,9 @@
+.ResultsPage {
+  outline: solid red 1px;
+  flex-direction: column;
+}
+
+.ResultsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}

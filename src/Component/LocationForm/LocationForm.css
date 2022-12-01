@@ -1,0 +1,29 @@
+.LocationForm {
+  flex-direction: column;
+}
+label {
+  display: block;
+  font-size: larger;
+  margin-top: 2em;
+}
+
+#submit {
+  /* display: block; */
+  width: 10rem;
+  height: 5rem;
+  font-size: larger;
+  margin: 2em;
+}
+
+/* disable number input arrows for zip code input */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+/* end disable input arrows */
