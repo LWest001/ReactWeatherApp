@@ -1,6 +1,20 @@
 import { config } from "../../config";
 
-const apiKey = config.zipcodebaseKey;
+const apiKey = async () => {
+  try {
+    const response = await fetch(
+      "https://api.netlify.com/api/v1/accounts/lwest001/env/zipcodebaseKey"
+    );
+    if (response.ok) {
+      const responseObject = await response.json();
+      const key = responseObject.key;
+      return key;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const zipcodebaseUrl = "https://app.zipcodebase.com/api/v1/search?";
 const authQuery = `apikey=${apiKey}`;
 
