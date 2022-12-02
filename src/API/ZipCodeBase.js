@@ -1,6 +1,7 @@
 import { config } from "../../config";
 
 const apiKey = async () => {
+  let result = "";
   try {
     const response = await fetch(
       "https://api.netlify.com/api/v1/accounts/lwest001/env/zipcodebaseKey"
@@ -8,11 +9,12 @@ const apiKey = async () => {
     if (response.ok) {
       const responseObject = await response.json();
       const key = responseObject.key;
-      return key;
+      result = key;
     }
   } catch (error) {
     console.log(error);
   }
+  return result;
 };
 
 const zipcodebaseUrl = "https://app.zipcodebase.com/api/v1/search?";
