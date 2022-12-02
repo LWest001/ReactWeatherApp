@@ -27,14 +27,10 @@ export const getCoordinates = async (zipCode, countryCode) => {
  */
 
 export const getLocalWeatherData = async (latitude, longitude, units) => {
-  // build fetch url
-  const exclusions = "minutely,hourly,daily,alerts";
-  const coordinateQuery = `/data/3.0/onecall?lat=${latitude}&lon=${longitude}`;
-  const paramsQuery = `&units=${units}&exclude=${exclusions}`;
-  const fetchUrl = `${openWeatherUrl}${coordinateQuery}${paramsQuery}${authQuery}`;
+  const url = `/.netlify/functions/fetch-weatherData?latitude=${latitude}&longitude=${longitude}&units=${units}`;
   // process fetch data
   try {
-    const response = await fetch(fetchUrl);
+    const response = await fetch(url);
     if (response.ok) {
       const responseObject = await response.json();
       const timezone = responseObject["timezone"];
