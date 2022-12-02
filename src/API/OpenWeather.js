@@ -1,38 +1,37 @@
-// import { config } from "../../config";
-
-// const apiKey = config.openWeatherKey;
-const getApiKey = async () => {
-  let result = "";
-  try {
-    const response = await fetch(
-      "https://api.netlify.com/api/v1/accounts/lwest001/env/openWeatherKey?site_id=7da01c6a-2196-496e-9459-40d518a658c7"
-    );
-    if (response.ok) {
-      const responseObject = await response.json();
-      const key = responseObject["key"];
-      result = key;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return result;
-};
-const apiKey = getApiKey();
+// const getApiKey = async () => {
+//   let result = "";
+//   try {
+//     const response = await fetch(
+//       "https://api.netlify.com/api/v1/accounts/lwest001/env/openWeatherKey?site_id=7da01c6a-2196-496e-9459-40d518a658c7"
+//     );
+//     if (response.ok) {
+//       const responseObject = await response.json();
+//       const key = responseObject["key"];
+//       result = key;
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   return result;
+// };
+// const apiKey = process.env.openWeatherKey;
 
 const openWeatherUrl = "https://api.openweathermap.org";
-const authQuery = `&appid=${apiKey}`;
+// const authQuery = `&appid=${apiKey}`;
 
 /*     GET COORDINATES
  *     Return coordinates {latitude, longitude} object based on zipcode.
  */
 export const getCoordinates = async (zipCode, countryCode) => {
   // build fetch url
-  const geolocationZipQuery = `/geo/1.0/zip?zip=${zipCode},${countryCode}`;
-  const fetchUrl = `${openWeatherUrl}${geolocationZipQuery}${authQuery}`;
+  // const geolocationZipQuery = `/geo/1.0/zip?zip=${zipCode},${countryCode}`;
+  // const fetchUrl = `${openWeatherUrl}${geolocationZipQuery}${authQuery}`;
 
   // process fetch data
   try {
-    const response = await fetch(fetchUrl);
+    const response = await fetch(
+      `/.netlify/functions/fetch-weather?zipCode=${zipCode}&countryCode=${countryCode}`
+    );
     if (response.ok) {
       const responseObject = await response.json();
       const coordinates = {
