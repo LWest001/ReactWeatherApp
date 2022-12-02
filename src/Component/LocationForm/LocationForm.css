@@ -7,12 +7,10 @@ label {
   margin-top: 2em;
 }
 
-input {
-  font-size: large;
-}
-
+input,
 select {
   font-size: large;
+  width: 13rem;
 }
 
 #submit {
