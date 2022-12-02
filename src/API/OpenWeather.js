@@ -1,6 +1,20 @@
 import { config } from "../../config";
 
-const apiKey = config.openWeatherKey;
+// const apiKey = config.openWeatherKey;
+const apiKey = async () => {
+  try {
+    const response = await fetch(
+      "https://api.netlify.com/api/v1/accounts/lwest001/env/openWeatherKey"
+    );
+    if (response.ok) {
+      const responseObject = await response.json();
+      const key = responseObject.key;
+      return key;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 const openWeatherUrl = "https://api.openweathermap.org";
 const authQuery = `&appid=${apiKey}`;
 
