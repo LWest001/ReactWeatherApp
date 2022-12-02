@@ -1,29 +1,24 @@
-const fetch = require('node-fetch')
+const axios = require("axios");
 
-const handler = async function () {
+const handler = async (event) => {
+  const apiKey = process.env.zipcodebaseKey;
+  const { zipCode, countryCode } = event.queryStringParameters;
+
+  const url = `https://app.zipcodebase.com/api/v1/search?&apikey=${apiKey}&codes=${zipCode}&country=${countryCode}`;
   try {
-    const response = await fetch('https://icanhazdadjoke.com', {
-      headers: { Accept: 'application/json' },
-    })
-    if (!response.ok) {
-      // NOT res.status >= 200 && res.status < 300
-      return { statusCode: response.status, body: response.statusText }
-    }
-    const data = await response.json()
-
+    const { data } = await axios.get(url);
+    console.log(data);
     return {
       statusCode: 200,
-      body: JSON.stringify({ msg: data.joke }),
-    }
+      body: JSON.stringify(data),
+    };
   } catch (error) {
-    // output to netlify function log
-    console.log(error)
+    const { status, statusText, headers, data } = error.response;
     return {
-      statusCode: 500,
-      // Could be a custom message or object i.e. JSON.stringify(err)
-      body: JSON.stringify({ msg: error.message }),
-    }
+      statusCode: status,
+      body: JSON.stringify({ status, statusText, headers, data }),
+    };
   }
-}
+};
 
-module.exports = { handler }
+module.exports = { handler };

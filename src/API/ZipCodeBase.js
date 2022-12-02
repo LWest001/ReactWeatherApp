@@ -1,34 +1,35 @@
 // import { config } from "../../config";
 
-const getApiKey = async () => {
-  let result = "";
-  try {
-    const response = await fetch(
-      "https://api.netlify.com/api/v1/accounts/lwest001/env/zipcodebaseKey?site_id=7da01c6a-2196-496e-9459-40d518a658c7"
-    );
-    if (response.ok) {
-      const responseObject = await response.json();
-      const key = responseObject.key;
-      result = key;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return result;
-};
-const apiKey = getApiKey();
+// const getApiKey = async () => {
+//   let result = "";
+//   try {
+//     const response = await fetch(
+//       "https://api.netlify.com/api/v1/accounts/lwest001/env/zipcodebaseKey?site_id=7da01c6a-2196-496e-9459-40d518a658c7"
+//     );
+//     if (response.ok) {
+//       const responseObject = await response.json();
+//       const key = responseObject.key;
+//       result = key;
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   return result;
+// };
+// const apiKey = getApiKey();
 
 const zipcodebaseUrl = "https://app.zipcodebase.com/api/v1/search?";
-const authQuery = `apikey=${apiKey}`;
 
 /*Return string name of location being processed to display onscreen*/
 export const getLocationString = async (zipCode, countryCode) => {
   const fetchUrl = `${zipcodebaseUrl}${authQuery}&codes=${zipCode}&country=${countryCode}`;
 
   try {
-    const response = await fetch(fetchUrl);
+    const url = `/.netlify/functions/fetch-zipCodeBase?zipCode=${zipCode}&countryCode=${countryCode}`;
+    const response = await fetch(url);
     if (response.ok) {
       const responseObject = await response.json();
+      console.log(responseObject);
       const locationData = responseObject["results"][`${zipCode}`][0];
       return `${locationData["city"]}, ${locationData["state_code"]}`;
     }
