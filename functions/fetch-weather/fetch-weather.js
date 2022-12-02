@@ -4,11 +4,10 @@ const axios = require("axios");
 const handler = async (event) => {
   const apiKey = process.env.openWeatherKey;
   const { zipCode, countryCode } = event.queryStringParameters;
-  const authQuery = `&appid=${apiKey}`;
-  const url = `https://api.openweathermap.org/geo/1.0/zip?zip=${zipCode},${countryCode}${authQuery}`;
+  const url = `https://api.openweathermap.org/geo/1.0/zip?zip=${zipCode},${countryCode}&appid=${apiKey}`;
   try {
+    // console.log(await axios.get(url));
     const { data } = await axios.get(url);
-
     return {
       statusCode: 200,
       body: JSON.stringify(data),
