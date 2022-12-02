@@ -1,9 +1,30 @@
 .ResultsPage {
-  outline: solid red 1px;
+  /* outline: solid red 1px; */
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.locationHeader {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .ResultsGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  border: solid;
+  margin: 1em;
+  background: radial-gradient(ellipse at top, #defffc, transparent),
+    radial-gradient(ellipse at bottom, #4d9f0c, transparent);
+}
+
+.returnButton {
+  background-color: #bbfc87;
+  width: 12rem;
+  height: 4rem;
+}
+
+.Result:hover {
+  background-color: #87fce883;
 }

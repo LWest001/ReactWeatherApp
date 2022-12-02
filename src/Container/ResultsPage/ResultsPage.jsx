@@ -7,29 +7,36 @@ export const ResultsPage = (props) => {
   const display =
     toggleView === "ResultsPage" ? { display: "flex" } : { display: "none" };
 
-  /*  const ResultsGrid = [];
-  useEffect(() => {
-    Object.entries(localWeatherData).forEach((entry) => {
-      ResultsGrid.push(<Result display={`${entry}`} />);
-    });
-  }, [localWeatherData]);
-*/
   const ResultsGrid = () => {
-    const resultsArray = [];
-    const dataArray = Object.entries(localWeatherData);
+    let resultsArray = [];
+    let dataArray = Object.entries(localWeatherData);
+    dataArray = dataArray.slice(0, 8);
     dataArray.forEach(([key, value]) => {
-      resultsArray.push(<Result key={key} display={`${key}: ${value}`} />);
+      resultsArray.push(
+        <Result
+          key={key}
+          display={{
+            heading: key,
+            data: value,
+          }}
+        />
+      );
     });
     return resultsArray;
   };
 
   return (
     <div className="ResultsPage" style={display}>
-      <button onClick={onClick}>&larr; Return home</button>
-      <h1>{locationString}</h1>
+      <h1 className="locationHeader">{locationString}</h1>
+      <h2>
+        {localWeatherData.Date} | {localWeatherData.Time}
+      </h2>
       <div className="ResultsGrid">
         <ResultsGrid />
       </div>
+      <button className="returnButton" onClick={onClick}>
+        &larr; Return home
+      </button>
     </div>
   );
 };

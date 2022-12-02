@@ -1,5 +1,6 @@
-import { openWeatherKey as apiKey } from "../assets/data/config";
+import { config } from "../../config";
 
+const apiKey = config.openWeatherKey;
 const openWeatherUrl = "https://api.openweathermap.org";
 const authQuery = `&appid=${apiKey}`;
 
@@ -22,7 +23,7 @@ export const getCoordinates = async (zipCode, countryCode) => {
       };
       return coordinates;
     } else {
-      alert("Please enter valid postal code/country combination.");
+      return null;
     }
   } catch (error) {
     console.log(error);
@@ -72,27 +73,18 @@ const formatData = (object, timezone) => {
 
   const weather = object["weather"][0];
 
-  // to deal with minute values under 10
-  const fixMinutes = (getMinutesVal) => {
-    if (getMinutesVal < 10) {
-      return `0${getMinutesVal}`;
-    } else {
-      return getMinutesVal;
-    }
-  };
-
   // build object to display in list
   const formattedObject = {
-    Date: date,
-    Time: time,
+    Weather: `${weather["main"]} (${weather["description"]})`,
+    Temperature: object["temp"] + " F",
     Sunrise: sunriseTime,
     Sunset: sunsetTime,
-    Temperature: object["temp"] + " F",
     "Feels like": object["feels_like"] + " F",
     Humidity: object["humidity"] + "%",
     "UV index": object["uvi"],
     "Wind speed": object["wind_speed"] + "mph",
-    Weather: `${weather["main"]} (${weather["description"]})`,
+    Time: time,
+    Date: date,
   };
   return formattedObject;
 };

@@ -2,5 +2,12 @@ import React from "react";
 import "./Result.css";
 
 export const Result = (props) => {
-  return <div className="Result">{props.display}</div>;
+  const { display } = props;
+  const { heading, data } = display;
+  return (
+    <div className={`Result ${heading}`}>
+      <p className="heading">{heading}</p>
+      <p className="data">{data}</p>
+    </div>
+  );
 };

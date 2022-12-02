@@ -7,12 +7,25 @@ label {
   margin-top: 2em;
 }
 
+input {
+  font-size: large;
+}
+
+select {
+  font-size: large;
+}
+
 #submit {
   /* display: block; */
   width: 10rem;
   height: 5rem;
   font-size: larger;
   margin: 2em;
+}
+
+.invalidPostalCode {
+  display: none;
+  color: red;
 }
 
 /* disable number input arrows for zip code input */

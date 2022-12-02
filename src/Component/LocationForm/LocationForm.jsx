@@ -8,14 +8,22 @@ export const LocationForm = (props) => {
     handleSubmit,
     postalCode,
     setPostalCode,
+    countryCode,
+    setCountryCode,
     country,
     setCountry,
+    isInvalidPostalCode,
   } = props;
-  const display =
+
+  const displayForm =
     toggleView === "LocationForm" ? { display: "flex" } : { display: "none" };
 
+  const displayInvalidPostalCode = isInvalidPostalCode
+    ? { display: "block" }
+    : { display: "none" };
+
   return (
-    <div className="LocationForm" style={display}>
+    <div className="LocationForm" style={displayForm}>
       <h1>
         Enter your postal code and country to get local weather information!
       </h1>
@@ -28,13 +36,19 @@ export const LocationForm = (props) => {
           placeholder="Postal code (5-digit)"
           value={postalCode}
           pattern="/^\d{5}$/"
+          autoComplete="postal-code"
           onChange={(e) => setPostalCode(e.target.value)}
         ></input>
+        <p className="invalidPostalCode" style={displayInvalidPostalCode}>
+          Please enter a valid {country} postal code.
+        </p>
         <label htmlFor="CountrySelector">Country or territory:</label>
         <CountrySelector
           id="CountrySelector"
-          value={country}
-          onChange={setCountry}
+          countryCode={countryCode}
+          setCountryCode={setCountryCode}
+          country={country}
+          setCountry={setCountry}
         />
         <br />
         <input id="submit" type="submit"></input>

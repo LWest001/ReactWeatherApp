@@ -1,5 +1,6 @@
-import { zipcodebaseKey as apiKey } from "../assets/data/config";
+import { config } from "../../config";
 
+const apiKey = config.zipcodebaseKey;
 const zipcodebaseUrl = "https://app.zipcodebase.com/api/v1/search?";
 const authQuery = `apikey=${apiKey}`;
 
