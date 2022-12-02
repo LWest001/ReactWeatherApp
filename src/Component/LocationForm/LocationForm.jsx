@@ -12,15 +12,16 @@ export const LocationForm = (props) => {
     setCountryCode,
     country,
     setCountry,
-    isInvalidPostalCode,
+    isValidPostalCode,
   } = props;
 
   const displayForm =
     toggleView === "LocationForm" ? { display: "flex" } : { display: "none" };
 
-  const displayInvalidPostalCode = isInvalidPostalCode
-    ? { display: "block" }
-    : { display: "none" };
+  const displayInvalidPostalCode =
+    isValidPostalCode || postalCode.length < 5
+      ? { display: "none" }
+      : { display: "block" };
 
   return (
     <div className="LocationForm" style={displayForm}>

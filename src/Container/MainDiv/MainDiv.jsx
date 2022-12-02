@@ -16,7 +16,7 @@ export const MainDiv = () => {
   const [locationString, setLocationString] = useState("Loading...");
   const [coordinates, setCoordinates] = useState("");
   const [localWeatherData, setLocalWeatherData] = useState({});
-  const [isInvalidPostalCode, setIsInvalidPostalCode] = useState(true);
+  const [isValidPostalCode, setIsValidPostalCode] = useState(false);
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
@@ -45,22 +45,19 @@ export const MainDiv = () => {
   // Enable submit button when coordinates load
   useEffect(() => {
     const submitButton = document.querySelector("#submit");
-    if (postalCode.length === 5) {
-      if (coordinates) {
-        submitButton.disabled = false;
-        setIsInvalidPostalCode(false);
-      } else {
-        submitButton.disabled = true;
-        setIsInvalidPostalCode(true);
-      }
-    } else if (postalCode.length < 5) {
-      submitButton.disabled = true;
-      setIsInvalidPostalCode(false);
+    if (postalCode.length === 5 && coordinates) {
+      setIsValidPostalCode(true);
     } else {
-      submitButton.disabled = true;
-      setIsInvalidPostalCode(true);
+      setIsValidPostalCode(false);
     }
   }, [coordinates]);
+
+  useEffect(() => {
+    const submitButton = document.querySelector("#submit");
+    isValidPostalCode
+      ? (submitButton.disabled = false)
+      : (submitButton.disabled = true);
+  }, [isValidPostalCode]);
 
   const gatherData = () => {
     if (coordinates) {
@@ -101,8 +98,8 @@ export const MainDiv = () => {
         setCountry={setCountry}
         handleSubmit={handleSubmit}
         toggleView={toggleView}
-        isInvalidPostalCode={isInvalidPostalCode}
-        setIsInvalidPostalCode={setIsInvalidPostalCode}
+        isValidPostalCode={isValidPostalCode}
+        setIsValidPostalCode={setIsValidPostalCode}
       />
       <ResultsPage
         toggleView={toggleView}
