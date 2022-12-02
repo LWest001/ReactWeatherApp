@@ -4,8 +4,13 @@
   padding: 2rem;
 }
 
-@media (max-width: 500) {
+@media (max-width: 1000) {
   #root {
     padding: 1rem;
   }
+}
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
