@@ -1,7 +1,7 @@
 // import { config } from "../../config";
 
 // const apiKey = config.openWeatherKey;
-const apiKey = async () => {
+const getApiKey = async () => {
   let result = "";
   try {
     const response = await fetch(
@@ -17,6 +17,8 @@ const apiKey = async () => {
   }
   return result;
 };
+const apiKey = getApiKey()
+
 const openWeatherUrl = "https://api.openweathermap.org";
 const authQuery = `&appid=${apiKey}`;
 

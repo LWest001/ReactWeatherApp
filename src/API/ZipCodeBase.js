@@ -1,6 +1,6 @@
 // import { config } from "../../config";
 
-const apiKey = async () => {
+const getApiKey = async () => {
   let result = "";
   try {
     const response = await fetch(
@@ -16,6 +16,7 @@ const apiKey = async () => {
   }
   return result;
 };
+const apiKey = getApiKey()
 
 const zipcodebaseUrl = "https://app.zipcodebase.com/api/v1/search?";
 const authQuery = `apikey=${apiKey}`;
