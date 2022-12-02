@@ -7,8 +7,7 @@ export const getLocationString = async (zipCode, countryCode) => {
     const response = await fetch(url);
     if (response.ok) {
       const responseObject = await response.json();
-      const locationData = responseObject["results"][`${zipCode}`][0];
-      return `${locationData["city"]}, ${locationData["state_code"]}`;
+      return `${responseObject.city}, ${responseObject.state_code}`;
     }
   } catch (error) {
     console.log(error);
