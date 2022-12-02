@@ -5,11 +5,11 @@ const getApiKey = async () => {
   let result = "";
   try {
     const response = await fetch(
-      "https://api.netlify.com/api/v1/accounts/lwest001/env/openWeatherKey"
+      "https://api.netlify.com/api/v1/accounts/lwest001/env/openWeatherKey?site_id=7da01c6a-2196-496e-9459-40d518a658c7"
     );
     if (response.ok) {
       const responseObject = await response.json();
-      const key = responseObject.key;
+      const key = responseObject["key"];
       result = key;
     }
   } catch (error) {
@@ -17,7 +17,7 @@ const getApiKey = async () => {
   }
   return result;
 };
-const apiKey = getApiKey()
+const apiKey = getApiKey();
 
 const openWeatherUrl = "https://api.openweathermap.org";
 const authQuery = `&appid=${apiKey}`;
