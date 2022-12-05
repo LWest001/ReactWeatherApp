@@ -45,7 +45,7 @@ export const MainDiv = () => {
   // Enable submit button when coordinates load
   useEffect(() => {
     const submitButton = document.querySelector("#submit");
-    if (postalCode.length === 5 && coordinates) {
+    if (postalCode.length === 5 && coordinates !== "invalidZip") {
       setIsValidPostalCode(true);
     } else {
       setIsValidPostalCode(false);
@@ -98,8 +98,8 @@ export const MainDiv = () => {
         setCountry={setCountry}
         handleSubmit={handleSubmit}
         toggleView={toggleView}
-        isValidPostalCode={isValidPostalCode}
         setIsValidPostalCode={setIsValidPostalCode}
+        coordinates={coordinates}
       />
       <ResultsPage
         toggleView={toggleView}

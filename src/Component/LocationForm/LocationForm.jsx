@@ -1,5 +1,5 @@
 import { CountrySelector } from "../CountrySelector/CountrySelector";
-import React, { useEffect } from "react";
+import React from "react";
 import "./LocationForm.css";
 
 export const LocationForm = (props) => {
@@ -12,14 +12,14 @@ export const LocationForm = (props) => {
     setCountryCode,
     country,
     setCountry,
-    isValidPostalCode,
+    coordinates,
   } = props;
 
   const displayForm =
     toggleView === "LocationForm" ? { display: "flex" } : { display: "none" };
 
   const displayInvalidPostalCode =
-    isValidPostalCode || postalCode.length < 5
+    coordinates !== "invalidZip" || postalCode.length < 5
       ? { display: "none" }
       : { display: "block" };
 
