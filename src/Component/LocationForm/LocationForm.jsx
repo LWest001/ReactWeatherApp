@@ -19,7 +19,7 @@ export const LocationForm = (props) => {
     toggleView === "LocationForm" ? { display: "flex" } : { display: "none" };
 
   const displayInvalidPostalCode =
-    coordinates !== "invalidZip" || postalCode.length < 5
+    coordinates !== "invalidZip" && postalCode.length <= 5
       ? { display: "none" }
       : { display: "block" };
 
