@@ -15,6 +15,7 @@
   grid-template-columns: 1fr 1fr;
   border: solid;
   margin: 1em;
+  width: 100%;
   background: radial-gradient(ellipse at top, #defffc, transparent),
     radial-gradient(ellipse at bottom, #4d9f0c, transparent);
 }
@@ -24,7 +25,14 @@
   width: 12rem;
   height: 4rem;
 }
+@media (hover: hover) {
+  .Result:hover {
+    background-color: #87fce883;
+  }
+}
 
-.Result:hover {
-  background-color: #87fce883;
+@media (max-width: 500px) {
+  .ResultsGrid {
+    grid-template-columns: 1fr;
+  }
 }
