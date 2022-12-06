@@ -38,3 +38,12 @@ input[type="number"] {
   appearance: textfield;
 }
 /* end disable input arrows */
+
+@media (max-width: 500px) {
+  label {
+    margin-top: 1rem;
+  }
+  #submit {
+    margin: 1rem;
+  }
+}
