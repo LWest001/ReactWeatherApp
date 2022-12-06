@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
 import { Result } from "../Result/Result";
 import "./ResultsPage.css";
 
 export const ResultsPage = (props) => {
-  const { toggleView, onClick, locationString, localWeatherData } = props;
-  const display =
-    toggleView === "ResultsPage" ? { display: "flex" } : { display: "none" };
+  const { toggleView, onClick, locationString, localWeatherData, icon } = props;
+  const display = toggleView === "ResultsPage" ? "flex" : "none";
 
   const ResultsGrid = () => {
     let resultsArray = [];
@@ -15,6 +13,7 @@ export const ResultsPage = (props) => {
       resultsArray.push(
         <Result
           key={key}
+          icon={icon}
           display={{
             heading: key,
             data: value,
@@ -26,9 +25,14 @@ export const ResultsPage = (props) => {
   };
 
   return (
-    <div className="ResultsPage" style={display}>
+    <div className="ResultsPage" style={{ display: display }}>
       <h1 className="locationHeader">{locationString}</h1>
-      <h2>
+      <h2
+        className="dateTime"
+        style={{
+          backgroundImage: `url(${icon})`,
+        }}
+      >
         {localWeatherData.Date} | {localWeatherData.Time}
       </h2>
       <div className="ResultsGrid">

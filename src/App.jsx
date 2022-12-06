@@ -16,6 +16,7 @@ function App() {
   const [locationString, setLocationString] = useState("Loading...");
   const [coordinates, setCoordinates] = useState("");
   const [localWeatherData, setLocalWeatherData] = useState({});
+  const [icon, setIcon] = useState({});
   const [isValidPostalCode, setIsValidPostalCode] = useState(false);
 
   // Set units to imperial for US, Liberia, and Myanmar
@@ -66,7 +67,10 @@ function App() {
         coordinates.longitude,
         units
       )
-        .then((localWeather) => setLocalWeatherData(localWeather))
+        .then((localWeather) => {
+          setLocalWeatherData(localWeather.text);
+          setIcon(localWeather.icon);
+        })
         .catch((error) => console.log(error));
     }
   };
@@ -106,6 +110,7 @@ function App() {
         onClick={handleReturnHome}
         locationString={locationString}
         localWeatherData={localWeatherData}
+        icon={icon}
       />
     </div>
   );

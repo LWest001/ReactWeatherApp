@@ -1,11 +1,11 @@
 .Result {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  display: inline-block;
   padding: 0.5rem;
   font-size: larger;
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
+
 .data {
   font-weight: bold;
   margin: 0.25rem;

@@ -4,6 +4,9 @@
   align-items: center;
   justify-content: center;
 }
+.ResultsPage img {
+  height: 1.5rem;
+}
 
 .locationHeader {
   margin-top: 0;

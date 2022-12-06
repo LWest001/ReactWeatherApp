@@ -74,5 +74,8 @@ const formatData = (object, timezone) => {
     Time: time,
     Date: date,
   };
-  return formattedObject;
+
+  const icon = `http://openweathermap.org/img/wn/${weather["icon"]}@4x.png`;
+
+  return { text: formattedObject, icon: icon };
 };
