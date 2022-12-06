@@ -26,16 +26,11 @@ export const ResultsPage = (props) => {
 
   return (
     <div className="ResultsPage" style={{ display: display }}>
-      <h1 className="locationHeader">{locationString}</h1>
-      <h2
-        className="dateTime"
-        style={{
-          backgroundImage: `url(${icon})`,
-        }}
-      >
-        {localWeatherData.Date} | {localWeatherData.Time}
-      </h2>
       <div className="ResultsGrid">
+        <h1 className="locationHeader">{locationString}</h1>
+        <h2 className="dateTime">
+          {localWeatherData.Date} | {localWeatherData.Time}
+        </h2>
         <ResultsGrid />
       </div>
       <button className="returnButton" onClick={onClick}>

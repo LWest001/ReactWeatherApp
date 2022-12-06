@@ -18,6 +18,7 @@ function App() {
   const [localWeatherData, setLocalWeatherData] = useState({});
   const [icon, setIcon] = useState({});
   const [isValidPostalCode, setIsValidPostalCode] = useState(false);
+  const [backgroundImage, setBackgroundImage] = useState("");
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
@@ -74,6 +75,12 @@ function App() {
         .catch((error) => console.log(error));
     }
   };
+
+  useEffect(() => {
+    if (toggleView === "ResultsPage") {
+      setBackgroundImage()
+    }
+  }, [toggleView]);
 
   // Event handlers
   const handleSubmit = (e) => {

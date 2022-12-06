@@ -18,6 +18,10 @@
   max-width: 40rem;
   text-align: center;
   padding: 2em;
+  background-image: url(./assets/img/clouds-day.jpg);
+  background-size: cover;
+  background-position: bottom;
+  
 }
 
 @media (max-width: 1000px) {

@@ -1,9 +1,10 @@
 .Result {
   padding: 0.5rem;
   font-size: larger;
-  background-position: top right;
+  background-position: right -.8em;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 5rem;
+  background-clip: border-box;
 }
 
 .data {
