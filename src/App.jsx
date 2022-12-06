@@ -20,7 +20,7 @@ function App() {
   const [localWeatherData, setLocalWeatherData] = useState({});
   const [isValidPostalCode, setIsValidPostalCode] = useState(false);
 
-    // Set units to imperial for US, Liberia, and Myanmar
+  // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
     setUnits(
       countryCode === "US" || countryCode === "LR" || countryCode === "MM"
@@ -91,7 +91,24 @@ function App() {
 
   return (
     <div className="App">
-      <MainDiv />
+      <LocationForm
+        postalCode={postalCode}
+        countryCode={countryCode}
+        country={country}
+        setPostalCode={setPostalCode}
+        setCountryCode={setCountryCode}
+        setCountry={setCountry}
+        handleSubmit={handleSubmit}
+        toggleView={toggleView}
+        setIsValidPostalCode={setIsValidPostalCode}
+        coordinates={coordinates}
+      />
+      <ResultsPage
+        toggleView={toggleView}
+        onClick={handleReturnHome}
+        locationString={locationString}
+        localWeatherData={localWeatherData}
+      />
     </div>
   );
 }
