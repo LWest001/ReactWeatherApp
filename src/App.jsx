@@ -19,6 +19,48 @@ function App() {
   const [coordinates, setCoordinates] = useState("");
   const [localWeatherData, setLocalWeatherData] = useState({});
   const [isValidPostalCode, setIsValidPostalCode] = useState(false);
+
+    // Set units to imperial for US, Liberia, and Myanmar
+  useEffect(() => {
+    setUnits(
+      countryCode === "US" || countryCode === "LR" || countryCode === "MM"
+        ? "imperial"
+        : "metric"
+    );
+  }, [countryCode]);
+
+  // Set coordinates and location string when a 5-digit code is entered.
+  useEffect(() => {
+    if (postalCode.length === 5 && countryCode === "US") {
+      getLocationString(postalCode, countryCode).then((locationString) =>
+        setLocationString(locationString)
+      );
+      getCoordinates(postalCode, countryCode).then((coordinates) =>
+        setCoordinates(coordinates)
+      );
+    } else {
+      setLocationString("");
+      setCoordinates("");
+    }
+  }, [postalCode]);
+
+  // Enable submit button when coordinates load
+  useEffect(() => {
+    const submitButton = document.querySelector("#submit");
+    if (postalCode.length === 5 && coordinates !== "invalidZip") {
+      setIsValidPostalCode(true);
+    } else {
+      setIsValidPostalCode(false);
+    }
+  }, [coordinates]);
+
+  useEffect(() => {
+    const submitButton = document.querySelector("#submit");
+    isValidPostalCode
+      ? (submitButton.disabled = false)
+      : (submitButton.disabled = true);
+  }, [isValidPostalCode]);
+
   return (
     <div className="App">
       <MainDiv />
