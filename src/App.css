@@ -6,11 +6,6 @@
   justify-content: center;
 }
 
-@media (max-width: 1000) {
-  #root {
-    padding: 1rem;
-  }
-}
 .App {
   display: flex;
   align-items: center;
@@ -22,4 +17,16 @@
   max-width: 40rem;
   text-align: center;
   padding: 2em;
+}
+
+@media (max-width: 1000px) {
+  #root {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .App {
+    padding: 1rem;
+  }
 }
