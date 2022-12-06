@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { ResultsPage } from "./Container/ResultsPage/ResultsPage";
 import { getCoordinates, getLocalWeatherData } from "./API/OpenWeather";
 import { getLocationString } from "./API/ZipCodeBase";
+import { backgroundSelector } from "./functions/backgroundSelector";
 
 function App() {
   // State setters
@@ -54,12 +55,24 @@ function App() {
     }
   }, [coordinates]);
 
+  // Enable or disable submit button
   useEffect(() => {
     const submitButton = document.querySelector("#submit");
     isValidPostalCode
       ? (submitButton.disabled = false)
       : (submitButton.disabled = true);
   }, [isValidPostalCode]);
+
+  // Set background based on weather and day segment
+  useEffect(() => {
+    if (toggleView === "ResultsPage") {
+      const bgImage = backgroundSelector(
+        localWeatherData.weather,
+        localWeatherData.daySegment
+      );
+      setBackgroundImage("");
+    }
+  }, [toggleView]);
 
   const gatherData = () => {
     if (coordinates) {
@@ -75,12 +88,6 @@ function App() {
         .catch((error) => console.log(error));
     }
   };
-
-  useEffect(() => {
-    if (toggleView === "ResultsPage") {
-      setBackgroundImage()
-    }
-  }, [toggleView]);
 
   // Event handlers
   const handleSubmit = (e) => {

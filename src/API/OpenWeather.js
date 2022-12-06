@@ -76,6 +76,14 @@ const formatData = (object, timezone) => {
   };
 
   const icon = `http://openweathermap.org/img/wn/${weather["icon"]}@4x.png`;
+  const daySegment = weather.icon[weather.icon.length];
 
-  return { text: formattedObject, icon: icon };
+  const returnObj = {
+    text: formattedObject,
+    icon: icon,
+    weather: weather.main,
+    daySegment: daySegment,
+  };
+  
+  return returnObj;
 };
