@@ -61,6 +61,34 @@ function App() {
       : (submitButton.disabled = true);
   }, [isValidPostalCode]);
 
+  const gatherData = () => {
+    if (coordinates) {
+      return getLocalWeatherData(
+        coordinates.latitude,
+        coordinates.longitude,
+        units
+      )
+        .then((localWeather) => setLocalWeatherData(localWeather))
+        .catch((error) => console.log(error));
+    }
+  };
+
+  // Event handlers
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    gatherData().then(() => setToggleView("ResultsPage"));
+  };
+
+  const handleReturnHome = (e) => {
+    setToggleView("LocationForm");
+    setLocationString("Loading...");
+    setPostalCode("");
+    setCoordinates("");
+    setLocalWeatherData({});
+    setCountryCode("US");
+    setCountry("United States");
+  };
+
   return (
     <div className="App">
       <MainDiv />
