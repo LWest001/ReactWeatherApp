@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { ResultsPage } from "./Container/ResultsPage/ResultsPage";
 import { getCoordinates, getLocalWeatherData } from "./API/OpenWeather";
 import { getLocationString } from "./API/ZipCodeBase";
+import CloudsDay from "./img/Clouds-day.jpg";
 
 function App() {
   // State setters
