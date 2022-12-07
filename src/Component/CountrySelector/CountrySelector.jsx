@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import countriesData from "../../assets/data/countries.json";
 
 export const CountrySelector = (props) => {

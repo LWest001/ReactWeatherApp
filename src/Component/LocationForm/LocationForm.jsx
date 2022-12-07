@@ -1,5 +1,4 @@
 import { CountrySelector } from "../CountrySelector/CountrySelector";
-import React from "react";
 import "./LocationForm.css";
 
 export const LocationForm = (props) => {
