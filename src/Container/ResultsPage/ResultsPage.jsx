@@ -1,5 +1,7 @@
 import { Result } from "../Result/Result";
 import "./ResultsPage.css";
+import { useEffect } from "react";
+import { backgroundSelector } from "../../functions/backgroundSelector";
 
 export const ResultsPage = (props) => {
   const { toggleView, onClick, locationString, localWeatherData, icon } = props;

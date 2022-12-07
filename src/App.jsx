@@ -20,6 +20,8 @@ function App() {
   const [icon, setIcon] = useState({});
   const [isValidPostalCode, setIsValidPostalCode] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState("");
+  const [weather, setWeather] = useState("");
+  const [daySegment, setDaySegment] = useState("");
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
@@ -45,9 +47,8 @@ function App() {
     }
   }, [postalCode]);
 
-  // Enable submit button when coordinates load
+  // Set isValidPostalCode when coordinates load
   useEffect(() => {
-    const submitButton = document.querySelector("#submit");
     if (postalCode.length === 5 && coordinates !== "invalidZip") {
       setIsValidPostalCode(true);
     } else {
@@ -64,15 +65,6 @@ function App() {
   }, [isValidPostalCode]);
 
   // Set background based on weather and day segment
-  useEffect(() => {
-    if (toggleView === "ResultsPage") {
-      const bgImage = backgroundSelector(
-        localWeatherData.weather,
-        localWeatherData.daySegment
-      );
-      setBackgroundImage("");
-    }
-  }, [toggleView]);
 
   const gatherData = () => {
     if (coordinates) {
@@ -84,10 +76,22 @@ function App() {
         .then((localWeather) => {
           setLocalWeatherData(localWeather.text);
           setIcon(localWeather.icon);
+          setWeather(localWeather.weather);
+          setDaySegment(localWeather.daySegment);
         })
         .catch((error) => console.log(error));
     }
   };
+
+  useEffect(() => {
+    setBackgroundImage(backgroundSelector(weather, daySegment));
+  }, [weather]);
+
+  useEffect(() => {
+    document.querySelector(
+      ".App"
+    ).style.backgroundImage = `url(${backgroundImage})`;
+  }, [backgroundImage]);
 
   // Event handlers
   const handleSubmit = (e) => {
@@ -103,6 +107,9 @@ function App() {
     setLocalWeatherData({});
     setCountryCode("US");
     setCountry("United States");
+    setBackgroundImage("");
+    setWeather("");
+    setDaySegment("");
   };
 
   return (

@@ -1,43 +1,46 @@
+import CloudsDay from "../assets/img/Clouds-day.jpg";
+import MistDay from "../assets/img/Mist-day.jpg";
+
 const images = {
   day: {
-    Clouds: "./assets/img/Clouds-day",
-    Thunderstorm: "./assets/img/Thunderstorm-day",
-    Drizzle: "./assets/img/Drizzle-day",
-    Rain: "./assets/img/Rain-day",
-    Snow: "./assets/img/Snow-day",
-    Mist: "./assets/img/Mist-day",
-    Smoke: "./assets/img/Smoke-day",
-    Haze: "./assets/img/Haze-day",
-    Dust: "./assets/img/Dust-day",
-    Fog: "./assets/img/Fog-day",
-    Sand: "./assets/img/Sand-day",
-    Ash: "./assets/img/Ash-day",
-    Squall: "./assets/img/Squall-day",
-    Tornado: "./assets/img/Tornado-day",
-    Clear: "./assets/img/Clear-day",
+    Clouds: CloudsDay,
+    Thunderstorm: "./assets/img/Thunderstorm-day.jpg",
+    Drizzle: "./assets/img/Drizzle-day.jpg",
+    Rain: "./assets/img/Rain-day.jpg",
+    Snow: "./assets/img/Snow-day.jpg",
+    Mist: MistDay,
+    Smoke: "./assets/img/Smoke-day.jpg",
+    Haze: "./assets/img/Haze-day.jpg",
+    Dust: "./assets/img/Dust-day.jpg",
+    Fog: "./assets/img/Fog-day.jpg",
+    Sand: "./assets/img/Sand-day.jpg",
+    Ash: "./assets/img/Ash-day.jpg",
+    Squall: "./assets/img/Squall-day.jpg",
+    Tornado: "./assets/img/Tornado-day.jpg",
+    Clear: "./assets/img/Clear-day.jpg",
   },
   night: {
-    Clouds: "./assets/img/Clouds-night",
-    Thunderstorm: "./assets/img/Thunderstorm-night",
-    Drizzle: "./assets/img/Drizzle-night",
-    Rain: "./assets/img/Rain-night",
-    Snow: "./assets/img/Snow-night",
-    Mist: "./assets/img/Mist-night",
-    Smoke: "./assets/img/Smoke-night",
-    Haze: "./assets/img/Haze-night",
-    Dust: "./assets/img/Dust-night",
-    Fog: "./assets/img/Fog-night",
-    Sand: "./assets/img/Sand-night",
-    Ash: "./assets/img/Ash-night",
-    Squall: "./assets/img/Squall-night",
-    Tornado: "./assets/img/Tornado-night",
-    Clear: "./assets/img/Clear-night",
+    Clouds: "./assets/img/Clouds-night.jpg",
+    Thunderstorm: "./assets/img/Thunderstorm-night.jpg",
+    Drizzle: "./assets/img/Drizzle-night.jpg",
+    Rain: "./assets/img/Rain-night.jpg",
+    Snow: "./assets/img/Snow-night.jpg",
+    Mist: "./assets/img/Mist-night.jpg",
+    Smoke: "./assets/img/Smoke-night.jpg",
+    Haze: "./assets/img/Haze-night.jpg",
+    Dust: "./assets/img/Dust-night.jpg",
+    Fog: "./assets/img/Fog-night.jpg",
+    Sand: "./assets/img/Sand-night.jpg",
+    Ash: "./assets/img/Ash-night.jpg",
+    Squall: "./assets/img/Squall-night.jpg",
+    Tornado: "./assets/img/Tornado-night.jpg",
+    Clear: "./assets/img/Clear-night.jpg",
   },
 };
 
 export const backgroundSelector = (weather, daySegment) => {
   switch (daySegment) {
-    case "day": {
+    case "d": {
       switch (weather) {
         case "Clouds": {
           return images.day.Clouds;
@@ -86,7 +89,7 @@ export const backgroundSelector = (weather, daySegment) => {
         }
       }
     }
-    case "night": {
+    case "n": {
       switch (weather) {
         case "Clouds": {
           return images.night.Clouds;
