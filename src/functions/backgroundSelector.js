@@ -1,35 +1,35 @@
-// import CloudsDay from "../assets/img/Clouds-day.jpg";
-import ThunderstormDay from "../assets/img/Thunderstorm-day.jpg";
-import DrizzleDay from "../assets/img/Drizzle-day.jpg";
-import RainDay from "../assets/img/Rain-day.jpg";
-import SnowDay from "../assets/img/Snow-day.jpg";
-import MistDay from "../assets/img/Mist-day.jpg";
-import SmokeDay from "../assets/img/Smoke-day.jpg";
-import HazeDay from "../assets/img/Haze-day.jpg";
-import DustDay from "../assets/img/Dust-day.jpg";
-import FogDay from "../assets/img/Fog-day.jpg";
-import SandDay from "../assets/img/Dust-day.jpg"; //exception
-import AshDay from "../assets/img/Smoke-day.jpg"; //exception
-import SquallDay from "../assets/img/Thunderstorm-day.jpg"; //exception
-import TornadoDay from "../assets/img/Tornado-day.jpg";
-import ClearDay from "../assets/img/Clear-day.jpg";
+import CloudsDay from "../img/Clouds-day.jpg";
+import ThunderstormDay from "../img/Thunderstorm-day.jpg";
+import DrizzleDay from "../img/Drizzle-day.jpg";
+import RainDay from "../img/Rain-day.jpg";
+import SnowDay from "../img/Snow-day.jpg";
+import MistDay from "../img/Mist-day.jpg";
+import SmokeDay from "../img/Smoke-day.jpg";
+import HazeDay from "../img/Haze-day.jpg";
+import DustDay from "../img/Dust-day.jpg";
+import FogDay from "../img/Fog-day.jpg";
+import SandDay from "../img/Dust-day.jpg"; //exception
+import AshDay from "../img/Smoke-day.jpg"; //exception
+import SquallDay from "../img/Thunderstorm-day.jpg"; //exception
+import TornadoDay from "../img/Tornado-day.jpg";
+import ClearDay from "../img/Clear-day.jpg";
 
 // //Currently night pics using day pics
-import CloudsNight from "../assets/img/Clouds-day.jpg";
-import ThunderstormNight from "../assets/img/Thunderstorm-day.jpg";
-import DrizzleNight from "../assets/img/Drizzle-day.jpg";
-import RainNight from "../assets/img/Rain-day.jpg";
-import SnowNight from "../assets/img/Snow-day.jpg";
-import MistNight from "../assets/img/Mist-day.jpg";
-import SmokeNight from "../assets/img/Smoke-day.jpg";
-import HazeNight from "../assets/img/Haze-day.jpg";
-import DustNight from "../assets/img/Dust-day.jpg";
-import FogNight from "../assets/img/Fog-day.jpg";
-import SandNight from "../assets/img/Dust-day.jpg"; //exception
-import AshNight from "../assets/img/Smoke-day.jpg"; //exception
-import SquallNight from "../assets/img/Thunderstorm-day.jpg"; //exception
-import TornadoNight from "../assets/img/Tornado-day.jpg";
-import ClearNight from "../assets/img/Clear-day.jpg";
+import CloudsNight from "../img/Clouds-day.jpg";
+import ThunderstormNight from "../img/Thunderstorm-day.jpg";
+import DrizzleNight from "../img/Drizzle-day.jpg";
+import RainNight from "../img/Rain-day.jpg";
+import SnowNight from "../img/Snow-day.jpg";
+import MistNight from "../img/Mist-day.jpg";
+import SmokeNight from "../img/Smoke-day.jpg";
+import HazeNight from "../img/Haze-day.jpg";
+import DustNight from "../img/Dust-day.jpg";
+import FogNight from "../img/Fog-day.jpg";
+import SandNight from "../img/Dust-day.jpg"; //exception
+import AshNight from "../img/Smoke-day.jpg"; //exception
+import SquallNight from "../img/Thunderstorm-day.jpg"; //exception
+import TornadoNight from "../img/Tornado-day.jpg";
+import ClearNight from "../img/Clear-day.jpg";
 
 // import CloudsDay from "https://raw.githubusercontent.com/LWest001/ReactWeatherApp/master/src/assets/img/Clouds-day.jpg";
 // import ThunderstormDay from "https://raw.githubusercontent.com/LWest001/ReactWeatherApp/master/src/assets/img/Thunderstorm-day.jpg";
