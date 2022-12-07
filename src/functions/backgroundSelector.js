@@ -1,41 +1,41 @@
-import CloudsDay from "/src/img/Clouds-day.jpg";
-import ThunderstormDay from "/src/img/Thunderstorm-day.jpg";
-import DrizzleDay from "/src/img/Drizzle-day.jpg";
-import RainDay from "/src/img/Rain-day.jpg";
-import SnowDay from "/src/img/Snow-day.jpg";
-import MistDay from "/src/img/Mist-day.jpg";
-import SmokeDay from "/src/img/Smoke-day.jpg";
-import HazeDay from "/src/img/Haze-day.jpg";
-import DustDay from "/src/img/Dust-day.jpg";
-import FogDay from "/src/img/Fog-day.jpg";
+import CloudsDay from "/img/Clouds-day.jpg";
+import ThunderstormDay from "/img/Thunderstorm-day.jpg";
+import DrizzleDay from "/img/Drizzle-day.jpg";
+import RainDay from "/img/Rain-day.jpg";
+import SnowDay from "/img/Snow-day.jpg";
+import MistDay from "/img/Mist-day.jpg";
+import SmokeDay from "/img/Smoke-day.jpg";
+import HazeDay from "/img/Haze-day.jpg";
+import DustDay from "/img/Dust-day.jpg";
+import FogDay from "/img/Fog-day.jpg";
 //exception
-import SandDay from "/src/img/Dust-day.jpg";
+import SandDay from "/img/Dust-day.jpg";
 //exception
-import AshDay from "/src/img/Smoke-day.jpg";
+import AshDay from "/img/Smoke-day.jpg";
 //exception
-import SquallDay from "/src/img/Thunderstorm-day.jpg";
-import TornadoDay from "/src/img/Tornado-day.jpg";
-import ClearDay from "/src/img/Clear-day.jpg";
+import SquallDay from "/img/Thunderstorm-day.jpg";
+import TornadoDay from "/img/Tornado-day.jpg";
+import ClearDay from "/img/Clear-day.jpg";
 
 // //Currently night pics using day pics
-import CloudsNight from "/src/img/Clouds-day.jpg";
-import ThunderstormNight from "/src/img/Thunderstorm-day.jpg";
-import DrizzleNight from "/src/img/Drizzle-day.jpg";
-import RainNight from "/src/img/Rain-day.jpg";
-import SnowNight from "/src/img/Snow-day.jpg";
-import MistNight from "/src/img/Mist-day.jpg";
-import SmokeNight from "/src/img/Smoke-day.jpg";
-import HazeNight from "/src/img/Haze-day.jpg";
-import DustNight from "/src/img/Dust-day.jpg";
-import FogNight from "/src/img/Fog-day.jpg";
+import CloudsNight from "/img/Clouds-day.jpg";
+import ThunderstormNight from "/img/Thunderstorm-day.jpg";
+import DrizzleNight from "/img/Drizzle-day.jpg";
+import RainNight from "/img/Rain-day.jpg";
+import SnowNight from "/img/Snow-day.jpg";
+import MistNight from "/img/Mist-day.jpg";
+import SmokeNight from "/img/Smoke-day.jpg";
+import HazeNight from "/img/Haze-day.jpg";
+import DustNight from "/img/Dust-day.jpg";
+import FogNight from "/img/Fog-day.jpg";
 //exception
-import SandNight from "/src/img/Dust-day.jpg";
+import SandNight from "/img/Dust-day.jpg";
 //exception
-import AshNight from "/src/img/Smoke-day.jpg";
+import AshNight from "/img/Smoke-day.jpg";
 //exception
-import SquallNight from "/src/img/Thunderstorm-day.jpg";
-import TornadoNight from "/src/img/Tornado-day.jpg";
-import ClearNight from "/src/img/Clear-day.jpg";
+import SquallNight from "/img/Thunderstorm-day.jpg";
+import TornadoNight from "/img/Tornado-day.jpg";
+import ClearNight from "/img/Clear-day.jpg";
 
 const images = {
   day: {
