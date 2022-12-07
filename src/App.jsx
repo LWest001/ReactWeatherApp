@@ -1,12 +1,11 @@
 import "./App.css";
 import "./Component/CountrySelector/CountrySelector";
-import { LocationForm } from "./Component/LocationForm/LocationForm";
+import { LocationForm } from "./Container/LocationForm/LocationForm";
 import { useState, useEffect } from "react";
 import { ResultsPage } from "./Container/ResultsPage/ResultsPage";
 import { getCoordinates, getLocalWeatherData } from "./API/OpenWeather";
 import { getLocationString } from "./API/ZipCodeBase";
 import { backgroundSelector } from "./functions/backgroundSelector";
-
 
 function App() {
   // State setters
@@ -23,6 +22,7 @@ function App() {
   const [backgroundImage, setBackgroundImage] = useState("");
   const [weather, setWeather] = useState("");
   const [daySegment, setDaySegment] = useState("");
+  const [dataType, setDataType] = useState("Now");
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
@@ -46,7 +46,7 @@ function App() {
       setLocationString("");
       setCoordinates("");
     }
-  }, [postalCode]);
+  }, [postalCode, countryCode]);
 
   // Set isValidPostalCode when coordinates load
   useEffect(() => {
@@ -133,6 +133,8 @@ function App() {
         locationString={locationString}
         localWeatherData={localWeatherData}
         icon={icon}
+        dataType={dataType}
+        setDataType={setDataType}
       />
     </div>
   );

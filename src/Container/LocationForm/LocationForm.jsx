@@ -1,4 +1,4 @@
-import { CountrySelector } from "../CountrySelector/CountrySelector";
+import { CountrySelector } from "../../Component/CountrySelector/CountrySelector";
 import "./LocationForm.css";
 
 export const LocationForm = (props) => {
@@ -47,7 +47,6 @@ export const LocationForm = (props) => {
           id="CountrySelector"
           countryCode={countryCode}
           setCountryCode={setCountryCode}
-          country={country}
           setCountry={setCountry}
         />
         <br />

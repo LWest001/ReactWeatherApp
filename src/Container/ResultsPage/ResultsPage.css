@@ -7,7 +7,9 @@
 .ResultsPage img {
   height: 1.5rem;
 }
-
+.Result {
+  transition: background-color 100ms;
+}
 .locationHeader {
   margin-top: 0;
   margin-bottom: 0;
@@ -39,19 +41,17 @@
   }
 }
 
-
-
 @media (max-width: 500px) {
   .ResultsGrid {
     grid-template-columns: 1fr;
   }
   .locationHeader {
-  margin-top: 0;
-  margin-bottom: 0;
-  grid-column: 1;
-}
+    margin-top: 0;
+    margin-bottom: 0;
+    grid-column: 1;
+  }
 
-.dateTime {
-  grid-column: 1;
-}
+  .dateTime {
+    grid-column: 1;
+  }
 }

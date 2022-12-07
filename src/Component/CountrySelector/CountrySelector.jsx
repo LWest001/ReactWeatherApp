@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import countriesData from "../../assets/data/countries.json";
 
 export const CountrySelector = (props) => {
-  const { countryCode, setCountryCode, country, setCountry } = props;
+  const { countryCode, setCountryCode, setCountry } = props;
   const CountriesOptions = () => {
     const optionsArray = [];
     countriesData.forEach((country) => {

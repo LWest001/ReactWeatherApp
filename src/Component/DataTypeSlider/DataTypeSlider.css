@@ -1,0 +1,28 @@
+.DataTypeSlider {
+  display: flex;
+  flex-direction: column;
+  width: 12rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #bbfc87;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+.DataTypeSlider label {
+  margin-top: 0;
+}
+
+datalist {
+  display: flex;
+  justify-content: space-between;
+  width: 10rem;
+}
+
+option {
+  padding: 0;
+}
+
+input[type="range"] {
+  width: 10rem;
+  margin: 0;
+}
