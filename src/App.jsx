@@ -7,6 +7,7 @@ import { getCoordinates, getLocalWeatherData } from "./API/OpenWeather";
 import { getLocationString } from "./API/ZipCodeBase";
 import { backgroundSelector } from "./functions/backgroundSelector";
 
+
 function App() {
   // State setters
   const [toggleView, setToggleView] = useState("LocationForm");
