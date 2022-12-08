@@ -38,7 +38,7 @@ export const getLocalWeatherData = async (latitude, longitude, units) => {
       const returnObject = {
         currentData: currentData,
       };
-      return currentData;
+      return returnObject
     }
   } catch (error) {
     console.log(error);

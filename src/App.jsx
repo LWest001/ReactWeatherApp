@@ -75,10 +75,10 @@ function App() {
         units
       )
         .then((localWeather) => {
-          setLocalWeatherData(localWeather.text);
-          setIcon(localWeather.icon);
-          setWeather(localWeather.weather);
-          setDaySegment(localWeather.daySegment);
+          setLocalWeatherData(localWeather.currentData.text);
+          setIcon(localWeather.currentData.icon);
+          setWeather(localWeather.currentData.weather);
+          setDaySegment(localWeather.currentData.daySegment);
         })
         .catch((error) => console.log(error));
     }
