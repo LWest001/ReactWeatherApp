@@ -23,6 +23,7 @@ function App() {
   const [weather, setWeather] = useState("");
   const [daySegment, setDaySegment] = useState("");
   const [dataType, setDataType] = useState("Now");
+  const [hourlyData, setHourlyData] = useState({});
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
@@ -79,6 +80,7 @@ function App() {
           setIcon(localWeather.currentData.icon);
           setWeather(localWeather.currentData.weather);
           setDaySegment(localWeather.currentData.daySegment);
+          setHourlyData(localWeather.hourlyData);
         })
         .catch((error) => console.log(error));
     }
