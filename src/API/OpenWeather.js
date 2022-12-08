@@ -34,8 +34,11 @@ export const getLocalWeatherData = async (latitude, longitude, units) => {
     if (response.ok) {
       const responseObject = await response.json();
       const timezone = responseObject["timezone"];
-      const formattedDataObject = formatData(responseObject.current, timezone);
-      return formattedDataObject;
+      const currentData = formatData(responseObject.current, timezone);
+      const returnObject = {
+        currentData: currentData,
+      };
+      return currentData;
     }
   } catch (error) {
     console.log(error);
