@@ -13,8 +13,18 @@ select {
   width: 13rem;
 }
 
+.get-current-position {
+  border: 1px solid black;
+  width: 10rem;
+  margin: auto;
+  background-image: url(/img/locate.svg);
+  background-repeat: no-repeat;
+  background-position: 0.5rem;
+  text-align: end;
+  display: none;
+}
+
 #submit {
-  /* display: block; */
   width: 10rem;
   height: 5rem;
   font-size: larger;
