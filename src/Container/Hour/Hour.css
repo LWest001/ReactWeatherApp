@@ -1,0 +1,8 @@
+.Hour {
+    width: 5rem;
+}
+
+.Hour * {
+    margin: 0;
+    font-weight: bold;
+}

@@ -23,7 +23,7 @@ function App() {
   const [weather, setWeather] = useState("");
   const [daySegment, setDaySegment] = useState("");
   const [dataType, setDataType] = useState("Now");
-  const [hourlyData, setHourlyData] = useState({});
+  const [hourlyData, setHourlyData] = useState([]);
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
@@ -113,6 +113,7 @@ function App() {
     setBackgroundImage("");
     setWeather("");
     setDaySegment("");
+    setHourlyData([]);
   };
 
   return (
@@ -137,6 +138,7 @@ function App() {
         icon={icon}
         dataType={dataType}
         setDataType={setDataType}
+        hourlyData={hourlyData}
       />
     </div>
   );

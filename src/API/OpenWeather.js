@@ -52,27 +52,38 @@ export const getLocalWeatherData = async (latitude, longitude, units) => {
 const formatData = (object, timezone) => {
   // Items for use within new object
   let date = new Date(object["dt"] * 1000);
-  date = date.toLocaleDateString("en-US", { timeZone: timezone });
+  date = date.toLocaleDateString("en-US", {
+    timeZone: timezone,
+  });
 
   let time = new Date(object["dt"] * 1000);
-  time = time.toLocaleTimeString("en-US", { timeZone: timezone });
+  time = time.toLocaleTimeString("en-US", {
+    timeZone: timezone,
+    timeStyle: "short",
+  });
 
   let sunriseTime = new Date(object["sunrise"] * 1000);
-  sunriseTime = sunriseTime.toLocaleTimeString("en-US", { timeZone: timezone });
+  sunriseTime = sunriseTime.toLocaleTimeString("en-US", {
+    timeZone: timezone,
+    timeStyle: "short",
+  });
 
   let sunsetTime = new Date(object["sunset"] * 1000);
-  sunsetTime = sunsetTime.toLocaleTimeString("en-US", { timeZone: timezone });
+  sunsetTime = sunsetTime.toLocaleTimeString("en-US", {
+    timeZone: timezone,
+    timeStyle: "short",
+  });
 
   const weather = object["weather"][0];
 
   // build object to display in list
   const formattedObject = {
     Weather: `${weather["main"]} (${weather["description"]})`,
-    Temperature: object["temp"] + " F",
+    Humidity: object["humidity"] + "%",
+    Temperature: Math.round(object["temp"]) + "\xB0 F",
+    "Feels like": object["feels_like"] + "\xB0 F",
     Sunrise: sunriseTime,
     Sunset: sunsetTime,
-    "Feels like": object["feels_like"] + " F",
-    Humidity: object["humidity"] + "%",
     "UV index": object["uvi"],
     "Wind speed": object["wind_speed"] + "mph",
     Time: time,
@@ -98,18 +109,17 @@ const formatHourlyData = (object, timezone) => {
   date = date.toLocaleDateString("en-US", { timeZone: timezone });
 
   let time = new Date(object["dt"] * 1000);
-  time = time.toLocaleTimeString("en-US", { timeZone: timezone });
+  time = time.toLocaleTimeString("en-US", {
+    timeZone: timezone,
+    hour: "numeric",
+  });
 
   const weather = object["weather"][0];
 
   // build object to display in list
   const formattedObject = {
     Weather: `${weather["main"]} (${weather["description"]})`,
-    Temperature: object["temp"] + " F",
-    "Feels like": object["feels_like"] + " F",
-    Humidity: object["humidity"] + "%",
-    "UV index": object["uvi"],
-    "Wind speed": object["wind_speed"] + "mph",
+    Temperature: Math.round(object["temp"]) + "\xB0 F",
     Time: time,
     Date: date,
   };

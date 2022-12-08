@@ -18,16 +18,16 @@ import TornadoDay from "/img/Tornado-day.jpg";
 import ClearDay from "/img/Clear-day.jpg";
 
 // //Currently night pics using day pics
-import CloudsNight from "/img/Clouds-day.jpg";
+import CloudsNight from "/img/Clouds-night.jpg";
 import ThunderstormNight from "/img/Thunderstorm-day.jpg";
-import DrizzleNight from "/img/Drizzle-day.jpg";
-import RainNight from "/img/Rain-day.jpg";
-import SnowNight from "/img/Snow-day.jpg";
+import DrizzleNight from "/img/Drizzle-night.jpg";
+import RainNight from "/img/Rain-night.jpg";
+import SnowNight from "/img/Snow-night.jpg";
 import MistNight from "/img/Mist-day.jpg";
 import SmokeNight from "/img/Smoke-day.jpg";
 import HazeNight from "/img/Haze-day.jpg";
 import DustNight from "/img/Dust-day.jpg";
-import FogNight from "/img/Fog-day.jpg";
+import FogNight from "/img/Fog-night.jpg";
 //exception
 import SandNight from "/img/Dust-day.jpg";
 //exception
@@ -35,7 +35,7 @@ import AshNight from "/img/Smoke-day.jpg";
 //exception
 import SquallNight from "/img/Thunderstorm-day.jpg";
 import TornadoNight from "/img/Tornado-day.jpg";
-import ClearNight from "/img/Clear-day.jpg";
+import ClearNight from "/img/Clear-night.jpg";
 
 const images = {
   day: {

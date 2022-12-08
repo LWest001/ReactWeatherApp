@@ -1,6 +1,7 @@
 import { Result } from "../Result/Result";
 import "./ResultsPage.css";
 import { DataTypeSlider } from "../../Component/DataTypeSlider/DataTypeSlider";
+import { HourlyDisplay } from "../HourlyDisplay/HourlyDisplay";
 
 export const ResultsPage = (props) => {
   const {
@@ -11,6 +12,7 @@ export const ResultsPage = (props) => {
     icon,
     dataType,
     setDataType,
+    hourlyData,
   } = props;
   const display = toggleView === "ResultsPage" ? "flex" : "none";
 
@@ -58,6 +60,7 @@ export const ResultsPage = (props) => {
           {localWeatherData.Date} | {localWeatherData.Time}
         </h2>
         <ResultsGrid />
+        <HourlyDisplay hourlyData={hourlyData} />
       </div>
       <button className="returnButton" onClick={onClick}>
         &larr; Return home
