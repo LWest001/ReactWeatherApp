@@ -17,8 +17,6 @@ export const DataTypeSlider = (props) => {
   };
   return (
     <div className="DataTypeSlider">
-      <label htmlFor="temp">Select view:</label>
-      <br />
       <input
         type="range"
         id="temp"

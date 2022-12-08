@@ -1,8 +1,14 @@
 .Hour {
     width: 5rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .Hour * {
     margin: 0;
     font-weight: bold;
+}
+
+.Hour img {
+    height: auto;
 }

@@ -15,6 +15,7 @@ export const ResultsPage = (props) => {
     hourlyData,
   } = props;
   const display = toggleView === "ResultsPage" ? "flex" : "none";
+  const dataDisplay = dataType === "Now" ? "grid" : "none";
 
   const slideHandler = (e) => {
     setDataType(() => {
@@ -40,6 +41,7 @@ export const ResultsPage = (props) => {
       resultsArray.push(
         <Result
           key={key}
+          styleDisplay={dataDisplay}
           icon={icon}
           display={{
             heading: key,
