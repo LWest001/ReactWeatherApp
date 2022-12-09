@@ -4,7 +4,7 @@ const axios = require("axios");
 const handler = async (event) => {
   const apiKey = process.env.openWeatherKey;
   const { latitude, longitude, units } = event.queryStringParameters;
-  const exclusions = "minutely,daily,alerts";
+  const exclusions = "minutely,alerts";
   const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&units=${units}&exclude=${exclusions}&appid=${apiKey}`;
   try {
     const { data } = await axios.get(url);

@@ -4,7 +4,7 @@ import countriesData from "../../assets/data/countries.json";
 export const CountrySelector = (props) => {
   const { countryCode, setCountryCode, setCountry } = props;
   const CountriesOptions = () => {
-    const optionsArray = [];
+    let optionsArray = [];
     countriesData.forEach((country) => {
       optionsArray.push(
         <option
@@ -17,6 +17,16 @@ export const CountrySelector = (props) => {
         </option>
       );
     });
+
+    useEffect(() => {
+      const options = document.querySelectorAll("option");
+      for (const option of options) {
+        if (option.id !== "US") {
+          option.disabled = "true";
+        }
+      }
+    });
+
     return optionsArray;
   };
 
