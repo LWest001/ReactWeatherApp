@@ -24,5 +24,6 @@ This frontend web application delivers local weather information based on postal
 - - Submit button does not disable/no user error message is displayed when a non-US country is selected
 - The 'Daily' portion of the slider just displays the hourly data (7-day forecast not yet implemented)
 - Slider tick labels do not display on Safari for iOS
+- Background image loads only after a noticeable delay
 
 All code written by Leo Westebbe.
