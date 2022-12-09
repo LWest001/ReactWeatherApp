@@ -25,6 +25,4 @@ This frontend web application delivers local weather information based on postal
 - The 'Daily' portion of the slider just displays the hourly data (7-day forecast not yet implemented)
 - Slider tick labels do not display on Safari for iOS
 
-Currently only US postal codes are compatible with the app.
-
 All code written by Leo Westebbe.
