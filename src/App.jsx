@@ -80,7 +80,8 @@ function App() {
           setDaySegment(localWeather.currentData.daySegment);
           setHourlyData(localWeather.hourlyData);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(window.scroll(0, 0));
     }
   };
 
@@ -113,6 +114,7 @@ function App() {
     setWeather("");
     setDaySegment("");
     setHourlyData([]);
+    window.scroll(0, 0);
   };
 
   return (
