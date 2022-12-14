@@ -14,7 +14,7 @@ export const ResultsPage = (props) => {
     setDataType,
     hourlyData,
   } = props;
-  const dataDisplay = dataType === "Now" ? "grid" : "none";
+  
   const [currentDate, setCurrentDate] = useState(localWeatherData.Date);
 
   useEffect(() => {
@@ -45,7 +45,6 @@ export const ResultsPage = (props) => {
       resultsArray.push(
         <Result
           key={key}
-          styleDisplay={dataDisplay}
           icon={icon}
           display={{
             heading: key,
@@ -66,7 +65,7 @@ export const ResultsPage = (props) => {
         <h2 className="dateTime">
           {localWeatherData.Date} | {localWeatherData.Time}
         </h2>
-        <ResultsGrid />
+        {dataType === "Now" && <ResultsGrid />}
         <HourlyDisplay hourlyData={hourlyData} currentDate={currentDate} />
       </div>
       <button className="returnButton" onClick={onClick}>
