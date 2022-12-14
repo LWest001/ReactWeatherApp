@@ -66,8 +66,7 @@ function App() {
       : (submitButton.disabled = true);
   }, [isValidPostalCode]);
 
-  // Set background based on weather and day segment
-
+  
   const gatherData = () => {
     if (coordinates) {
       return getLocalWeatherData(
@@ -83,9 +82,10 @@ function App() {
           setHourlyData(localWeather.hourlyData);
         })
         .catch((error) => console.log(error));
-    }
-  };
-
+      }
+    };
+    
+    // Set background based on weather and day segment
   useEffect(() => {
     setBackgroundImage(backgroundSelector(weather, daySegment));
   }, [weather]);
@@ -118,28 +118,30 @@ function App() {
 
   return (
     <div className="App">
-      <LocationForm
-        postalCode={postalCode}
-        countryCode={countryCode}
-        country={country}
-        setPostalCode={setPostalCode}
-        setCountryCode={setCountryCode}
-        setCountry={setCountry}
-        handleSubmit={handleSubmit}
-        toggleView={toggleView}
-        setIsValidPostalCode={setIsValidPostalCode}
-        coordinates={coordinates}
-      />
-      <ResultsPage
-        toggleView={toggleView}
-        onClick={handleReturnHome}
-        locationString={locationString}
-        localWeatherData={localWeatherData}
-        icon={icon}
-        dataType={dataType}
-        setDataType={setDataType}
-        hourlyData={hourlyData}
-      />
+      {toggleView === "LocationForm" && (
+        <LocationForm
+          postalCode={postalCode}
+          countryCode={countryCode}
+          country={country}
+          setPostalCode={setPostalCode}
+          setCountryCode={setCountryCode}
+          setCountry={setCountry}
+          handleSubmit={handleSubmit}
+          setIsValidPostalCode={setIsValidPostalCode}
+          coordinates={coordinates}
+        />
+      )}
+      {toggleView === "ResultsPage" && (
+        <ResultsPage
+          onClick={handleReturnHome}
+          locationString={locationString}
+          localWeatherData={localWeatherData}
+          icon={icon}
+          dataType={dataType}
+          setDataType={setDataType}
+          hourlyData={hourlyData}
+        />
+      )}
     </div>
   );
 }

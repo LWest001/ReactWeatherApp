@@ -3,7 +3,6 @@ import "./LocationForm.css";
 
 export const LocationForm = (props) => {
   const {
-    toggleView,
     handleSubmit,
     postalCode,
     setPostalCode,
@@ -14,16 +13,13 @@ export const LocationForm = (props) => {
     coordinates,
   } = props;
 
-  const displayForm =
-    toggleView === "LocationForm" ? { display: "flex" } : { display: "none" };
-
   const displayInvalidPostalCode =
     coordinates !== "invalidZip" && postalCode.length <= 5
       ? { display: "none" }
       : { display: "block" };
 
   return (
-    <div className="LocationForm" style={displayForm}>
+    <div className="LocationForm">
       <h1>
         Enter your postal code and country to get local weather information!
       </h1>

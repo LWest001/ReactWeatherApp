@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 
 export const ResultsPage = (props) => {
   const {
-    toggleView,
     onClick,
     locationString,
     localWeatherData,
@@ -15,7 +14,6 @@ export const ResultsPage = (props) => {
     setDataType,
     hourlyData,
   } = props;
-  const display = toggleView === "ResultsPage" ? "flex" : "none";
   const dataDisplay = dataType === "Now" ? "grid" : "none";
   const [currentDate, setCurrentDate] = useState(localWeatherData.Date);
 
@@ -61,7 +59,7 @@ export const ResultsPage = (props) => {
   };
 
   return (
-    <div className="ResultsPage" style={{ display: display }}>
+    <div className="ResultsPage">
       <DataTypeSlider onChange={slideHandler} value={dataType} />
       <div className="ResultsGrid">
         <h1 className="locationHeader">{locationString}</h1>
