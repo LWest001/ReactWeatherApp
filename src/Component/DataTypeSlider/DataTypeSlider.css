@@ -12,8 +12,19 @@
   margin-top: 0;
 }
 
+.dataList {
+  display:flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.dataList p {
+  margin: auto;
+}
+
 datalist {
-  display: flex;
+  /* display: flex; */
+  display: none;
   justify-content: space-between;
   width: 10rem;
 }

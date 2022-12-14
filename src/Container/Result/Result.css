@@ -51,7 +51,7 @@
   display: inline;
   /* margin-left:30% */
   position: relative;
-  right:.2em;
+  right: 0.2em;
 }
 
 .Weather p {
@@ -65,5 +65,5 @@
 }
 
 .Result {
-  transition: background-color 100ms;
+  transition: background-color 200ms;
 }

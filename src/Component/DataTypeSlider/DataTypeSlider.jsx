@@ -26,6 +26,11 @@ export const DataTypeSlider = (props) => {
         value={handleValue(value)}
         onChange={(e) => onChange(e.target.value)}
       />
+      <div className="dataList">
+        <p id="now">Now</p>
+        <p id="hourly">Hourly</p>
+        <p id="daily">Daily</p>
+      </div>
 
       <datalist id="tickmarks">
         <option value="0" label="Now"></option>

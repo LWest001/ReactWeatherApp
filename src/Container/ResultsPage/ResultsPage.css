@@ -17,7 +17,7 @@
 .dateTime {
   margin-top: 0.5rem;
   grid-column: 1 / 3;
-  width:100%
+  width: 100%;
 }
 
 .ResultsGrid {
@@ -36,7 +36,6 @@
   height: 4rem;
 }
 
-
 @media (max-width: 500px) {
   .ResultsGrid {
     grid-template-columns: 1fr;
@@ -46,7 +45,10 @@
     margin-bottom: 0;
   }
 
-  .dateTime, .locationHeader, .Weather, .Temperature {
+  .dateTime,
+  .locationHeader,
+  .Weather,
+  .Temperature {
     grid-column: 1;
   }
 }
