@@ -42,9 +42,13 @@ export const getLocalWeatherData = async (latitude, longitude, units) => {
       const hourlyData = responseObject.hourly.map((hour) => {
         return formatData(hour, timezone, "hour");
       });
+      const dailyData = responseObject.daily.map((day) => {
+        return formatData(day, timezone, "current");
+      });
       const returnObject = {
         currentData: currentData,
         hourlyData: hourlyData,
+        dailyData: dailyData,
       };
       return returnObject;
     }
@@ -73,7 +77,6 @@ const formatData = (object, timezone, dataType) => {
 
   let time = new Date(object["dt"] * 1000);
   time = time.toLocaleTimeString("en-US", options);
-  console.log(time);
 
   if (dataType === "current") {
     sunriseTime = new Date(object["sunrise"] * 1000);

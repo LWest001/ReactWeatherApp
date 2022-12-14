@@ -16,14 +16,15 @@ function App() {
   const [units, setUnits] = useState("");
   const [locationString, setLocationString] = useState("Loading...");
   const [coordinates, setCoordinates] = useState("");
-  const [localWeatherData, setLocalWeatherData] = useState({});
   const [icon, setIcon] = useState({});
   const [isValidPostalCode, setIsValidPostalCode] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState("");
   const [weather, setWeather] = useState("");
   const [daySegment, setDaySegment] = useState("");
   const [dataType, setDataType] = useState("Now");
+  const [currentData, setCurrentData] = useState({});
   const [hourlyData, setHourlyData] = useState([]);
+  const [dailyData, setDailyData] = useState([]);
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
@@ -74,11 +75,12 @@ function App() {
         units
       )
         .then((localWeather) => {
-          setLocalWeatherData(localWeather.currentData.text);
+          setCurrentData(localWeather.currentData.text);
           setIcon(localWeather.currentData.icon);
           setWeather(localWeather.currentData.weather);
           setDaySegment(localWeather.currentData.daySegment);
           setHourlyData(localWeather.hourlyData);
+          setDailyData(localWeather.dailyData);
         })
         .catch((error) => console.log(error))
         .finally(window.scroll(0, 0));
@@ -107,7 +109,7 @@ function App() {
     setLocationString("Loading...");
     setPostalCode("");
     setCoordinates("");
-    setLocalWeatherData({});
+    setCurrentData({});
     setCountryCode("US");
     setCountry("United States");
     setBackgroundImage("");
@@ -136,7 +138,7 @@ function App() {
         <ResultsPage
           onClick={handleReturnHome}
           locationString={locationString}
-          localWeatherData={localWeatherData}
+          currentData={currentData}
           icon={icon}
           dataType={dataType}
           setDataType={setDataType}

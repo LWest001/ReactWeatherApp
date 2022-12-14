@@ -9,7 +9,7 @@ export const ResultsPage = (props) => {
   const {
     onClick,
     locationString,
-    localWeatherData,
+    currentData,
     icon,
     dataType,
     setDataType,
@@ -17,16 +17,16 @@ export const ResultsPage = (props) => {
   } = props;
 
   const [dates, setDates] = useState({
-    today: localWeatherData.Date,
+    today: currentData.Date,
   });
 
   useEffect(() => {
     setDates({
-      today: localWeatherData.Date,
+      today: currentData.Date,
       tomorrow: hourlyData[24].text.Date,
       followingDay: hourlyData[47].text.Date,
     });
-  }, [localWeatherData]);
+  }, [currentData]);
 
   const slideHandler = (e) => {
     setDataType(() => {
@@ -46,7 +46,7 @@ export const ResultsPage = (props) => {
 
   const ResultsGrid = () => {
     let resultsArray = [];
-    let dataArray = Object.entries(localWeatherData);
+    let dataArray = Object.entries(currentData);
     dataArray = dataArray.slice(0, 8);
     dataArray.forEach(([key, value]) => {
       resultsArray.push(
@@ -70,7 +70,7 @@ export const ResultsPage = (props) => {
       <div className="ResultsGrid">
         <h1 className="locationHeader">{locationString}</h1>
         <h2 className="dateTime">
-          {localWeatherData.Date} | {localWeatherData.Time}
+          {currentData.Date} | {currentData.Time}
         </h2>
         {dataType === "Now" && <ResultsGrid />}
         {dataType !== "Daily" && (
