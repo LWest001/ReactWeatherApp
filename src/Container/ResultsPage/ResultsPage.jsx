@@ -2,6 +2,7 @@ import { Result } from "../Result/Result";
 import "./ResultsPage.css";
 import { DataTypeSlider } from "../../Component/DataTypeSlider/DataTypeSlider";
 import { HourlyDisplay } from "../HourlyDisplay/HourlyDisplay";
+import { DailyDisplay } from "../DailyDisplay/DailyDisplay";
 import { useState, useEffect } from "react";
 
 export const ResultsPage = (props) => {
@@ -72,11 +73,14 @@ export const ResultsPage = (props) => {
           {localWeatherData.Date} | {localWeatherData.Time}
         </h2>
         {dataType === "Now" && <ResultsGrid />}
-        <HourlyDisplay
-          hourlyData={hourlyData}
-          dates={dates}
-          dataType={dataType}
-        />
+        {dataType !== "Daily" && (
+          <HourlyDisplay
+            hourlyData={hourlyData}
+            dates={dates}
+            dataType={dataType}
+          />
+        )}
+        {dataType === "Daily" && <DailyDisplay />}
       </div>
       <button className="returnButton" onClick={onClick}>
         &larr; Return home
