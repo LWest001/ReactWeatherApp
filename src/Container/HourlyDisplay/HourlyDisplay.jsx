@@ -11,6 +11,7 @@ export const HourlyDisplay = (props) => {
           key={hour.text.Time + hour.text.Date}
           icon={hour.icon}
           time={hour.text.Time}
+          date={hour.text.Date}
           temp={hour.text.Temperature}
           weather={hour.weather}
         />
