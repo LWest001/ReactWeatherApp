@@ -1,4 +1,4 @@
-import { Hour } from "../Hour/Hour";
+import { Hour } from "./Hour/Hour";
 import "./HourlyDisplay.css";
 
 export const HourlyDisplay = (props) => {

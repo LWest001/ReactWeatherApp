@@ -1,4 +1,5 @@
 import "./DailyDisplay.css";
+import { Day } from "./Day/Day";
 
 export const DailyDisplay = () => {
   return (
