@@ -15,6 +15,7 @@ export const HourlyDisplay = (props) => {
           currentDate={currentDate}
           temp={hour.text.Temperature}
           weather={hour.weather}
+          dataType={dataType}
         />
       );
     });
