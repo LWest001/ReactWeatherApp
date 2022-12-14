@@ -2,7 +2,7 @@ import { Hour } from "../Hour/Hour";
 import "./HourlyDisplay.css";
 
 export const HourlyDisplay = (props) => {
-  const { hourlyData, currentDate, dataType } = props;
+  const { hourlyData, dates, dataType } = props;
   const HoursGrid = () => {
     let hoursArray = [];
     hourlyData.forEach((hour) => {
@@ -12,7 +12,7 @@ export const HourlyDisplay = (props) => {
           icon={hour.icon}
           time={hour.text.Time}
           date={hour.text.Date}
-          currentDate={currentDate}
+          dates={dates}
           temp={hour.text.Temperature}
           weather={hour.weather}
           dataType={dataType}

@@ -15,10 +15,16 @@ export const ResultsPage = (props) => {
     hourlyData,
   } = props;
 
-  const [currentDate, setCurrentDate] = useState(localWeatherData.Date);
+  const [dates, setDates] = useState({
+    today: localWeatherData.Date,
+  });
 
   useEffect(() => {
-    setCurrentDate(localWeatherData.Date);
+    setDates({
+      today: localWeatherData.Date,
+      tomorrow: hourlyData[24].text.Date,
+      followingDay: hourlyData[47].text.Date,
+    });
   }, [localWeatherData]);
 
   const slideHandler = (e) => {
@@ -68,7 +74,7 @@ export const ResultsPage = (props) => {
         {dataType === "Now" && <ResultsGrid />}
         <HourlyDisplay
           hourlyData={hourlyData}
-          currentDate={currentDate}
+          dates={dates}
           dataType={dataType}
         />
       </div>

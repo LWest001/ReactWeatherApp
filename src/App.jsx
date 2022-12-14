@@ -66,7 +66,6 @@ function App() {
       : (submitButton.disabled = true);
   }, [isValidPostalCode]);
 
-  
   const gatherData = () => {
     if (coordinates) {
       return getLocalWeatherData(
@@ -82,10 +81,10 @@ function App() {
           setHourlyData(localWeather.hourlyData);
         })
         .catch((error) => console.log(error));
-      }
-    };
-    
-    // Set background based on weather and day segment
+    }
+  };
+
+  // Set background based on weather and day segment
   useEffect(() => {
     setBackgroundImage(backgroundSelector(weather, daySegment));
   }, [weather]);
