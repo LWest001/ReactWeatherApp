@@ -17,6 +17,7 @@ export const ResultsPage = (props) => {
   const display = toggleView === "ResultsPage" ? "flex" : "none";
   const dataDisplay = dataType === "Now" ? "grid" : "none";
 
+
   const slideHandler = (e) => {
     setDataType(() => {
       switch (e) {
@@ -50,6 +51,7 @@ export const ResultsPage = (props) => {
         />
       );
     });
+    
     return resultsArray;
   };
 

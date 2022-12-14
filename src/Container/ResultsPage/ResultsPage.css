@@ -35,23 +35,6 @@
   height: 4rem;
 }
 
-.Temperature h4,
-.Weather h4 {
-  display: none;
-}
-
-.Temperature p,
-.Weather p {
-  margin: 0;
-}
-
-.Temperature p {
-  font-size: 2em;
-}
-
-.Weather p {
-  font-size: 1.2em;
-}
 
 @media (max-width: 500px) {
   .ResultsGrid {

@@ -1,7 +1,8 @@
 .Result {
   padding: 0.5rem;
   font-size: larger;
-  background-position: right -.8em;
+  background-origin: padding-box;
+  background-position: center right;
   background-repeat: no-repeat;
   background-size: 5rem;
   background-clip: border-box;
@@ -15,6 +16,44 @@
 .heading {
   margin: 0.25rem;
   font-weight: normal;
+}
+
+#weatherIcon {
+  /* margin-right: auto; */
+  display: inline;
+  height: 4em;
+  overflow: hidden;
+}
+
+.Temperature {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+}
+.Temperature,
+.Weather {
+  grid-column: 1/3;
+}
+
+.Temperature h4,
+.Weather h4 {
+  display: none;
+}
+
+.Temperature p,
+.Weather p {
+  margin: 0;
+}
+
+.Temperature p {
+  font-size: 2em;
+  display: inline;
+  width: fit-content;
+}
+
+.Weather p {
+  font-size: 1.2em;
 }
 
 @media (hover: hover) {
