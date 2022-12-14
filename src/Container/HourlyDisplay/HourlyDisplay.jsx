@@ -2,7 +2,7 @@ import { Hour } from "../Hour/Hour";
 import "./HourlyDisplay.css";
 
 export const HourlyDisplay = (props) => {
-  const { hourlyData, currentDate } = props;
+  const { hourlyData, currentDate, dataType } = props;
   const HoursGrid = () => {
     let hoursArray = [];
     hourlyData.forEach((hour) => {
@@ -21,7 +21,10 @@ export const HourlyDisplay = (props) => {
     return hoursArray;
   };
   return (
-    <div className="HourlyDisplay">
+    <div
+      className="HourlyDisplay"
+      style={dataType === "Hourly" ? { gridTemplateColumns: "1fr" } : {}}
+    >
       <HoursGrid />
     </div>
   );

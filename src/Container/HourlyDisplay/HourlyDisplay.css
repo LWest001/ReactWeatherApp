@@ -1,6 +1,5 @@
 .HourlyDisplay {
   display: grid;
-  /* max-width: 15rem; */
   grid-template-columns: repeat(48, 1fr);
   overflow-x: scroll;
   background: radial-gradient(ellipse at top, #e7e7e7, transparent),
