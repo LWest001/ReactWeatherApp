@@ -1,15 +1,23 @@
 .Hour {
-    width: 5rem;
-    display: flex;
-    flex-direction: column;
+  width: 5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .Hour * {
-    margin: 0;
-    font-weight: bold;
+  margin: 0;
+  font-weight: bold;
 }
 
 .Hour img {
-    height: 45px;
-    object-fit: cover;
+  height: 45px;
+  object-fit: cover;
+}
+
+.Hourly {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  align-items: center;
+  overflow: hidden;
 }
