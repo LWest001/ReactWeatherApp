@@ -81,11 +81,11 @@ const formatData = (object, timezone) => {
     Temperature: Math.round(object["temp"]) + "\xB0 F",
     Weather: `${weather["main"]} (${weather["description"]})`,
     "Feels like": object["feels_like"] + "\xB0 F",
+    "Wind speed": object["wind_speed"] + "mph",
     Humidity: object["humidity"] + "%",
     Sunrise: sunriseTime,
     Sunset: sunsetTime,
     "UV index": object["uvi"],
-    "Wind speed": object["wind_speed"] + "mph",
     Time: time,
     Date: date,
   };
