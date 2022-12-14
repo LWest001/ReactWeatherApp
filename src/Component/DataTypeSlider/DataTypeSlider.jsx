@@ -32,11 +32,13 @@ export const DataTypeSlider = (props) => {
         <p id="daily">Daily</p>
       </div>
 
+      {/* 
+      This feature doesn't work on iOS.
       <datalist id="tickmarks">
         <option value="0" label="Now"></option>
         <option value="50" label="Hourly"></option>
         <option value="100" label="Daily"></option>
-      </datalist>
+      </datalist> */}
     </div>
   );
 };
