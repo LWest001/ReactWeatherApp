@@ -17,7 +17,6 @@ export const ResultsPage = (props) => {
   const display = toggleView === "ResultsPage" ? "flex" : "none";
   const dataDisplay = dataType === "Now" ? "grid" : "none";
 
-
   const slideHandler = (e) => {
     setDataType(() => {
       switch (e) {
@@ -51,7 +50,7 @@ export const ResultsPage = (props) => {
         />
       );
     });
-    
+
     return resultsArray;
   };
 
@@ -64,7 +63,10 @@ export const ResultsPage = (props) => {
           {localWeatherData.Date} | {localWeatherData.Time}
         </h2>
         <ResultsGrid />
-        <HourlyDisplay hourlyData={hourlyData} />
+        <HourlyDisplay
+          hourlyData={hourlyData}
+          currentDate={localWeatherData.date}
+        />
       </div>
       <button className="returnButton" onClick={onClick}>
         &larr; Return home
