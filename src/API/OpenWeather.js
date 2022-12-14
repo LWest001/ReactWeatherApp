@@ -34,9 +34,13 @@ export const getLocalWeatherData = async (latitude, longitude, units) => {
     if (response.ok) {
       const responseObject = await response.json();
       const timezone = responseObject["timezone"];
-      const currentData = formatData(responseObject.current, timezone);
+      const currentData = formatData(
+        responseObject.current,
+        timezone,
+        "current"
+      );
       const hourlyData = responseObject.hourly.map((hour) => {
-        return formatHourlyData(hour, timezone);
+        return formatData(hour, timezone, "hour");
       });
       const returnObject = {
         currentData: currentData,
@@ -49,85 +53,73 @@ export const getLocalWeatherData = async (latitude, longitude, units) => {
   }
 };
 
-const formatData = (object, timezone) => {
+const formatData = (object, timezone, dataType) => {
   // Items for use within new object
+  let sunriseTime;
+  let sunsetTime;
+  let options = {
+    timeZone: timezone,
+  };
+  if (dataType === "current") {
+    options.timeStyle = "short";
+  }
+  if (dataType === "hour") {
+    options.hour = "numeric";
+  }
   let date = new Date(object["dt"] * 1000);
   date = date.toLocaleDateString("en-US", {
     timeZone: timezone,
   });
 
   let time = new Date(object["dt"] * 1000);
-  time = time.toLocaleTimeString("en-US", {
-    timeZone: timezone,
-    timeStyle: "short",
-  });
+  time = time.toLocaleTimeString("en-US", options);
+  console.log(time);
 
-  let sunriseTime = new Date(object["sunrise"] * 1000);
-  sunriseTime = sunriseTime.toLocaleTimeString("en-US", {
-    timeZone: timezone,
-    timeStyle: "short",
-  });
+  if (dataType === "current") {
+    sunriseTime = new Date(object["sunrise"] * 1000);
+    sunriseTime = sunriseTime.toLocaleTimeString("en-US", {
+      timeZone: timezone,
+      timeStyle: "short",
+    });
 
-  let sunsetTime = new Date(object["sunset"] * 1000);
-  sunsetTime = sunsetTime.toLocaleTimeString("en-US", {
-    timeZone: timezone,
-    timeStyle: "short",
-  });
+    sunsetTime = new Date(object["sunset"] * 1000);
+    sunsetTime = sunsetTime.toLocaleTimeString("en-US", {
+      timeZone: timezone,
+      timeStyle: "short",
+    });
+  }
 
   const weather = object["weather"][0];
   const icon = `http://openweathermap.org/img/wn/${weather["icon"]}@4x.png`;
   const daySegment = weather["icon"][2];
 
   // build object to display in list
-  const formattedObject = {
-    Temperature: Math.round(object["temp"]) + "\xB0 F",
-    Weather: `${weather["main"]} (${weather["description"]})`,
-    "Feels like": object["feels_like"] + "\xB0 F",
-    "Wind speed": object["wind_speed"] + "mph",
-    Humidity: object["humidity"] + "%",
-    Sunrise: sunriseTime,
-    Sunset: sunsetTime,
-    "UV index": object["uvi"],
-    Time: time,
-    Date: date,
+  const formattedData = () => {
+    if (dataType === "current") {
+      return {
+        Temperature: Math.round(object["temp"]) + "\xB0 F",
+        Weather: `${weather["main"]} (${weather["description"]})`,
+        "Feels like": object["feels_like"] + "\xB0 F",
+        "Wind speed": object["wind_speed"] + "mph",
+        Humidity: object["humidity"] + "%",
+        Sunrise: sunriseTime,
+        Sunset: sunsetTime,
+        "UV index": object["uvi"],
+        Time: time,
+        Date: date,
+      };
+    } else if (dataType === "hour") {
+      return {
+        Weather: `${weather["main"]} (${weather["description"]})`,
+        Temperature: Math.round(object["temp"]) + "\xB0 F",
+        Time: time,
+        Date: date,
+      };
+    }
   };
 
   const returnObj = {
-    text: formattedObject,
-    icon: icon,
-    weather: weather.main,
-    daySegment: daySegment,
-  };
-
-  return returnObj;
-};
-
-const formatHourlyData = (object, timezone) => {
-  // Items for use within new object
-  let date = new Date(object["dt"] * 1000);
-  date = date.toLocaleDateString("en-US", { timeZone: timezone });
-
-  let time = new Date(object["dt"] * 1000);
-  time = time.toLocaleTimeString("en-US", {
-    timeZone: timezone,
-    hour: "numeric",
-  });
-
-  const weather = object["weather"][0];
-
-  // build object to display in list
-  const formattedObject = {
-    Weather: `${weather["main"]} (${weather["description"]})`,
-    Temperature: Math.round(object["temp"]) + "\xB0 F",
-    Time: time,
-    Date: date,
-  };
-
-  const icon = `http://openweathermap.org/img/wn/${weather["icon"]}@4x.png`;
-  const daySegment = weather["icon"][2];
-
-  const returnObj = {
-    text: formattedObject,
+    text: formattedData(),
     icon: icon,
     weather: weather.main,
     daySegment: daySegment,
