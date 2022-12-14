@@ -10,5 +10,6 @@
 }
 
 .Hour img {
-    height: auto;
+    height: 45px;
+    object-fit: cover;
 }

@@ -7,8 +7,10 @@
     radial-gradient(ellipse at bottom, #c0c0c0, transparent);
   border: solid;
   margin: 1em;
+  margin-top: 0;
   grid-column: 1/3;
 }
+
 @media (max-width: 500px) {
   .HourlyDisplay {
     grid-column: 1;
