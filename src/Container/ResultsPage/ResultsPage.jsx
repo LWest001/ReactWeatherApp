@@ -2,6 +2,7 @@ import { Result } from "../Result/Result";
 import "./ResultsPage.css";
 import { DataTypeSlider } from "../../Component/DataTypeSlider/DataTypeSlider";
 import { HourlyDisplay } from "../HourlyDisplay/HourlyDisplay";
+import { useState, useEffect } from "react";
 
 export const ResultsPage = (props) => {
   const {
@@ -16,6 +17,11 @@ export const ResultsPage = (props) => {
   } = props;
   const display = toggleView === "ResultsPage" ? "flex" : "none";
   const dataDisplay = dataType === "Now" ? "grid" : "none";
+  const [currentDate, setCurrentDate] = useState(localWeatherData.Date);
+
+  useEffect(() => {
+    setCurrentDate(localWeatherData.Date);
+  }, [localWeatherData]);
 
   const slideHandler = (e) => {
     setDataType(() => {
@@ -63,10 +69,7 @@ export const ResultsPage = (props) => {
           {localWeatherData.Date} | {localWeatherData.Time}
         </h2>
         <ResultsGrid />
-        <HourlyDisplay
-          hourlyData={hourlyData}
-          currentDate={localWeatherData.date}
-        />
+        <HourlyDisplay hourlyData={hourlyData} currentDate={currentDate} />
       </div>
       <button className="returnButton" onClick={onClick}>
         &larr; Return home
