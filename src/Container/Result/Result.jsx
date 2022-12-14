@@ -10,8 +10,8 @@ export const Result = (props) => {
       style={{ display: styleDisplay }}
     >
       <h4 className="heading">{heading}</h4>
-      <p className="data">{data}</p>
       {iconImg}
+      <p className="data">{data}</p>
     </div>
   );
 };

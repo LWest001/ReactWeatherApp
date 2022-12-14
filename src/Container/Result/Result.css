@@ -49,7 +49,9 @@
 .Temperature p {
   font-size: 2em;
   display: inline;
-  width: fit-content;
+  /* margin-left:30% */
+  position: relative;
+  right:.2em;
 }
 
 .Weather p {
