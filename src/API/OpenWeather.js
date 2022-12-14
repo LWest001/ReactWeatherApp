@@ -78,10 +78,10 @@ const formatData = (object, timezone) => {
 
   // build object to display in list
   const formattedObject = {
-    Weather: `${weather["main"]} (${weather["description"]})`,
-    Humidity: object["humidity"] + "%",
     Temperature: Math.round(object["temp"]) + "\xB0 F",
+    Weather: `${weather["main"]} (${weather["description"]})`,
     "Feels like": object["feels_like"] + "\xB0 F",
+    Humidity: object["humidity"] + "%",
     Sunrise: sunriseTime,
     Sunset: sunsetTime,
     "UV index": object["uvi"],

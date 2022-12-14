@@ -7,9 +7,7 @@
 .ResultsPage img {
   height: 1.5rem;
 }
-.Result {
-  transition: background-color 100ms;
-}
+
 .locationHeader {
   margin-top: 0;
   margin-bottom: 0;
@@ -17,6 +15,7 @@
 }
 
 .dateTime {
+  margin-top: 0.5rem;
   grid-column: 1 / 3;
 }
 
@@ -35,10 +34,23 @@
   width: 12rem;
   height: 4rem;
 }
-@media (hover: hover) {
-  .Result:hover {
-    background-color: #87fce883;
-  }
+
+.Temperature h4,
+.Weather h4 {
+  display: none;
+}
+
+.Temperature p,
+.Weather p {
+  margin: 0;
+}
+
+.Temperature p {
+  font-size: 2em;
+}
+
+.Weather p {
+  font-size: 1.2em;
 }
 
 @media (max-width: 500px) {

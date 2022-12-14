@@ -14,4 +14,15 @@
 
 .heading {
   margin: 0.25rem;
+  font-weight: normal;
+}
+
+@media (hover: hover) {
+  .Result:hover {
+    background-color: #87fce883;
+  }
+}
+
+.Result {
+  transition: background-color 100ms;
 }
