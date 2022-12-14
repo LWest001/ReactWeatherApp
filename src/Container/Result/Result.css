@@ -62,8 +62,15 @@
   .Result:hover {
     background-color: #87fce883;
   }
+
+  .Result {
+    transition: background-color 200ms;
+  }
 }
 
-.Result {
-  transition: background-color 200ms;
+@media (max-width: 500px) {
+  .Result:not(.Temperature, .Weather) {
+    padding: 0.2rem;
+    grid-template-columns: 1fr 1fr;
+  }
 }
