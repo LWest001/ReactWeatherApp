@@ -23,7 +23,7 @@ select {
   background-repeat: no-repeat;
   background-position: 0.5rem;
   text-align: end;
-  
+
   /* display: none; */
 }
 
@@ -32,6 +32,11 @@ select {
   height: 5rem;
   font-size: larger;
   margin: 2em;
+  border-radius: 8px;
+}
+
+#submit:enabled {
+  background-color: rgb(156, 255, 57);
 }
 
 .invalidPostalCode {

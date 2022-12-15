@@ -10,6 +10,7 @@ import {
 } from "./API/OpenWeather";
 import { getLocationString } from "./API/ZipCodeBase";
 import { backgroundSelector } from "./functions/backgroundSelector";
+import stateCodes from "./assets/data/stateCodes.json";
 
 function App() {
   // State setters
@@ -70,7 +71,9 @@ function App() {
         coordinates.latitude,
         coordinates.longitude
       ).then((location) => {
-        setLocationString(location[0].name + ", " + location[0].state);
+        setLocationString(
+          location[0].name + ", " + stateCodes[location[0].state]
+        );
         setIsValidLocation(true);
       });
     }
@@ -136,8 +139,8 @@ function App() {
     window.scroll(0, 0);
   };
 
-  const handleGeolocate = async () => {
-    await navigator.geolocation.getCurrentPosition((position) =>
+  const handleGeolocate = () => {
+    navigator.geolocation.getCurrentPosition((position) =>
       setCoordinates({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
