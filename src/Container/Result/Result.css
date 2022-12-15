@@ -6,6 +6,7 @@
   background-repeat: no-repeat;
   background-size: 5rem;
   background-clip: border-box;
+  display: grid;
 }
 
 .data {

@@ -35,6 +35,7 @@ export const LocationForm = (props) => {
           pattern="/^\d{5}$/"
           autoComplete="postal-code"
           onChange={(e) => setPostalCode(e.target.value)}
+          autoFocus
         ></input>
         <p className="invalidPostalCode" style={displayInvalidPostalCode}>
           Please enter a valid {country} postal code.
