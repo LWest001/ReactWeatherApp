@@ -43,7 +43,7 @@ export const getLocalWeatherData = async (latitude, longitude, units) => {
         return formatData(hour, timezone, "hour");
       });
       const dailyData = responseObject.daily.map((day) => {
-        return formatData(day, timezone, "current");
+        return formatData(day, timezone, "day");
       });
       const returnObject = {
         currentData: currentData,
@@ -61,6 +61,8 @@ const formatData = (object, timezone, dataType) => {
   // Items for use within new object
   let sunriseTime;
   let sunsetTime;
+
+  // Set options for use in getDateObject function
   let options = {
     timeZone: timezone,
   };
@@ -70,26 +72,25 @@ const formatData = (object, timezone, dataType) => {
   if (dataType === "hour") {
     options.hour = "numeric";
   }
-  let date = new Date(object["dt"] * 1000);
-  date = date.toLocaleDateString("en-US", {
-    timeZone: timezone,
-  });
 
-  let time = new Date(object["dt"] * 1000);
-  time = time.toLocaleTimeString("en-US", options);
+  function getDateObject(property, options, format = "time") {
+    if (format === "date") {
+      return new Date(object[property] * 1000).toLocaleDateString(
+        "en-US",
+        options
+      );
+    }
+    return new Date(object[property] * 1000).toLocaleTimeString(
+      "en-US",
+      options
+    );
+  }
 
+  let date = getDateObject("dt", { timeZone: timezone }, "date");
+  let time = getDateObject("dt", options);
   if (dataType === "current") {
-    sunriseTime = new Date(object["sunrise"] * 1000);
-    sunriseTime = sunriseTime.toLocaleTimeString("en-US", {
-      timeZone: timezone,
-      timeStyle: "short",
-    });
-
-    sunsetTime = new Date(object["sunset"] * 1000);
-    sunsetTime = sunsetTime.toLocaleTimeString("en-US", {
-      timeZone: timezone,
-      timeStyle: "short",
-    });
+    sunriseTime = getDateObject("sunrise", options);
+    sunsetTime = getDateObject("sunset", options);
   }
 
   const weather = object["weather"][0];
@@ -116,6 +117,13 @@ const formatData = (object, timezone, dataType) => {
         Weather: `${weather["main"]} (${weather["description"]})`,
         Temperature: Math.round(object["temp"]) + "\xB0 F",
         Time: time,
+        Date: date,
+      };
+    } else if (dataType === "day") {
+      return {
+        Weather: `${weather["main"]} (${weather["description"]})`,
+        Min: Math.round(object.temp.min) + "\xB0 F",
+        Max: Math.round(object.temp.max) + "\xB0 F",
         Date: date,
       };
     }
