@@ -19,7 +19,7 @@ function App() {
   const [countryCode, setCountryCode] = useState("US");
   const [country, setCountry] = useState("United States");
   const [units, setUnits] = useState("");
-  const [locationString, setLocationString] = useState("Loading...");
+  const [locationString, setLocationString] = useState("");
   const [coordinates, setCoordinates] = useState("");
   const [icon, setIcon] = useState({});
   const [isValidLocation, setIsValidLocation] = useState(false);
@@ -43,7 +43,6 @@ function App() {
   // Set coordinates when a 5-digit code is entered.
   useEffect(() => {
     if (postalCode.length === 5 && countryCode === "US") {
-
       getCoordinates(postalCode, countryCode).then((coordinates) =>
         setCoordinates(coordinates)
       );
