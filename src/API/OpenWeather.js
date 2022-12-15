@@ -22,6 +22,30 @@ export const getCoordinates = async (zipCode, countryCode) => {
   }
 };
 
+/*    GET LOCATION FROM COORDINATES
+ *    Return location name object based on coordinates
+ */
+
+export const getLocationFromCoordinates = async (lat, lon) => {
+  const url = `/.netlify/functions/fetch-geocoding?lat=${lat}&lon=${lon}&limit=1`;
+  try {
+    const response = await fetch(url);
+    if (response.ok) {
+      const responseObject = await response.json();
+      const location = responseObject;
+      // {
+      //   latitude: responseObject["lat"],
+      //   longitude: responseObject["lon"],
+      // };
+      return location;
+    } else {
+      return "invalidCoordinates";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 /*     GET LOCAL WEATHER DATA
  *     Return object of relevant local weather data for submitted location
  */

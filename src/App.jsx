@@ -3,7 +3,11 @@ import "./Component/CountrySelector/CountrySelector";
 import { LocationForm } from "./Container/LocationForm/LocationForm";
 import { useState, useEffect } from "react";
 import { ResultsPage } from "./Container/ResultsPage/ResultsPage";
-import { getCoordinates, getLocalWeatherData } from "./API/OpenWeather";
+import {
+  getCoordinates,
+  getLocationFromCoordinates,
+  getLocalWeatherData,
+} from "./API/OpenWeather";
 import { getLocationString } from "./API/ZipCodeBase";
 import { backgroundSelector } from "./functions/backgroundSelector";
 
@@ -17,7 +21,7 @@ function App() {
   const [locationString, setLocationString] = useState("Loading...");
   const [coordinates, setCoordinates] = useState("");
   const [icon, setIcon] = useState({});
-  const [isValidPostalCode, setIsValidPostalCode] = useState(false);
+  const [isValidLocation, setIsValidLocation] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState("");
   const [weather, setWeather] = useState("");
   const [daySegment, setDaySegment] = useState("");
@@ -50,22 +54,35 @@ function App() {
     }
   }, [postalCode, countryCode]);
 
-  // Set isValidPostalCode when coordinates load
+  // Set isValidLocation when coordinates load
   useEffect(() => {
     if (postalCode.length === 5 && coordinates !== "invalidZip") {
-      setIsValidPostalCode(true);
+      setIsValidLocation(true);
     } else {
-      setIsValidPostalCode(false);
+      setIsValidLocation(false);
+    }
+  }, [coordinates]);
+
+  // Set location if coordinates loaded by geolocation
+  useEffect(() => {
+    if (coordinates) {
+      getLocationFromCoordinates(
+        coordinates.latitude,
+        coordinates.longitude
+      ).then((location) => {
+        setLocationString(location[0].name + ", " + location[0].state);
+        setIsValidLocation(true);
+      });
     }
   }, [coordinates]);
 
   // Enable or disable submit button
   useEffect(() => {
     const submitButton = document.querySelector("#submit");
-    isValidPostalCode
+    isValidLocation
       ? (submitButton.disabled = false)
       : (submitButton.disabled = true);
-  }, [isValidPostalCode]);
+  }, [isValidLocation]);
 
   const gatherData = () => {
     if (coordinates) {
@@ -119,8 +136,8 @@ function App() {
     window.scroll(0, 0);
   };
 
-  const handleGeolocate = () => {
-    navigator.geolocation.getCurrentPosition((position) =>
+  const handleGeolocate = async () => {
+    await navigator.geolocation.getCurrentPosition((position) =>
       setCoordinates({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
@@ -139,7 +156,6 @@ function App() {
           setCountryCode={setCountryCode}
           setCountry={setCountry}
           handleSubmit={handleSubmit}
-          setIsValidPostalCode={setIsValidPostalCode}
           coordinates={coordinates}
           handleGeolocate={handleGeolocate}
         />

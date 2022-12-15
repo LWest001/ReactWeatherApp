@@ -24,7 +24,10 @@ export const LocationForm = (props) => {
       <h1>
         Enter your postal code and country to get local weather information!
       </h1>
-      <button className="get-current-position" onClick={() => handleGeolocate()}>
+      <button
+        className="get-current-position"
+        onClick={() => handleGeolocate()}
+      >
         Locate me
       </button>
       <form onSubmit={handleSubmit}>

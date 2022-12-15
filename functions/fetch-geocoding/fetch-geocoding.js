@@ -4,7 +4,7 @@ const axios = require("axios");
 const handler = async (event) => {
   const apiKey = process.env.openWeatherKey;
   const { lat, lon, limit } = event.queryStringParameters;
-  const url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=${limit}&appid=$apiKey}`;
+  const url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=${limit}&appid=${apiKey}`;
   try {
     const { data } = await axios.get(url);
     return {
