@@ -61,10 +61,9 @@ function App() {
     }
   }, [coordinates]);
 
-  // Set location if coordinates loaded by geolocation
-
+  // Set location if coordinates load
   useEffect(() => {
-    if (coordinates) {
+    if (isValidLocation) {
       getLocationFromCoordinates(
         coordinates.latitude,
         coordinates.longitude
@@ -75,7 +74,7 @@ function App() {
         setIsValidLocation(true);
       });
     }
-  }, [coordinates]);
+  }, [isValidLocation]);
 
   // Enable or disable submit button
   useEffect(() => {
