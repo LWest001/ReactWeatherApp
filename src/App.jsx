@@ -123,7 +123,7 @@ function App() {
 
   const handleReturnHome = (e) => {
     setToggleView("LocationForm");
-    setLocationString("Loading...");
+    setLocationString("");
     setPostalCode("");
     setCoordinates("");
     setCurrentData({});
