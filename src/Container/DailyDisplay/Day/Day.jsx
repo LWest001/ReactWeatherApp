@@ -6,8 +6,10 @@ export const Day = (props) => {
     <div className={"Day"}>
       <h4>{weekDay}</h4>
       <img src={icon} alt={weather} />
-      <p>{min}</p>
-      <p>{max}</p>
+      <div className="minMax">
+        <p>{min}</p>
+        <p>{max}</p>
+      </div>
       <p>{weather}</p>
     </div>
   );
