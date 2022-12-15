@@ -15,10 +15,10 @@ This frontend web application delivers local weather information based on postal
 ## Planned features
 
 - International support (currently US only)
-- 7-day forecast weather data
 - Lookup by other location parameters (eg. city or region)
 - Lookup using HTML Geolocation API
 - Persistent user data in browser based on previous lookup
+- ~~7-day forecast weather data~~✅
 
 ## Current limitations and known bugs
 
