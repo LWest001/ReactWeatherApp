@@ -12,6 +12,7 @@ export const LocationForm = (props) => {
     setCountry,
     coordinates,
     handleGeolocate,
+    locationString,
   } = props;
 
   const displayInvalidPostalCode =
@@ -54,7 +55,15 @@ export const LocationForm = (props) => {
           setCountry={setCountry}
         />
         <br />
-        <input id="submit" type="submit"></input>
+        <input
+          id="submit"
+          type="submit"
+          value={
+            locationString
+              ? "Get \n" + locationString + " \nweather!"
+              : "Enter a location"
+          }
+        ></input>
       </form>
     </div>
   );

@@ -27,7 +27,7 @@ export const getCoordinates = async (zipCode, countryCode) => {
  */
 
 export const getLocationFromCoordinates = async (lat, lon) => {
-  const url = `/.netlify/functions/fetch-geocoding?lat=${lat}&lon=${lon}&limit=1`;
+  const url = `/.netlify/functions/fetch-reverseGeocoding?lat=${lat}&lon=${lon}&limit=1`;
   try {
     const response = await fetch(url);
     if (response.ok) {

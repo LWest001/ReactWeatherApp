@@ -16,19 +16,19 @@ select {
 
 .get-current-position {
   border: 1px solid black;
-  width: 10rem;
+  width: 13rem;
   margin: auto;
   background-image: url(/img/locate.svg);
   background-origin: padding-box;
   background-repeat: no-repeat;
   background-position: 0.5rem;
-  text-align: end;
+  text-align: center;
 
   /* display: none; */
 }
 
 #submit {
-  width: 10rem;
+  width: 13rem;
   height: 5rem;
   font-size: larger;
   margin: 2em;

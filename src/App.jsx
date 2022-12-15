@@ -8,7 +8,7 @@ import {
   getLocationFromCoordinates,
   getLocalWeatherData,
 } from "./API/OpenWeather";
-import { getLocationString } from "./API/ZipCodeBase";
+// import { getLocationString } from "./API/ZipCodeBase";
 import { backgroundSelector } from "./functions/backgroundSelector";
 import stateCodes from "./assets/data/stateCodes.json";
 
@@ -40,12 +40,10 @@ function App() {
     );
   }, [countryCode]);
 
-  // Set coordinates and location string when a 5-digit code is entered.
+  // Set coordinates when a 5-digit code is entered.
   useEffect(() => {
     if (postalCode.length === 5 && countryCode === "US") {
-      getLocationString(postalCode, countryCode).then((locationString) =>
-        setLocationString(locationString)
-      );
+
       getCoordinates(postalCode, countryCode).then((coordinates) =>
         setCoordinates(coordinates)
       );
@@ -158,6 +156,7 @@ function App() {
           setPostalCode={setPostalCode}
           setCountryCode={setCountryCode}
           setCountry={setCountry}
+          locationString={locationString}
           handleSubmit={handleSubmit}
           coordinates={coordinates}
           handleGeolocate={handleGeolocate}
