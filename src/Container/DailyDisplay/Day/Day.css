@@ -1,0 +1,17 @@
+.Day {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  align-items: center;
+  overflow: hidden;
+}
+
+.Day * {
+  margin: auto;
+  font-weight: bold;
+}
+
+.Day img {
+  height: 45px;
+  object-fit: cover;
+}

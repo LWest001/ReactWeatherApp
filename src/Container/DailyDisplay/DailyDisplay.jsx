@@ -1,10 +1,27 @@
 import "./DailyDisplay.css";
 import { Day } from "./Day/Day";
 
-export const DailyDisplay = () => {
+export const DailyDisplay = ({ dailyData, dataType }) => {
+  const DaysGrid = () => {
+    let daysArray = [];
+    dailyData.forEach((day) => {
+      daysArray.push(
+        <Day
+          key={day.text.Date}
+          icon={day.icon}
+          date={day.text.Date}
+          weekDay={day.text.Weekday}
+          min={day.text.Min}
+          max={day.text.Max}
+          weather={day.weather}
+        />
+      );
+    });
+    return daysArray;
+  };
   return (
     <div className="DailyDisplay">
-      <h3>The daily results page is currently under construction!</h3>
+      <DaysGrid />
     </div>
   );
 };

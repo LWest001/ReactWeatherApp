@@ -143,6 +143,7 @@ function App() {
           dataType={dataType}
           setDataType={setDataType}
           hourlyData={hourlyData}
+          dailyData={dailyData}
         />
       )}
     </div>

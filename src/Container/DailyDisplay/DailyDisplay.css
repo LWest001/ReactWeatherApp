@@ -1,3 +1,7 @@
 .DailyDisplay h3 {
   margin: 2rem;
 }
+
+.DailyDisplay {
+  grid-column: 1/3;
+}

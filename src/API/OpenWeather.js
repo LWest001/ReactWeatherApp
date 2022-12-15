@@ -87,6 +87,11 @@ const formatData = (object, timezone, dataType) => {
   }
 
   let date = getDateObject("dt", { timeZone: timezone }, "date");
+  let weekDay = getDateObject(
+    "dt",
+    { timeZone: timezone, weekday: "short" },
+    "date"
+  );
   let time = getDateObject("dt", options);
   if (dataType === "current") {
     sunriseTime = getDateObject("sunrise", options);
@@ -125,6 +130,7 @@ const formatData = (object, timezone, dataType) => {
         Min: Math.round(object.temp.min) + "\xB0 F",
         Max: Math.round(object.temp.max) + "\xB0 F",
         Date: date,
+        Weekday: weekDay,
       };
     }
   };

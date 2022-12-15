@@ -14,6 +14,7 @@ export const ResultsPage = (props) => {
     dataType,
     setDataType,
     hourlyData,
+    dailyData,
   } = props;
 
   const [dates, setDates] = useState({
@@ -80,7 +81,9 @@ export const ResultsPage = (props) => {
             dataType={dataType}
           />
         )}
-        {dataType === "Daily" && <DailyDisplay />}
+        {dataType === "Daily" && (
+          <DailyDisplay dailyData={dailyData} dataType={dataType} />
+        )}
       </div>
       <button className="returnButton" onClick={onClick}>
         &larr; Return home
