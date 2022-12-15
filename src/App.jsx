@@ -54,7 +54,7 @@ function App() {
 
   // Set isValidLocation when coordinates load
   useEffect(() => {
-    if (postalCode.length === 5 && coordinates !== "invalidZip") {
+    if (coordinates !== "invalidZip" && coordinates !== "") {
       setIsValidLocation(true);
     } else {
       setIsValidLocation(false);
@@ -62,7 +62,7 @@ function App() {
   }, [coordinates]);
 
   // Set location if coordinates loaded by geolocation
-  
+
   useEffect(() => {
     if (coordinates) {
       getLocationFromCoordinates(
@@ -76,7 +76,6 @@ function App() {
       });
     }
   }, [coordinates]);
-  
 
   // Enable or disable submit button
   useEffect(() => {
