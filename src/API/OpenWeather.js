@@ -9,6 +9,7 @@ export const getCoordinates = async (zipCode, countryCode) => {
     const response = await fetch(url);
     if (response.ok) {
       const responseObject = await response.json();
+      console.log(responseObject);
       const coordinates = {
         latitude: responseObject["lat"],
         longitude: responseObject["lon"],
@@ -16,6 +17,30 @@ export const getCoordinates = async (zipCode, countryCode) => {
       return coordinates;
     } else {
       return "invalidZip";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/*    GET LOCATION FROM COORDINATES
+ *    Return location name object based on coordinates
+ */
+
+export const getLocationFromCoordinates = async (lat, lon) => {
+  const url = `/.netlify/functions/fetch-reverseGeocoding?lat=${lat}&lon=${lon}&limit=1`;
+  try {
+    const response = await fetch(url);
+    if (response.ok) {
+      const responseObject = await response.json();
+      const location = responseObject;
+      // {
+      //   latitude: responseObject["lat"],
+      //   longitude: responseObject["lon"],
+      // };
+      return location;
+    } else {
+      return "invalidCoordinates";
     }
   } catch (error) {
     console.log(error);
