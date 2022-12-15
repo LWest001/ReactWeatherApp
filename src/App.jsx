@@ -71,7 +71,6 @@ function App() {
         setLocationString(
           location[0].name + ", " + stateCodes[location[0].state]
         );
-        setIsValidLocation(true);
       });
     }
   }, [isValidLocation]);
