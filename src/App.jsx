@@ -62,6 +62,7 @@ function App() {
   }, [coordinates]);
 
   // Set location if coordinates loaded by geolocation
+  /*
   useEffect(() => {
     if (coordinates) {
       getLocationFromCoordinates(
@@ -75,6 +76,7 @@ function App() {
       });
     }
   }, [coordinates]);
+  */
 
   // Enable or disable submit button
   useEffect(() => {
