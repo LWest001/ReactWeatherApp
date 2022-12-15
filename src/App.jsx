@@ -62,18 +62,21 @@ function App() {
   }, [coordinates]);
 
   // Set location if coordinates loaded by geolocation
-
+  
   useEffect(() => {
     if (coordinates) {
       getLocationFromCoordinates(
         coordinates.latitude,
         coordinates.longitude
       ).then((location) => {
-        setLocationString(location[0].name + ", " + location[0].state);
+        setLocationString(
+          location[0].name + ", " + stateCodes[location[0].state]
+        );
         setIsValidLocation(true);
       });
     }
   }, [coordinates]);
+  
 
   // Enable or disable submit button
   useEffect(() => {
