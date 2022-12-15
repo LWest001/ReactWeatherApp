@@ -19,10 +19,12 @@ select {
   width: 10rem;
   margin: auto;
   background-image: url(/img/locate.svg);
+  background-origin: padding-box;
   background-repeat: no-repeat;
   background-position: 0.5rem;
   text-align: end;
-  display: none;
+  
+  /* display: none; */
 }
 
 #submit {

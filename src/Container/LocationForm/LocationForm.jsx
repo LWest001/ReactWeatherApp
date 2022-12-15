@@ -11,6 +11,7 @@ export const LocationForm = (props) => {
     country,
     setCountry,
     coordinates,
+    handleGeolocate,
   } = props;
 
   const displayInvalidPostalCode =
@@ -23,7 +24,9 @@ export const LocationForm = (props) => {
       <h1>
         Enter your postal code and country to get local weather information!
       </h1>
-      <button className="get-current-position">Locate me</button>
+      <button className="get-current-position" onClick={() => handleGeolocate()}>
+        Locate me
+      </button>
       <form onSubmit={handleSubmit}>
         <label htmlFor="postalCodeInput">Postal code:</label>
         <input

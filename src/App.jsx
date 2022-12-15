@@ -119,6 +119,10 @@ function App() {
     window.scroll(0, 0);
   };
 
+  const handleGeolocate = () => {
+    navigator.geolocation.getCurrentPosition((position) => console.log(position));
+  };
+
   return (
     <div className="App">
       {toggleView === "LocationForm" && (
@@ -132,6 +136,7 @@ function App() {
           handleSubmit={handleSubmit}
           setIsValidPostalCode={setIsValidPostalCode}
           coordinates={coordinates}
+          handleGeolocate={handleGeolocate}
         />
       )}
       {toggleView === "ResultsPage" && (
