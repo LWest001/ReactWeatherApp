@@ -7,7 +7,7 @@ This frontend web application delivers local weather information based on postal
 ## Features
 
 - Lookup by postal code
-- Current and hourly weather data
+- Current, hourly forecast, and 7-day forecast weather data
 - Filter data type using the slider at the top of the results page
 - Dynamic background image based on current weather and day vs. night
 - Desktop and mobile support
@@ -23,7 +23,6 @@ This frontend web application delivers local weather information based on postal
 ## Current limitations and known bugs
 
 - The country selector works but only US lookup is available
-- The 'Daily' portion of the slider just displays the hourly data (7-day forecast not yet implemented)
 - Background image loads only after a noticeable delay
 
 All code written by Leo Westebbe.
