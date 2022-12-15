@@ -120,7 +120,12 @@ function App() {
   };
 
   const handleGeolocate = () => {
-    navigator.geolocation.getCurrentPosition((position) => console.log(position));
+    navigator.geolocation.getCurrentPosition((position) =>
+      setCoordinates({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      })
+    );
   };
 
   return (
