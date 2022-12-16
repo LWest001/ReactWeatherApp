@@ -10,6 +10,7 @@ import {
 } from "./API/OpenWeather";
 // import { getLocationString } from "./API/ZipCodeBase";
 import { backgroundSelector } from "./functions/backgroundSelector";
+import stateCodes from "./assets/data/stateCodes.json";
 
 function App() {
   // State setters
@@ -56,11 +57,12 @@ function App() {
       getLocationFromCoordinates(
         coordinates.latitude,
         coordinates.longitude
-      ).then((locationString) =>
-        setLocationString(
-          locationString[0].name + ", " + locationString[0].state
-        )
-      );
+      ).then((locationString) => {
+        const city = locationString[0].name;
+        let state = locationString[0].state;
+        state = stateCodes[state];
+        setLocationString(city + ", " + state);
+      });
     }
   }, [coordinates]);
 
