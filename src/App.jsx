@@ -56,7 +56,11 @@ function App() {
       getLocationFromCoordinates(
         coordinates.latitude,
         coordinates.longitude
-      ).then((locationString) => setLocationString(locationString[0].name));
+      ).then((locationString) =>
+        setLocationString(
+          locationString[0].name + ", " + locationString[0].state
+        )
+      );
     }
   }, [coordinates]);
 
