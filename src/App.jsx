@@ -8,7 +8,7 @@ import {
   getLocalWeatherData,
   getLocationFromCoordinates,
 } from "./API/OpenWeather";
-import { getLocationString } from "./API/ZipCodeBase";
+// import { getLocationString } from "./API/ZipCodeBase";
 import { backgroundSelector } from "./functions/backgroundSelector";
 
 function App() {
