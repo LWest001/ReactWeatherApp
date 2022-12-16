@@ -3,7 +3,11 @@ import "./Component/CountrySelector/CountrySelector";
 import { LocationForm } from "./Container/LocationForm/LocationForm";
 import { useState, useEffect } from "react";
 import { ResultsPage } from "./Container/ResultsPage/ResultsPage";
-import { getCoordinates, getLocalWeatherData } from "./API/OpenWeather";
+import {
+  getCoordinates,
+  getLocalWeatherData,
+  getLocationFromCoordinates,
+} from "./API/OpenWeather";
 import { getLocationString } from "./API/ZipCodeBase";
 import { backgroundSelector } from "./functions/backgroundSelector";
 
@@ -38,9 +42,6 @@ function App() {
   // Set coordinates and location string when a 5-digit code is entered.
   useEffect(() => {
     if (postalCode.length === 5 && countryCode === "US") {
-      getLocationString(postalCode, countryCode).then((locationString) =>
-        setLocationString(locationString)
-      );
       getCoordinates(postalCode, countryCode).then((coordinates) =>
         setCoordinates(coordinates)
       );
@@ -49,6 +50,15 @@ function App() {
       setCoordinates("");
     }
   }, [postalCode, countryCode]);
+
+  useEffect(() => {
+    if (coordinates) {
+      getLocationFromCoordinates(
+        coordinates.latitude,
+        coordinates.longitude
+      ).then((locationString) => setLocationString(locationString[0].name));
+    }
+  }, [coordinates]);
 
   // Set isValidPostalCode when coordinates load
   useEffect(() => {
