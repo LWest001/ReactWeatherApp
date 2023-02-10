@@ -36,7 +36,7 @@ export const Hour = (props) => {
   return (
     <div className={"Hour " + dataView} style={bgColor()}>
       <h4>{hourData.text.Time}</h4>
-      <img src={hourData.icon} alt={hourData.text.Weather} />
+      <img src={hourData.icon} alt={hourData.weather} />
       <p>{hourData.text.Temperature}</p>
       <p>{hourData.weather}</p>
     </div>
