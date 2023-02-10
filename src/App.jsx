@@ -154,6 +154,15 @@ function App() {
     gatherData().then(() => setToggleView("ResultsPage"));
   };
 
+  const handleGeolocate = (e) => {
+    navigator.geolocation.getCurrentPosition((position) =>
+      setCoordinates({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      })
+    );
+  };
+
   const handleReturnHome = (e) => {
     setToggleView("LocationForm");
     setLocationString("");
@@ -167,15 +176,6 @@ function App() {
     setDaySegment("");
     setHourlyData([]);
     window.scroll(0, 0);
-  };
-
-  const handleGeolocate = () => {
-    navigator.geolocation.getCurrentPosition((position) =>
-      setCoordinates({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      })
-    );
   };
 
   return (

@@ -17,7 +17,7 @@ export const LocationForm = (props) => {
   } = props;
 
   const displayInvalidPostalCode =
-    postalCode.length >= 5 && !coordinates
+    postalCode.length >= 5 && !coordinates && status !== "loading"
       ? { display: "block" }
       : { display: "none" };
 
