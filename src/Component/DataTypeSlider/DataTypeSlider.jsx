@@ -1,7 +1,9 @@
 import "./DataTypeSlider.css";
+import { useSelector } from "react-redux";
+import { selectDataView } from "../../app/appSlice";
 
-export const DataTypeSlider = (props) => {
-  const { onChange, value } = props;
+export const DataTypeSlider = ({onChange}) => {
+  const dataView = useSelector(selectDataView);
   const handleValue = (value) => {
     switch (value) {
       case "Now": {
@@ -24,6 +26,7 @@ export const DataTypeSlider = (props) => {
         list="tickmarks"
         step="50"
         onChange={(e) => onChange(e.target.value)}
+        value={handleValue(dataView)}
       />
       <div className="dataList">
         <p id="now">Now</p>

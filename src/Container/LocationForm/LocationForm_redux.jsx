@@ -1,17 +1,11 @@
 import { CountrySelector_redux } from "../../Component/CountrySelector/CountrySelector_redux";
 import "./LocationForm.css";
-import icon from "../../../public/favicon.svg";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 import {
-  selectBackgroundImage,
   selectCoordinates,
-  selectIsValidLocation,
   selectLocation,
-  selectUnits,
-  selectView,
-  selectWeatherData,
   selectStatus,
   setLocation,
 } from "../../app/appSlice";
@@ -20,14 +14,9 @@ export const LocationForm_redux = (props) => {
   const dispatch = useDispatch();
   // selectors
   const { postalCode, city, state, country } = useSelector(selectLocation);
-  const backgroundImage = useSelector(selectBackgroundImage);
   const coordinates = useSelector(selectCoordinates);
-  const isValidLocation = useSelector(selectIsValidLocation);
-  const units = useSelector(selectUnits);
-  const view = useSelector(selectView);
   const status = useSelector(selectStatus);
   const location = useSelector(selectLocation);
-  const { currentData, hourlyData, dailyData } = useSelector(selectWeatherData);
 
   const { handleSubmit, handleGeolocate } = props;
 
@@ -41,7 +30,7 @@ export const LocationForm_redux = (props) => {
       return "Loading...";
     }
     if (status === "succeeded") {
-      return `Get \n  ${location.city}, ${location.state} \nweather!`;
+      return `Get \n  ${city}, ${state} \nweather!`;
     }
     if (status === "idle") {
       return "Enter a location";

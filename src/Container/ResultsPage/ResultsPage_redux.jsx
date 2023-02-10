@@ -41,7 +41,6 @@ export const ResultsPage_redux = ({ onClick }) => {
     if (e == 100) {
       dataView = "Daily";
     }
-    console.log(e, dataView);
     dispatch(setDataView(dataView));
   };
 

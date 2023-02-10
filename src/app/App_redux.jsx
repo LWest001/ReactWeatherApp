@@ -1,10 +1,9 @@
 import "./App.css";
-import { LocationForm } from "../Container/LocationForm/LocationForm";
 import { LocationForm_redux } from "../Container/LocationForm/LocationForm_redux";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { ResultsPage_redux } from "../Container/ResultsPage/ResultsPage_redux";
 import { backgroundSelector } from "../functions/backgroundSelector";
-import stateCodes from "../assets/data/stateCodes.json";
+
 import {
   getCoordinates,
   getLocalWeatherData,
@@ -24,7 +23,6 @@ import {
 import {
   setBackgroundImage,
   setCoordinates,
-  setIsValidLocation,
   setLocation,
   setStatus,
   setUnits,
@@ -39,14 +37,13 @@ function App_redux() {
   const dispatch = useDispatch();
 
   // selectors
-  const { postalCode, city, state, country } = useSelector(selectLocation);
+  const { postalCode, country } = useSelector(selectLocation);
   const backgroundImage = useSelector(selectBackgroundImage);
   const coordinates = useSelector(selectCoordinates);
   const isValidLocation = useSelector(selectIsValidLocation);
   const units = useSelector(selectUnits);
   const view = useSelector(selectView);
   const weatherData = useSelector(selectWeatherData);
-  const { currentData, hourlyData, dailyData } = useSelector(selectWeatherData);
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
@@ -157,6 +154,15 @@ function App_redux() {
         },
         hourlyData: [],
         dailyData: [],
+      })
+    );
+    dispatch(setBackgroundImage(null));
+    dispatch(
+      setLocation({
+        postalCode: "",
+        city: "",
+        state: "",
+        country: { name: "United States", code: "US" },
       })
     );
     window.scroll(0, 0);

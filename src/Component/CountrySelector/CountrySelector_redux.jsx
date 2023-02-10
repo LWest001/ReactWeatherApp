@@ -5,9 +5,9 @@ import { selectLocation } from "../../app/appSlice";
 import { useDispatch } from "react-redux";
 import { setLocation } from "../../app/appSlice";
 
-export const CountrySelector_redux = (props) => {
+export const CountrySelector_redux = () => {
   const dispatch = useDispatch();
-  const { postalCode, city, state, country } = useSelector(selectLocation);
+  const {country } = useSelector(selectLocation);
   const location = useSelector(selectLocation);
   const CountriesOptions = () => {
     let optionsArray = [];
