@@ -10,22 +10,40 @@ import {
 import { backgroundSelector } from "../functions/backgroundSelector";
 import stateCodes from "../assets/data/stateCodes.json";
 
+
+
 function App() {
   // State setters
   const [toggleView, setToggleView] = useState("LocationForm");
-  const [postalCode, setPostalCode] = useState("");
+  const [location, setLocation] = useState({
+    postalCode: "",
+    city: "",
+    state: "",
+    country: { name: "United States", code: "US" },
+  });
   const [countryCode, setCountryCode] = useState("US");
   const [country, setCountry] = useState("United States");
   const [units, setUnits] = useState("");
   const [locationString, setLocationString] = useState("");
   const [coordinates, setCoordinates] = useState("");
-  const [icon, setIcon] = useState({});
   const [isValidLocation, setIsValidLocation] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState("");
-  const [weather, setWeather] = useState("");
-  const [daySegment, setDaySegment] = useState("");
   const [dataType, setDataType] = useState("Now");
-  const [currentData, setCurrentData] = useState({});
+  const [currentData, setCurrentData] = useState({
+    Temperature: "",
+    Weather: "",
+    "Feels like": "",
+    "Wind speed": "",
+    Humidity: "",
+    Sunrise: "",
+    Sunset: "",
+    "UV index": "",
+    Time: "",
+    Date: "",
+    icon: "",
+    daySegment: "",
+    weatherType: "",
+  });
   const [hourlyData, setHourlyData] = useState([]);
   const [dailyData, setDailyData] = useState([]);
   const [status, setStatus] = useState("idle");
@@ -41,16 +59,16 @@ function App() {
 
   // Set coordinates when a 5-digit code is entered.
   useEffect(() => {
-    if (postalCode.length === 5 && countryCode === "US") {
+    if (location.postalCode.length === 5 && countryCode === "US") {
       setStatus("loading");
-      getCoordinates(postalCode, countryCode).then((coordinates) => {
+      getCoordinates(location.postalCode, countryCode).then((coordinates) => {
         setCoordinates(coordinates);
       });
     } else {
       setLocationString("");
       setCoordinates("");
     }
-  }, [postalCode, countryCode]);
+  }, [location.postalCode, countryCode]);
 
   useEffect(() => {
     if (coordinates) {
@@ -85,7 +103,7 @@ function App() {
 
   // Set isValidLocation when coordinates load
   useEffect(() => {
-    if (postalCode.length === 5 && coordinates) {
+    if (location.postalCode.length === 5 && coordinates) {
       setIsValidLocation(true);
     } else {
       setIsValidLocation(false);
@@ -125,10 +143,12 @@ function App() {
       )
         .then((localWeather) => {
           setStatus("succeeded");
-          setCurrentData(localWeather.currentData.text);
-          setIcon(localWeather.currentData.icon);
-          setWeather(localWeather.currentData.weather);
-          setDaySegment(localWeather.currentData.daySegment);
+          setCurrentData({
+            ...localWeather.currentData.text,
+            icon: localWeather.currentData.icon,
+            daySegment: localWeather.currentData.daySegment,
+            weatherType: localWeather.currentData.weather,
+          });
           setHourlyData(localWeather.hourlyData);
           setDailyData(localWeather.dailyData);
         })
@@ -139,8 +159,10 @@ function App() {
 
   // Set background based on weather and day segment
   useEffect(() => {
-    setBackgroundImage(backgroundSelector(weather, daySegment));
-  }, [weather]);
+    setBackgroundImage(
+      backgroundSelector(currentData.weatherType, currentData.daySegment)
+    );
+  }, [currentData.weatherType]);
 
   useEffect(() => {
     document.querySelector(
@@ -167,14 +189,11 @@ function App() {
   const handleReturnHome = (e) => {
     setToggleView("LocationForm");
     setLocationString("");
-    setPostalCode("");
     setCoordinates("");
     setCurrentData({});
     setCountryCode("US");
     setCountry("United States");
     setBackgroundImage("");
-    setWeather("");
-    setDaySegment("");
     setHourlyData([]);
     window.scroll(0, 0);
   };
@@ -183,10 +202,10 @@ function App() {
     <div className="App">
       {toggleView === "LocationForm" && (
         <LocationForm
-          postalCode={postalCode}
           countryCode={countryCode}
           country={country}
-          setPostalCode={setPostalCode}
+          location={location}
+          setLocation={setLocation}
           setCountryCode={setCountryCode}
           setCountry={setCountry}
           locationString={locationString}
@@ -201,7 +220,7 @@ function App() {
           onClick={handleReturnHome}
           locationString={locationString}
           currentData={currentData}
-          icon={icon}
+          icon={currentData.icon}
           dataType={dataType}
           setDataType={setDataType}
           hourlyData={hourlyData}

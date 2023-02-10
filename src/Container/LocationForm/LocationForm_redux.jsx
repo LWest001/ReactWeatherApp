@@ -1,26 +1,38 @@
-import { CountrySelector } from "../../Component/CountrySelector/CountrySelector";
+import { CountrySelector_redux } from "../../Component/CountrySelector/CountrySelector_redux";
 import "./LocationForm.css";
 import icon from "../../../public/favicon.svg";
 import { useSelector } from "react-redux";
-import { selectLocation } from "../../app/appSlice";
+import { useDispatch } from "react-redux";
 
-export const LocationForm = (props) => {
-  const {
-    handleSubmit,
-    location,
-    setLocation,
-    countryCode,
-    setCountryCode,
-    country,
-    setCountry,
-    coordinates,
-    handleGeolocate,
-    locationString,
-    status,
-  } = props;
+import {
+  selectBackgroundImage,
+  selectCoordinates,
+  selectIsValidLocation,
+  selectLocation,
+  selectUnits,
+  selectView,
+  selectWeatherData,
+  selectStatus,
+  setLocation,
+} from "../../app/appSlice";
+
+export const LocationForm_redux = (props) => {
+  const dispatch = useDispatch();
+  // selectors
+  const { postalCode, city, state, country } = useSelector(selectLocation);
+  const backgroundImage = useSelector(selectBackgroundImage);
+  const coordinates = useSelector(selectCoordinates);
+  const isValidLocation = useSelector(selectIsValidLocation);
+  const units = useSelector(selectUnits);
+  const view = useSelector(selectView);
+  const status = useSelector(selectStatus);
+  const location = useSelector(selectLocation);
+  const { currentData, hourlyData, dailyData } = useSelector(selectWeatherData);
+
+  const { handleSubmit, handleGeolocate } = props;
 
   const displayInvalidPostalCode =
-    location.postalCode.length >= 5 && !coordinates && status !== "loading"
+    postalCode.length >= 5 && !coordinates && status !== "loading"
       ? { display: "block" }
       : { display: "none" };
 
@@ -29,7 +41,7 @@ export const LocationForm = (props) => {
       return "Loading...";
     }
     if (status === "succeeded") {
-      return "Get \n" + locationString + " \nweather!";
+      return `Get \n  ${location.city}, ${location.state} \nweather!`;
     }
     if (status === "idle") {
       return "Enter a location";
@@ -55,27 +67,18 @@ export const LocationForm = (props) => {
           type="number"
           max="99999"
           placeholder="Postal code (5-digit)"
-          value={location.postalCode}
           pattern="/^\d{5}$/"
           autoComplete="postal-code"
           onChange={(e) =>
-            setLocation({ ...location, postalCode: e.target.value })
+            dispatch(setLocation({ ...location, postalCode: e.target.value }))
           }
           autoFocus
         ></input>
         <p className="invalidPostalCode" style={displayInvalidPostalCode}>
-          Please enter a valid {country} postal code.
+          Please enter a valid {country.name} postal code.
         </p>
         <label htmlFor="CountrySelector">Country or territory:</label>
-        <CountrySelector
-          id="CountrySelector"
-          country={location.country}
-          countryCode={location.countryCode}
-          setCountryCode={setCountryCode}
-          setCountry={setCountry}
-          location={location}
-          setLocation={setLocation}
-        />
+        <CountrySelector_redux id="CountrySelector" />
         <br />
         <input id="submit" type="submit" value={submitButtonText()}></input>
       </form>

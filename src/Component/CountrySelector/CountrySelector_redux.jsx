@@ -1,8 +1,14 @@
 import { useEffect } from "react";
 import countriesData from "../../assets/data/countries.json";
+import { useSelector } from "react-redux";
+import { selectLocation } from "../../app/appSlice";
+import { useDispatch } from "react-redux";
+import { setLocation } from "../../app/appSlice";
 
-export const CountrySelector = (props) => {
-  const { countryCode, setCountryCode, setCountry, country, setLocation } = props;
+export const CountrySelector_redux = (props) => {
+  const dispatch = useDispatch();
+  const { postalCode, city, state, country } = useSelector(selectLocation);
+  const location = useSelector(selectLocation);
   const CountriesOptions = () => {
     let optionsArray = [];
     countriesData.forEach((country) => {
@@ -31,16 +37,31 @@ export const CountrySelector = (props) => {
   };
 
   useEffect(() => {
-    setCountry(document.getElementById(country.code).label);
+    dispatch(
+      setLocation({
+        ...location,
+        country: {
+          ...location.country,
+          name: document.getElementById(country.code).label,
+        },
+      })
+    );
   }, [country.code]);
 
   return (
     <select
       name="country"
       id="countrySelector"
-      value={countryCode}
+      value={country.code}
       onChange={(e) => {
-        setCountryCode(e.target.value);
+        dispatch(
+          setLocation({
+            ...location,
+            country: {
+              code: e.target.value,
+            },
+          })
+        );
       }}
     >
       <CountriesOptions />

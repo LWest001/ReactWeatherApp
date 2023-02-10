@@ -23,7 +23,6 @@ export const DataTypeSlider = (props) => {
         name="temp"
         list="tickmarks"
         step="50"
-        value={handleValue(value)}
         onChange={(e) => onChange(e.target.value)}
       />
       <div className="dataList">

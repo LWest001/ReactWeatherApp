@@ -4,56 +4,56 @@ import { DataTypeSlider } from "../../Component/DataTypeSlider/DataTypeSlider";
 import { HourlyDisplay } from "../HourlyDisplay/HourlyDisplay";
 import { DailyDisplay } from "../DailyDisplay/DailyDisplay";
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectWeatherData,
+  selectDataView,
+  selectLocation,
+} from "../../app/appSlice";
+import { setDataView } from "../../app/appSlice";
 
-export const ResultsPage = (props) => {
-  const {
-    onClick,
-    locationString,
-    currentData,
-    icon,
-    dataType,
-    setDataType,
-    hourlyData,
-    dailyData,
-  } = props;
+export const ResultsPage_redux = ({ onClick }) => {
+  const { currentData, hourlyData, dailyData } = useSelector(selectWeatherData);
+  const dataView = useSelector(selectDataView);
+  const { city, state } = useSelector(selectLocation);
 
+  const dispatch = useDispatch();
   const [dates, setDates] = useState({
     today: currentData.Date,
   });
 
   useEffect(() => {
     setDates({
-      today: currentData.Date,
+      today: currentData.text.Date,
       tomorrow: hourlyData[24]?.text.Date,
       followingDay: hourlyData[47]?.text.Date,
     });
   }, [currentData]);
 
   const slideHandler = (e) => {
-    setDataType(() => {
-      switch (e) {
-        case "0": {
-          return "Now";
-        }
-        case "50": {
-          return "Hourly";
-        }
-        case "100": {
-          return "Daily";
-        }
-      }
-    });
+    let dataView;
+    if (e == 0) {
+      dataView = "Now";
+    }
+    if (e == 50) {
+      dataView = "Hourly";
+    }
+    if (e == 100) {
+      dataView = "Daily";
+    }
+    console.log(e, dataView);
+    dispatch(setDataView(dataView));
   };
 
   const ResultsGrid = () => {
     let resultsArray = [];
-    let dataArray = Object.entries(currentData);
+    let dataArray = Object.entries(currentData.text);
     dataArray = dataArray.slice(0, 8);
     dataArray.forEach(([key, value]) => {
       resultsArray.push(
         <Result
           key={key}
-          icon={icon}
+          icon={currentData.icon}
           display={{
             heading: key,
             data: value,
@@ -67,22 +67,24 @@ export const ResultsPage = (props) => {
 
   return (
     <div className="ResultsPage">
-      <DataTypeSlider onChange={slideHandler} value={dataType} />
+      <DataTypeSlider onChange={slideHandler} />
       <div className="ResultsGrid">
-        <h1 className="locationHeader">{locationString}</h1>
+        <h1 className="locationHeader">
+          {city}, {state}
+        </h1>
         <h2 className="dateTime">
-          {currentData.Date} | {currentData.Time}
+          {currentData.text.Date} | {currentData.text.Time}
         </h2>
-        {dataType === "Now" && <ResultsGrid />}
-        {dataType !== "Daily" && (
+        {dataView === "Now" && <ResultsGrid />}
+        {dataView !== "Daily" && (
           <HourlyDisplay
             hourlyData={hourlyData}
             dates={dates}
-            dataType={dataType}
+            dataView={dataView}
           />
         )}
-        {dataType === "Daily" && (
-          <DailyDisplay dailyData={dailyData} dataType={dataType} />
+        {dataView === "Daily" && (
+          <DailyDisplay dailyData={dailyData} dataView={dataView} />
         )}
       </div>
       <button className="returnButton" onClick={onClick}>
