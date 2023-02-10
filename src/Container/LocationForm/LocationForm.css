@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: 90vh;
 }
 
 .LocationForm h1 {
   background-image: url("/favicon.svg");
-  background-size: contain;
+  background-size: 300px;
   background-repeat: no-repeat;
   background-position: center;
   height: 100%;
