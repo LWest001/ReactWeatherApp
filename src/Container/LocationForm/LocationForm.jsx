@@ -1,5 +1,6 @@
 import { CountrySelector } from "../../Component/CountrySelector/CountrySelector";
 import "./LocationForm.css";
+import icon from "../../../public/favicon.svg";
 
 export const LocationForm = (props) => {
   const {
@@ -34,9 +35,11 @@ export const LocationForm = (props) => {
   }
   return (
     <div className="LocationForm">
-      <h1>
+      <h1>WeatherNow</h1>
+      {/* <img src={icon} alt="WeatherNow icon" className="form-icon" /> */}
+      <h2>
         Enter your postal code and country to get local weather information!
-      </h1>
+      </h2>
       <button
         className="get-current-position"
         onClick={() => handleGeolocate()}

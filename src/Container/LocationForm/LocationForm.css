@@ -1,7 +1,22 @@
 .LocationForm {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height:90vh
 }
+
+.LocationForm h1 {
+  background-image: url("../../../public/favicon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height:100%;
+  margin:0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
 label {
   display: block;
   font-size: larger;
@@ -14,10 +29,14 @@ select {
   width: 13rem;
 }
 
+.form-icon {
+  width: 5rem;
+  margin: auto;
+}
 .get-current-position {
   border: 1px solid black;
   width: 13rem;
-  margin: auto;
+  margin: 0 auto;
   background-image: url(/img/locate.svg);
   background-origin: padding-box;
   background-repeat: no-repeat;
