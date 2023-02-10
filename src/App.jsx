@@ -119,12 +119,14 @@ function App() {
 
   const gatherData = () => {
     if (coordinates) {
+      setStatus("loading");
       return getLocalWeatherData(
         coordinates.latitude,
         coordinates.longitude,
         units
       )
         .then((localWeather) => {
+          setStatus("succeeded");
           setCurrentData(localWeather.currentData.text);
           setIcon(localWeather.currentData.icon);
           setWeather(localWeather.currentData.weather);
@@ -151,6 +153,7 @@ function App() {
   // Event handlers
   const handleSubmit = (e) => {
     e.preventDefault();
+
     gatherData().then(() => setToggleView("ResultsPage"));
   };
 
