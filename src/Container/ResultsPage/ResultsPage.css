@@ -27,7 +27,7 @@
   grid-template-columns: 1fr 1fr;
   border: solid;
   margin: 1em;
-  width: 100%;
+  max-width: 100%;
   background: radial-gradient(ellipse at top, #e7e7e7, transparent),
     radial-gradient(ellipse at bottom, #c0c0c0, transparent);
 }
