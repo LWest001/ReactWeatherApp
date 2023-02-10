@@ -82,7 +82,7 @@ function App() {
 
   // Set isValidLocation when coordinates load
   useEffect(() => {
-    if (postalCode.length === 5 && coordinates !== "invalidZip") {
+    if (postalCode.length === 5 && coordinates) {
       setIsValidLocation(true);
     } else {
       setIsValidLocation(false);

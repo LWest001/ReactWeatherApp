@@ -15,7 +15,7 @@ export const getCoordinates = async (zipCode, countryCode) => {
       };
       return coordinates;
     } else {
-      return "invalidZip";
+      return null;
     }
   } catch (error) {
     console.log(error);
