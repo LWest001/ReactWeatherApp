@@ -37,6 +37,7 @@ select {
 
 #submit:enabled {
   background-color: rgb(156, 255, 57);
+  cursor: pointer;
 }
 
 .invalidPostalCode {
