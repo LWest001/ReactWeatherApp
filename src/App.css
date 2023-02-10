@@ -1,23 +1,21 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
   display: flex;
-  justify-content: center;
+  height:100%
 }
 
 .App {
   display: flex;
   align-items: center;
   border: 2px solid black;
-  display: flex;
   flex-direction: column;
-  align-items: center;
   align-items: center;
   width: 100%;
   max-width: 40rem;
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 0;
+  margin:1rem 0;
   background-size: cover;
   background-position: bottom;
 }
@@ -31,5 +29,6 @@
 @media (max-width: 500px) {
   .App {
     padding: 1rem;
+    margin:1rem 0;
   }
 }
