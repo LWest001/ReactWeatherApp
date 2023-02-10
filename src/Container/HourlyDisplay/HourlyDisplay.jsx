@@ -3,10 +3,9 @@ import "./HourlyDisplay.css";
 import { useSelector } from "react-redux";
 import { selectWeatherData, selectDataView } from "../../app/appSlice";
 
-export const HourlyDisplay = (props) => {
+export const HourlyDisplay = ({ dates }) => {
   const { hourlyData } = useSelector(selectWeatherData);
   const dataView = useSelector(selectDataView);
-  const { dates } = props;
   const HoursGrid = () => {
     let hoursArray = [];
     hourlyData.forEach((hour, i) => {

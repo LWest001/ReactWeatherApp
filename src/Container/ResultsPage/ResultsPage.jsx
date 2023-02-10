@@ -53,7 +53,6 @@ export const ResultsPage = (props) => {
       resultsArray.push(
         <Result
           key={key}
-          icon={icon}
           display={{
             heading: key,
             data: value,

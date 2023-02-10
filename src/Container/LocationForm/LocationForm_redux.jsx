@@ -10,15 +10,13 @@ import {
   setLocation,
 } from "../../app/appSlice";
 
-export const LocationForm_redux = (props) => {
+export const LocationForm_redux = ({ handleSubmit, handleGeolocate }) => {
   const dispatch = useDispatch();
   // selectors
   const { postalCode, city, state, country } = useSelector(selectLocation);
   const coordinates = useSelector(selectCoordinates);
   const status = useSelector(selectStatus);
   const location = useSelector(selectLocation);
-
-  const { handleSubmit, handleGeolocate } = props;
 
   const displayInvalidPostalCode =
     postalCode.length >= 5 && !coordinates && status !== "loading"
