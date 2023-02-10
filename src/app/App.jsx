@@ -1,16 +1,14 @@
 import "./App.css";
-import "./Component/CountrySelector/CountrySelector";
-import { LocationForm } from "./Container/LocationForm/LocationForm";
+import { LocationForm } from "../Container/LocationForm/LocationForm";
 import { useState, useEffect } from "react";
-import { ResultsPage } from "./Container/ResultsPage/ResultsPage";
+import { ResultsPage } from "../Container/ResultsPage/ResultsPage";
 import {
   getCoordinates,
   getLocalWeatherData,
   getLocationFromCoordinates,
-} from "./API/OpenWeather";
-// import { getLocationString } from "./API/ZipCodeBase";
-import { backgroundSelector } from "./functions/backgroundSelector";
-import stateCodes from "./assets/data/stateCodes.json";
+} from "../API/OpenWeather";
+import { backgroundSelector } from "../functions/backgroundSelector";
+import stateCodes from "../assets/data/stateCodes.json";
 
 function App() {
   // State setters
