@@ -1,23 +1,21 @@
 import { Hour } from "./Hour/Hour";
 import "./HourlyDisplay.css";
 import { useSelector } from "react-redux";
-import { selectWeatherData} from "../../app/appSlice";
+import { selectWeatherData, selectDataView } from "../../app/appSlice";
 
 export const HourlyDisplay = (props) => {
   const { hourlyData } = useSelector(selectWeatherData);
-  const { dates, dataType } = props;
+  const dataView = useSelector(selectDataView);
+  const { dates } = props;
   const HoursGrid = () => {
     let hoursArray = [];
-    hourlyData.forEach((hour) => {
+    hourlyData.forEach((hour, i) => {
       hoursArray.push(
         <Hour
           key={hour.text.Time + hour.text.Date}
-          icon={hour.icon}
-          time={hour.text.Time}
+          index={i}
           date={hour.text.Date}
           dates={dates}
-          temp={hour.text.Temperature}
-          weather={hour.weather}
         />
       );
     });
@@ -26,7 +24,7 @@ export const HourlyDisplay = (props) => {
   return (
     <div
       className="HourlyDisplay"
-      style={dataType === "Hourly" ? { gridTemplateColumns: "1fr" } : {}}
+      style={dataView === "Hourly" ? { gridTemplateColumns: "1fr" } : {}}
     >
       <HoursGrid />
     </div>

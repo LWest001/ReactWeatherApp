@@ -1,9 +1,11 @@
 import "./Hour.css";
 import { useSelector } from "react-redux";
-import { selectDataView } from "../../../app/appSlice";
+import { selectDataView, selectWeatherData } from "../../../app/appSlice";
 export const Hour = (props) => {
+  const { date, dates, index } = props;
   const dataView = useSelector(selectDataView);
-  const { time, date, dates, icon, temp, weather } = props;
+  const { hourlyData } = useSelector(selectWeatherData);
+  const hourData = hourlyData[index];
   const bgColor = () => {
     if (date === dates.tomorrow) {
       if (dataView !== "Hourly") {
@@ -33,10 +35,10 @@ export const Hour = (props) => {
   };
   return (
     <div className={"Hour " + dataView} style={bgColor()}>
-      <h4>{time}</h4>
-      <img src={icon} alt={weather} />
-      <p>{temp}</p>
-      <p>{weather}</p>
+      <h4>{hourData.text.Time}</h4>
+      <img src={hourData.icon} alt={hourData.text.Weather} />
+      <p>{hourData.text.Temperature}</p>
+      <p>{hourData.weather}</p>
     </div>
   );
 };
