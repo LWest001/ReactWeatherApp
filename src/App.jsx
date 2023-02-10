@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 import { ResultsPage } from "./Container/ResultsPage/ResultsPage";
 import {
   getCoordinates,
-  getLocationFromCoordinates,
   getLocalWeatherData,
+  getLocationFromCoordinates,
 } from "./API/OpenWeather";
 // import { getLocationString } from "./API/ZipCodeBase";
 import { backgroundSelector } from "./functions/backgroundSelector";
@@ -51,6 +51,34 @@ function App() {
       setCoordinates("");
     }
   }, [postalCode, countryCode]);
+
+  useEffect(() => {
+    if (coordinates) {
+      getLocationFromCoordinates(
+        coordinates.latitude,
+        coordinates.longitude
+      ).then((locationString) => {
+        const city = locationString[0].name;
+        let state = locationString[0].state;
+        state = stateCodes[state];
+        setLocationString(city + ", " + state);
+      });
+    }
+  }, [coordinates]);
+
+  useEffect(() => {
+    if (coordinates) {
+      getLocationFromCoordinates(
+        coordinates.latitude,
+        coordinates.longitude
+      ).then((locationString) => {
+        const city = locationString[0].name;
+        let state = locationString[0].state;
+        state = stateCodes[state];
+        setLocationString(city + ", " + state);
+      });
+    }
+  }, [coordinates]);
 
   // Set isValidLocation when coordinates load
   useEffect(() => {

@@ -1,0 +1,7 @@
+successful migration away from zipcodebase (if working on mobile)
+
+implement state name to code converter
+
+then implement find me button
+
+remove zipcodebase function

@@ -33,10 +33,6 @@ export const getLocationFromCoordinates = async (lat, lon) => {
     if (response.ok) {
       const responseObject = await response.json();
       const location = responseObject;
-      // {
-      //   latitude: responseObject["lat"],
-      //   longitude: responseObject["lon"],
-      // };
       return location;
     } else {
       return "invalidCoordinates";
