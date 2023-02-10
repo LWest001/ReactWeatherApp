@@ -193,6 +193,7 @@ const appSlice = createSlice({
           hourlyData: action.payload.hourlyData,
           dailyData: action.payload.dailyData,
         };
+        state.view = "ResultsPage";
       })
       .addCase(getLocationFromCoordinates.pending, (state, action) => {
         state.status = "loading";

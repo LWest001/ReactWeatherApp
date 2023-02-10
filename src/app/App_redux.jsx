@@ -8,6 +8,8 @@ import {
   getCoordinates,
   getLocalWeatherData,
   getLocationFromCoordinates,
+  setIsValidLocation,
+  setStatus,
 } from "./appSlice";
 
 import {
@@ -18,13 +20,13 @@ import {
   selectUnits,
   selectView,
   selectWeatherData,
+  selectStatus,
 } from "./appSlice";
 
 import {
   setBackgroundImage,
   setCoordinates,
   setLocation,
-  setStatus,
   setUnits,
   setView,
   setWeatherData,
@@ -44,6 +46,7 @@ function App_redux() {
   const units = useSelector(selectUnits);
   const view = useSelector(selectView);
   const weatherData = useSelector(selectWeatherData);
+  const status = useSelector(selectStatus);
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
@@ -57,7 +60,6 @@ function App_redux() {
   // Set coordinates when a 5-digit code is entered.
   useEffect(() => {
     if (postalCode.length === 5 && country.code === "US") {
-      setStatus("loading");
       dispatch(getCoordinates({ postalCode, countryCode: country.code }));
     }
   }, [postalCode]);
@@ -83,7 +85,6 @@ function App_redux() {
 
   const gatherData = async () => {
     if (coordinates.latitude) {
-      setStatus("loading");
       dispatch(
         getLocalWeatherData({
           lat: coordinates.latitude,
@@ -113,10 +114,16 @@ function App_redux() {
   }, [backgroundImage]);
 
   // Event handlers
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    gatherData();
-    dispatch(setView("ResultsPage"));
+    dispatch(
+      getLocalWeatherData({
+        lat: coordinates.latitude,
+        lon: coordinates.longitude,
+        units: units,
+      })
+    );
+    window.scroll(0, 0);
   };
 
   const handleGeolocate = (e) => {
@@ -157,6 +164,8 @@ function App_redux() {
       })
     );
     dispatch(setBackgroundImage(null));
+    dispatch(setStatus("idle"));
+    dispatch(setIsValidLocation(false));
     dispatch(
       setLocation({
         postalCode: "",
