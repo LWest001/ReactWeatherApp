@@ -13,13 +13,25 @@ export const LocationForm = (props) => {
     coordinates,
     handleGeolocate,
     locationString,
+    status,
   } = props;
 
   const displayInvalidPostalCode =
-    coordinates !== "invalidZip" && postalCode.length <= 5
-      ? { display: "none" }
-      : { display: "block" };
+    postalCode.length >= 5 && !coordinates
+      ? { display: "block" }
+      : { display: "none" };
 
+  function submitButtonText() {
+    if (status === "loading") {
+      return "Loading...";
+    }
+    if (status === "succeeded") {
+      return "Get \n" + locationString + " \nweather!";
+    }
+    if (status === "idle") {
+      return "Enter a location";
+    }
+  }
   return (
     <div className="LocationForm">
       <h1>
@@ -55,15 +67,7 @@ export const LocationForm = (props) => {
           setCountry={setCountry}
         />
         <br />
-        <input
-          id="submit"
-          type="submit"
-          value={
-            locationString
-              ? "Get \n" + locationString + " \nweather!"
-              : "Enter a location"
-          }
-        ></input>
+        <input id="submit" type="submit" value={submitButtonText()}></input>
       </form>
     </div>
   );

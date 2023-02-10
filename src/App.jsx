@@ -30,6 +30,7 @@ function App() {
   const [currentData, setCurrentData] = useState({});
   const [hourlyData, setHourlyData] = useState([]);
   const [dailyData, setDailyData] = useState([]);
+  const [status, setStatus] = useState("idle");
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
@@ -43,9 +44,10 @@ function App() {
   // Set coordinates when a 5-digit code is entered.
   useEffect(() => {
     if (postalCode.length === 5 && countryCode === "US") {
-      getCoordinates(postalCode, countryCode).then((coordinates) =>
-        setCoordinates(coordinates)
-      );
+      setStatus("loading");
+      getCoordinates(postalCode, countryCode).then((coordinates) => {
+        setCoordinates(coordinates);
+      });
     } else {
       setLocationString("");
       setCoordinates("");
@@ -58,11 +60,14 @@ function App() {
         coordinates.latitude,
         coordinates.longitude
       ).then((locationString) => {
+        setStatus("succeeded");
         const city = locationString[0].name;
         let state = locationString[0].state;
         state = stateCodes[state];
         setLocationString(city + ", " + state);
       });
+    } else {
+      setStatus("idle");
     }
   }, [coordinates]);
 
@@ -187,6 +192,7 @@ function App() {
           handleSubmit={handleSubmit}
           coordinates={coordinates}
           handleGeolocate={handleGeolocate}
+          status={status}
         />
       )}
       {toggleView === "ResultsPage" && (

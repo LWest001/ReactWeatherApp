@@ -15,10 +15,10 @@ export const getCoordinates = async (zipCode, countryCode) => {
       };
       return coordinates;
     } else {
-      return null;
+      throw "Invalid location information";
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
