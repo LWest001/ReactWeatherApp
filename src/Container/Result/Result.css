@@ -24,6 +24,7 @@
   display: inline;
   height: 4em;
   overflow: hidden;
+  width: min-content;
 }
 
 .Temperature {
