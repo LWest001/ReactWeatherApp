@@ -1,11 +1,14 @@
 #root {
-  max-width: 1280px;
+  height:100%;
+  width:100%;
   padding: 2rem;
   display: flex;
-  height:100%
+  flex-direction: column;
+  align-items: center;
 }
 
 .App {
+  height:100%;
   display: flex;
   align-items: center;
   border: 2px solid black;
@@ -28,7 +31,6 @@
 
 @media (max-width: 500px) {
   .App {
-    padding: 1rem;
-    margin:1rem 0;
+    padding: 1rem 0;
   }
 }
