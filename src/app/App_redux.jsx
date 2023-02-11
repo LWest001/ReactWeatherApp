@@ -7,7 +7,6 @@ import { backgroundSelector } from "../functions/backgroundSelector";
 import {
   // Fetch functions
   getCoordinates,
-  getLocalWeatherData,
   getLocationFromCoordinates,
   // State setters
   setBackgroundImage,
@@ -19,14 +18,11 @@ import {
   setView,
   setWeatherData,
   // State selectors
-  selectBackgroundImage,
   selectCoordinates,
   selectIsValidLocation,
   selectLocation,
-  selectUnits,
   selectView,
   selectWeatherData,
-  selectStatus,
 } from "./appSlice";
 
 import { useSelector } from "react-redux";
@@ -37,13 +33,10 @@ function App_redux() {
 
   // selectors
   const { postalCode, country } = useSelector(selectLocation);
-  const backgroundImage = useSelector(selectBackgroundImage);
   const coordinates = useSelector(selectCoordinates);
   const isValidLocation = useSelector(selectIsValidLocation);
-  const units = useSelector(selectUnits);
   const view = useSelector(selectView);
   const weatherData = useSelector(selectWeatherData);
-  const status = useSelector(selectStatus);
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
