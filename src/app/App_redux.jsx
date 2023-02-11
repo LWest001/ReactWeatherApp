@@ -121,30 +121,7 @@ function App_redux() {
   }, [backgroundImage]);
 
   // Event handlers
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    dispatch(
-      getLocalWeatherData({
-        lat: coordinates.latitude,
-        lon: coordinates.longitude,
-        units: units,
-      })
-    );
-    window.scroll(0, 0);
-  };
-
-  const handleGeolocate = (e) => {
-    navigator.geolocation.getCurrentPosition((position) =>
-      dispatch(
-        setCoordinates({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        })
-      )
-    );
-  };
-
-  const handleReturnHome = (e) => {
+   const handleReturnHome = (e) => {
     dispatch(setView("LocationForm"));
     dispatch(setCoordinates({ latitude: "", longitude: "" }));
     dispatch(
@@ -188,8 +165,6 @@ function App_redux() {
     <div className="App">
       {view === "LocationForm" && (
         <LocationForm_redux
-          handleSubmit={handleSubmit}
-          handleGeolocate={handleGeolocate}
         />
       )}
       {view === "ResultsPage" && (

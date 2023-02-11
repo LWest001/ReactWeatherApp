@@ -8,21 +8,46 @@ import {
   selectLocation,
   selectStatus,
   setLocation,
+  setCoordinates,
+  getLocalWeatherData,
+  selectUnits,
 } from "../../app/appSlice";
 
-export const LocationForm_redux = ({ handleSubmit, handleGeolocate }) => {
+export const LocationForm_redux = () => {
   const dispatch = useDispatch();
   // selectors
   const { postalCode, city, state, country } = useSelector(selectLocation);
   const coordinates = useSelector(selectCoordinates);
   const status = useSelector(selectStatus);
   const location = useSelector(selectLocation);
+  const units = useSelector(selectUnits);
 
   const displayInvalidPostalCode =
     postalCode.length >= 5 && !coordinates && status !== "loading"
       ? { display: "block" }
       : { display: "none" };
 
+  function handleGeolocate(e) {
+    navigator.geolocation.getCurrentPosition((position) =>
+      dispatch(
+        setCoordinates({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        })
+      )
+    );
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(
+      getLocalWeatherData({
+        lat: coordinates.latitude,
+        lon: coordinates.longitude,
+        units: units,
+      })
+    );
+    window.scroll(0, 0);
+  }
   function submitButtonText() {
     if (status === "loading") {
       return "Loading...";
@@ -43,9 +68,7 @@ export const LocationForm_redux = ({ handleSubmit, handleGeolocate }) => {
         <img src="/favicon.svg" alt="WeatherNow logo" className="logo-image" />
         <h1>WeatherNow</h1>
       </div>
-      <h2>
-        Get local weather information!
-      </h2>
+      <h2>Get local weather information!</h2>
       <button
         className="get-current-position"
         onClick={() => handleGeolocate()}
