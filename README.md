@@ -18,6 +18,7 @@ This frontend web application delivers local weather information based on postal
 - International support (currently US only)
 - Lookup by other location parameters (eg. city or region)
 - Persistent user data in browser based on previous lookup
+- Routing using React Router
 
 ## Current limitations and known bugs
 
