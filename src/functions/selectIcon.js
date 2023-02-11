@@ -19,7 +19,7 @@ import i50n from "/icon/50n.png";
 
 function selectIcon(code) {
   //   return eval("i" + code);
-  return `/icon/i${code}.png`;
+  return `/icon/${code}.png`;
 }
 
 selectIcon("01n");
