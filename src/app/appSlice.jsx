@@ -166,6 +166,9 @@ const appSlice = createSlice({
     setBackgroundImage: {
       reducer(state, action) {
         state.backgroundImage = action.payload;
+        document.querySelector(
+          ".App"
+        ).style.backgroundImage = `url(${state.backgroundImage})`;
       },
     },
     setWeatherData: {

@@ -54,7 +54,7 @@ function App_redux() {
     );
   }, [country]);
 
-  // Set coordinates when a 5-digit code is entered.
+  // Set status and get coordinates when a 5-digit code is entered (US)
   useEffect(() => {
     if (country.code === "US") {
       if (postalCode.length === 5) {
@@ -71,6 +71,7 @@ function App_redux() {
     }
   }, [postalCode]);
 
+  // Get location when coordinates are valid
   useEffect(() => {
     if (coordinates?.latitude) {
       dispatch(
@@ -90,19 +91,6 @@ function App_redux() {
       : (submitButton.disabled = true);
   }, [isValidLocation]);
 
-  const gatherData = async () => {
-    if (coordinates?.latitude) {
-      dispatch(
-        getLocalWeatherData({
-          lat: coordinates.latitude,
-          lon: coordinates.longitude,
-          units: units,
-        })
-      );
-      window.scroll(0, 0);
-    }
-  };
-
   // Set background based on weather and day segment
   useEffect(() => {
     if (weatherData.currentData.text.Temperature) {
@@ -111,17 +99,12 @@ function App_redux() {
         weatherData.currentData.daySegment
       );
       dispatch(setBackgroundImage(background));
+
     }
   }, [weatherData]);
 
-  useEffect(() => {
-    document.querySelector(
-      ".App"
-    ).style.backgroundImage = `url(${backgroundImage})`;
-  }, [backgroundImage]);
-
   // Event handlers
-   const handleReturnHome = (e) => {
+  const handleReturnHome = (e) => {
     dispatch(setView("LocationForm"));
     dispatch(setCoordinates({ latitude: "", longitude: "" }));
     dispatch(
@@ -163,10 +146,7 @@ function App_redux() {
 
   return (
     <div className="App">
-      {view === "LocationForm" && (
-        <LocationForm_redux
-        />
-      )}
+      {view === "LocationForm" && <LocationForm_redux />}
       {view === "ResultsPage" && (
         <ResultsPage_redux onClick={handleReturnHome} />
       )}
