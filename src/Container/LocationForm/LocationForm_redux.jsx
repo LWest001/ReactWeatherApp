@@ -37,7 +37,6 @@ export const LocationForm_redux = ({ handleSubmit, handleGeolocate }) => {
   return (
     <div className="LocationForm">
       <h1>WeatherNow</h1>
-      {/* <img src={icon} alt="WeatherNow icon" className="form-icon" /> */}
       <h2>
         Enter your postal code and country to get local weather information!
       </h2>

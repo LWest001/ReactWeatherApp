@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import selectIcon from "../functions/selectIcon";
 
 const initialState = {
   status: "idle",
@@ -252,7 +253,7 @@ function formatData(object, timezone, dataType) {
   }
 
   const weather = object["weather"][0];
-  const icon = `http://openweathermap.org/img/wn/${weather["icon"]}@4x.png`;
+  const icon = selectIcon(weather.icon)
   const daySegment = weather["icon"][2];
 
   // build object to display in list

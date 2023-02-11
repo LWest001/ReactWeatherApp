@@ -37,7 +37,7 @@ select {
   border: 1px solid black;
   width: 13rem;
   margin: 0 auto;
-  background-image: url(/img/locate.svg);
+  background-image: url(/src/assets/img/locate.svg);
   background-origin: padding-box;
   background-repeat: no-repeat;
   background-position: 0.5rem;

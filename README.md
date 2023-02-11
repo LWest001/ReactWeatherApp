@@ -22,5 +22,6 @@ This frontend web application delivers local weather information based on postal
 ## Current limitations and known bugs
 
 - The country selector works but only US lookup is available
+- Weather icons do not load on iOS when using Geolocation API.
 
 All code written by Leo Westebbe.
