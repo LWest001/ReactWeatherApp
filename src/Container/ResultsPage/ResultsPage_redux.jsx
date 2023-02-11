@@ -3,6 +3,7 @@ import "./ResultsPage.css";
 import { DataTypeSlider } from "../../Component/DataTypeSlider/DataTypeSlider";
 import { HourlyDisplay } from "../HourlyDisplay/HourlyDisplay";
 import { DailyDisplay } from "../DailyDisplay/DailyDisplay";
+import { CurrentDisplay } from "../CurrentDisplay/CurrentDisplay";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -67,25 +68,19 @@ export const ResultsPage_redux = ({ onClick }) => {
   return (
     <div className="ResultsPage">
       <DataTypeSlider onChange={slideHandler} />
-      <div className="ResultsGrid">
-        <h1 className="locationHeader">
-          {city}, {state}
-        </h1>
-        <h2 className="dateTime">
-          {currentData.text.Date} | {currentData.text.Time}
-        </h2>
-        {dataView === "Now" && <ResultsGrid />}
-        {dataView !== "Daily" && (
-          <HourlyDisplay
-            hourlyData={hourlyData}
-            dates={dates}
-            dataView={dataView}
-          />
-        )}
-        {dataView === "Daily" && (
-          <DailyDisplay dailyData={dailyData} dataView={dataView} />
-        )}
-      </div>
+      <CurrentDisplay />
+
+      {dataView !== "Daily" && (
+        <HourlyDisplay
+          hourlyData={hourlyData}
+          dates={dates}
+          dataView={dataView}
+        />
+      )}
+      {dataView === "Daily" && (
+        <DailyDisplay dailyData={dailyData} dataView={dataView} />
+      )}
+
       <button className="returnButton" onClick={onClick}>
         &larr; Return home
       </button>

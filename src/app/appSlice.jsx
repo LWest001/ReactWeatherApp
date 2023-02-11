@@ -306,6 +306,12 @@ export const selectCoordinates = (state) => state.app.coordinates;
 export const selectIsValidLocation = (state) => state.app.isValidLocation;
 export const selectBackgroundImage = (state) => state.app.backgroundImage;
 export const selectWeatherData = (state) => state.app.weatherData;
+export const selectCurrentWeatherData = (state) =>
+  state.app.weatherData.currentData;
+export const selectHourlyWeatherData = (state) =>
+  state.app.weatherData.hourlyData;
+export const selectDailyWeatherData = (state) =>
+  state.app.weatherData.dailyData;
 export const selectStatus = (state) => state.app.status;
 
 export const {
