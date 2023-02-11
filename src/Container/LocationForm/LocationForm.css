@@ -47,11 +47,11 @@ select {
 }
 
 #submit {
-  width: 13rem;
   height: 5rem;
   font-size: larger;
-  margin: 1rem;
+  margin: 1rem auto;
   border-radius: 8px;
+  white-space: normal;
 }
 
 #submit:enabled {

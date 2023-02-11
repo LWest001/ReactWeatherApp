@@ -28,7 +28,7 @@ export const LocationForm_redux = ({ handleSubmit, handleGeolocate }) => {
       return "Loading...";
     }
     if (status === "succeeded") {
-      return `Get \n  ${city}, ${state} \nweather!`;
+      return `Get weather for ${city}!`;
     }
     if (status === "idle") {
       return "Enter a location";
@@ -67,7 +67,7 @@ export const LocationForm_redux = ({ handleSubmit, handleGeolocate }) => {
         <label htmlFor="CountrySelector">Country or territory:</label>
         <CountrySelector_redux id="CountrySelector" />
         <br />
-        <input id="submit" type="submit" value={submitButtonText()}></input>
+        <input id="submit" type="submit" value={submitButtonText()}/>
       </form>
     </div>
   );
