@@ -180,8 +180,12 @@ const appSlice = createSlice({
         state.status = "loading";
       })
       .addCase(getCoordinates.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.coordinates = action.payload;
+        if (action.payload) {
+          state.status = "succeeded";
+          state.coordinates = action.payload;
+        } else {
+          state.status === "idle";
+        }
       })
       .addCase(getLocalWeatherData.pending, (state, action) => {
         state.status = "loading";
