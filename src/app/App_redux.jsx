@@ -5,14 +5,20 @@ import { ResultsPage_redux } from "../Container/ResultsPage/ResultsPage_redux";
 import { backgroundSelector } from "../functions/backgroundSelector";
 
 import {
+  // Fetch functions
   getCoordinates,
   getLocalWeatherData,
   getLocationFromCoordinates,
+  // State setters
+  setBackgroundImage,
   setIsValidLocation,
   setStatus,
-} from "./appSlice";
-
-import {
+  setCoordinates,
+  setLocation,
+  setUnits,
+  setView,
+  setWeatherData,
+  // State selectors
   selectBackgroundImage,
   selectCoordinates,
   selectIsValidLocation,
@@ -21,15 +27,6 @@ import {
   selectView,
   selectWeatherData,
   selectStatus,
-} from "./appSlice";
-
-import {
-  setBackgroundImage,
-  setCoordinates,
-  setLocation,
-  setUnits,
-  setView,
-  setWeatherData,
 } from "./appSlice";
 
 import { useSelector } from "react-redux";
@@ -59,8 +56,18 @@ function App_redux() {
 
   // Set coordinates when a 5-digit code is entered.
   useEffect(() => {
-    if (postalCode.length === 5 && country.code === "US") {
-      dispatch(getCoordinates({ postalCode, countryCode: country.code }));
+    if (country.code === "US") {
+      if (postalCode.length === 5) {
+        dispatch(getCoordinates({ postalCode, countryCode: country.code }));
+      }
+      if (postalCode.length < 5) {
+        dispatch(setStatus("idle"));
+        dispatch(setIsValidLocation(false));
+      }
+      if (postalCode.length > 5) {
+        dispatch(setStatus("error"));
+        dispatch(setIsValidLocation(false));
+      }
     }
   }, [postalCode]);
 

@@ -33,6 +33,9 @@ export const LocationForm_redux = ({ handleSubmit, handleGeolocate }) => {
     if (status === "idle") {
       return "Enter a location";
     }
+    if (status === "error") {
+      return `Invalid ${country.name} postal code`;
+    }
   }
   return (
     <div className="LocationForm">
