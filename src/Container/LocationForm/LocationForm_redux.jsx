@@ -36,7 +36,10 @@ export const LocationForm_redux = ({ handleSubmit, handleGeolocate }) => {
   }
   return (
     <div className="LocationForm">
-      <h1>WeatherNow</h1>
+      <div className="logoContainer">
+        <img src="/favicon.svg" alt="WeatherNow logo" className="logo-image" />
+        <h1>WeatherNow</h1>
+      </div>
       <h2>
         Enter your postal code and country to get local weather information!
       </h2>
@@ -66,7 +69,7 @@ export const LocationForm_redux = ({ handleSubmit, handleGeolocate }) => {
         <label htmlFor="CountrySelector">Country or territory:</label>
         <CountrySelector_redux id="CountrySelector" />
         <br />
-        <input id="submit" type="submit" value={submitButtonText()}/>
+        <input id="submit" type="submit" value={submitButtonText()} />
       </form>
     </div>
   );

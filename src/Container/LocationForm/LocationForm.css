@@ -4,17 +4,30 @@
   justify-content: space-between;
   height: 90vh;
 }
-
-.LocationForm h1 {
-  background-image: url("/favicon.svg");
-  background-size: 300px;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 100%;
-  margin: 0;
+.logoContainer {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+}
+
+.logo-image {
+  width:100%;
+  max-width:20rem;
+}
+.LocationForm h1 {
+  /* background-image: url("/favicon.svg");
+  background-size: 300px;
+  background-repeat: no-repeat;
+  background-position: center; */
+  height: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  position:relative;
+  top:-55%;
+  z-index: 1;
 }
 
 label {
