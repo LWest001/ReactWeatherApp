@@ -65,7 +65,7 @@ function App_redux() {
   }, [postalCode]);
 
   useEffect(() => {
-    if (coordinates.latitude) {
+    if (coordinates?.latitude) {
       dispatch(
         getLocationFromCoordinates({
           lat: coordinates.latitude,
@@ -84,7 +84,7 @@ function App_redux() {
   }, [isValidLocation]);
 
   const gatherData = async () => {
-    if (coordinates.latitude) {
+    if (coordinates?.latitude) {
       dispatch(
         getLocalWeatherData({
           lat: coordinates.latitude,

@@ -13,8 +13,14 @@
 }
 
 .logo-image {
-  width:100%;
-  max-width:20rem;
+  width: 100%;
+  max-width: 20rem;
+}
+.LocationForm form {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .LocationForm h1 {
   /* background-image: url("/favicon.svg");
@@ -25,15 +31,15 @@
   margin: 0;
   align-items: center;
   justify-content: center;
-  position:relative;
-  top:-55%;
+  position: relative;
+  top: -55%;
   z-index: 1;
 }
 
 label {
   display: block;
   font-size: larger;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
 }
 
 input,
@@ -55,8 +61,12 @@ select {
   background-repeat: no-repeat;
   background-position: 0.5rem;
   text-align: center;
+  font-size: larger;
+}
 
-  /* display: none; */
+span.locationForm {
+  margin: .5rem;
+  font-size:large
 }
 
 #submit {

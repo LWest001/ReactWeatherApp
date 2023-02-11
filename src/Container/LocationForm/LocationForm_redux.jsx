@@ -41,7 +41,7 @@ export const LocationForm_redux = ({ handleSubmit, handleGeolocate }) => {
         <h1>WeatherNow</h1>
       </div>
       <h2>
-        Enter your postal code and country to get local weather information!
+        Get local weather information!
       </h2>
       <button
         className="get-current-position"
@@ -49,8 +49,9 @@ export const LocationForm_redux = ({ handleSubmit, handleGeolocate }) => {
       >
         Locate me
       </button>
+      <span className="locationForm">or</span>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="postalCodeInput">Postal code:</label>
+        <label htmlFor="postalCodeInput">US postal code:</label>
         <input
           id="postalCodeInput"
           type="number"
@@ -66,9 +67,8 @@ export const LocationForm_redux = ({ handleSubmit, handleGeolocate }) => {
         <p className="invalidPostalCode" style={displayInvalidPostalCode}>
           Please enter a valid {country.name} postal code.
         </p>
-        <label htmlFor="CountrySelector">Country or territory:</label>
-        <CountrySelector_redux id="CountrySelector" />
-        <br />
+        {/* <label htmlFor="CountrySelector">Country or territory:</label> */}
+        {/* <CountrySelector_redux id="CountrySelector" /> */}
         <input id="submit" type="submit" value={submitButtonText()} />
       </form>
     </div>
