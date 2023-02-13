@@ -1,6 +1,6 @@
 # ReactWeatherApp
 
-**Live production build here: https://https://weathernow-lw.netlify.app/.**
+**Live production build here: https://weathernow-lw.netlify.app/.**
 
 This frontend web application delivers local weather information based on postal code using the [OpenWeather API](https://openweathermap.org/) and [ZipCodeBase API](https://zipcodebase.com/). It is built using [React](https://reactjs.org/) with [Redux](https://redux.js.org/).
 
