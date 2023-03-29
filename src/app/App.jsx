@@ -1,7 +1,7 @@
 import "./App.css";
-import { LocationForm_redux } from "../Container/LocationForm/LocationForm_redux";
+import { LocationForm } from "../Container/LocationForm/LocationForm";
 import { useEffect } from "react";
-import { ResultsPage_redux } from "../Container/ResultsPage/ResultsPage_redux";
+import { ResultsPage } from "../Container/ResultsPage/ResultsPage";
 import { backgroundSelector } from "../functions/backgroundSelector";
 
 import {
@@ -28,7 +28,7 @@ import {
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-function App_redux() {
+function App() {
   const dispatch = useDispatch();
 
   // selectors
@@ -92,7 +92,6 @@ function App_redux() {
         weatherData.currentData.daySegment
       );
       dispatch(setBackgroundImage(background));
-
     }
   }, [weatherData]);
 
@@ -139,12 +138,10 @@ function App_redux() {
 
   return (
     <div className="App">
-      {view === "LocationForm" && <LocationForm_redux />}
-      {view === "ResultsPage" && (
-        <ResultsPage_redux onClick={handleReturnHome} />
-      )}
+      {view === "LocationForm" && <LocationForm />}
+      {view === "ResultsPage" && <ResultsPage onClick={handleReturnHome} />}
     </div>
   );
 }
 
-export default App_redux;
+export default App;

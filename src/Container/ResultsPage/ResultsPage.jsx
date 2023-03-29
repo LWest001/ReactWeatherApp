@@ -13,7 +13,7 @@ import {
 } from "../../app/appSlice";
 import { setDataView } from "../../app/appSlice";
 
-export const ResultsPage_redux = ({ onClick }) => {
+export const ResultsPage = ({ onClick }) => {
   const { currentData, hourlyData, dailyData } = useSelector(selectWeatherData);
   const dataView = useSelector(selectDataView);
   const { city, state } = useSelector(selectLocation);

@@ -1,4 +1,4 @@
-import { CountrySelector_redux } from "../../Component/CountrySelector/CountrySelector_redux";
+import { CountrySelector } from "../../Component/CountrySelector/CountrySelector";
 import "./LocationForm.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -13,7 +13,7 @@ import {
   selectUnits,
 } from "../../app/appSlice";
 
-export const LocationForm_redux = () => {
+export const LocationForm = () => {
   const dispatch = useDispatch();
   // selectors
   const { postalCode, city, state, country } = useSelector(selectLocation);
@@ -94,7 +94,7 @@ export const LocationForm_redux = () => {
           Please enter a valid {country.name} postal code.
         </p>
         {/* <label htmlFor="CountrySelector">Country or territory:</label> */}
-        {/* <CountrySelector_redux id="CountrySelector" /> */}
+        {/* <CountrySelector id="CountrySelector" /> */}
         <input id="submit" type="submit" value={submitButtonText()} />
       </form>
     </div>
