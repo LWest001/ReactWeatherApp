@@ -12,8 +12,11 @@ import {
   getLocalWeatherData,
   selectUnits,
 } from "../../app/appSlice";
+import { Box, Button, Input, TextField, Typography } from "@mui/material";
+import MyLocationIcon from "@mui/icons-material/MyLocation";
+import { Stack } from "@mui/system";
 
-export const LocationForm = () => {
+export const LocationForm = ({ isValidLocation }) => {
   const dispatch = useDispatch();
   // selectors
   const { postalCode, city, state, country } = useSelector(selectLocation);
@@ -63,22 +66,45 @@ export const LocationForm = () => {
     }
   }
   return (
-    <div className="LocationForm">
-      <div className="logoContainer">
+    <Box
+      className="LocationForm"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        // justifyContent: "space-between",
+        height: "90vh",
+      }}
+    >
+      <Box className="logoContainer">
         <img src="/favicon.svg" alt="WeatherNow logo" className="logo-image" />
-        <h1>WeatherNow</h1>
-      </div>
-      <h2>Get local weather information!</h2>
-      <button
+        <Typography
+          variant="h1"
+          fontSize="2.2rem"
+          height={0}
+          position="relative"
+          top="-55%"
+        >
+          WeatherNow
+        </Typography>
+      </Box>
+      <Typography variant="h2" fontSize="1.5rem" my={1}>
+        Get local weather information!
+      </Typography>
+      <Button
+        variant="outlined"
+        startIcon={<MyLocationIcon />}
         className="get-current-position"
         onClick={() => handleGeolocate()}
+        sx={{ width: "223px" }}
       >
         Locate me
-      </button>
-      <span className="locationForm">or</span>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="postalCodeInput">US postal code:</label>
-        <input
+      </Button>
+      <Typography sx={{ my: 1 }}>or</Typography>
+      <Stack component="form" onSubmit={handleSubmit}>
+        <TextField
+          label="US postal code"
+          variant="outlined"
           id="postalCodeInput"
           type="number"
           max="99999"
@@ -88,15 +114,20 @@ export const LocationForm = () => {
           onChange={(e) =>
             dispatch(setLocation({ ...location, postalCode: e.target.value }))
           }
-          autoFocus
-        ></input>
-        <p className="invalidPostalCode" style={displayInvalidPostalCode}>
-          Please enter a valid {country.name} postal code.
-        </p>
+        ></TextField>
         {/* <label htmlFor="CountrySelector">Country or territory:</label> */}
         {/* <CountrySelector id="CountrySelector" /> */}
-        <input id="submit" type="submit" value={submitButtonText()} />
-      </form>
-    </div>
+        <Button
+          variant="contained"
+          id="submit"
+          type="submit"
+          color="success"
+          disabled={!isValidLocation}
+          sx={{ m: 1, width: "223px" }}
+        >
+          {submitButtonText()}
+        </Button>
+      </Stack>
+    </Box>
   );
 };

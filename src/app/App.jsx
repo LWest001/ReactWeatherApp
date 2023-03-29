@@ -77,14 +77,6 @@ function App() {
     }
   }, [coordinates]);
 
-  // Enable or disable submit button
-  useEffect(() => {
-    const submitButton = document.querySelector("#submit");
-    isValidLocation
-      ? (submitButton.disabled = false)
-      : (submitButton.disabled = true);
-  }, [isValidLocation]);
-
   // Set background based on weather and day segment
   useEffect(() => {
     if (weatherData.currentData.text.Temperature) {
@@ -139,7 +131,9 @@ function App() {
 
   return (
     <Container className="App">
-      {view === "LocationForm" && <LocationForm />}
+      {view === "LocationForm" && (
+        <LocationForm isValidLocation={isValidLocation} />
+      )}
       {view === "ResultsPage" && <ResultsPage onClick={handleReturnHome} />}
     </Container>
   );
