@@ -20,7 +20,7 @@ export const HourlyDisplay = ({ dates }) => {
 
   return (
     <div
-      className="HourlyDisplay"
+      className="HourlyDisplay dataDisplay"
       style={dataView === "Hourly" ? { gridTemplateColumns: "1fr" } : {}}
     >
       {hoursArray}

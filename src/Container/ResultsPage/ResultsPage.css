@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   display: flex;
-  width:100%;
+  width: 100%;
 }
 .ResultsPage img {
   height: 1.5rem;
@@ -22,15 +22,18 @@
   width: 100%;
 }
 
-.CurrentDisplay {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: solid;
+.dataDisplay {
   margin: 1em;
-  width:95%;
-  max-width: 100%;
+  display: grid;
   background: radial-gradient(ellipse at top, #e7e7e7, transparent),
     radial-gradient(ellipse at bottom, #c0c0c0, transparent);
+  width: 95%;
+}
+
+.CurrentDisplay {
+  grid-template-columns: 1fr 1fr;
+
+  max-width: 100%;
 }
 
 .returnButton {
@@ -50,8 +53,8 @@
 
   .dateTime,
   .locationHeader,
-  .Weather,
-  .Temperature {
+  .Result.Weather,
+  .Result.Temperature {
     grid-column: 1;
   }
 }

@@ -1,14 +1,11 @@
 .HourlyDisplay {
-  display: grid;
+
   grid-template-columns: repeat(48, 1fr);
   overflow-x: scroll;
-  background: radial-gradient(ellipse at top, #e7e7e7, transparent),
-    radial-gradient(ellipse at bottom, #c0c0c0, transparent);
-  border: solid;
   margin: 1em;
   margin-top: 0;
   grid-column: 1/3;
-  width: 95%;
+
 }
 
 @media (max-width: 500px) {

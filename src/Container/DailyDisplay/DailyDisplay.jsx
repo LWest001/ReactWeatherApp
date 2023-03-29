@@ -1,4 +1,4 @@
-import "./DailyDisplay.css";
+
 import { Day } from "./Day/Day";
 
 export const DailyDisplay = ({ dailyData }) => {
@@ -6,5 +6,5 @@ export const DailyDisplay = ({ dailyData }) => {
     return <Day key={day.text.Date} index={i} />;
   });
 
-  return <div className="DailyDisplay">{daysArray}</div>;
+  return <div className="DailyDisplay dataDisplay">{daysArray}</div>;
 };

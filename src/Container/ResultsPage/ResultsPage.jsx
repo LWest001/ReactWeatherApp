@@ -1,6 +1,5 @@
-import { Result } from "../Result/Result";
 import "./ResultsPage.css";
-import { DataTypeSlider } from "../../Component/DataTypeSlider/DataTypeSlider";
+import { DataBar } from "../../Component/DataBar/DataBar";
 import { HourlyDisplay } from "../HourlyDisplay/HourlyDisplay";
 import { DailyDisplay } from "../DailyDisplay/DailyDisplay";
 import { CurrentDisplay } from "../CurrentDisplay/CurrentDisplay";
@@ -12,11 +11,11 @@ import {
   selectLocation,
 } from "../../app/appSlice";
 import { setDataView } from "../../app/appSlice";
+import { Box } from "@mui/material";
 
 export const ResultsPage = ({ onClick }) => {
   const { currentData, hourlyData, dailyData } = useSelector(selectWeatherData);
   const dataView = useSelector(selectDataView);
-  const { city, state } = useSelector(selectLocation);
 
   const dispatch = useDispatch();
   const [dates, setDates] = useState({
@@ -42,32 +41,12 @@ export const ResultsPage = ({ onClick }) => {
     if (e == 100) {
       dataView = "Daily";
     }
-    dispatch(setDataView(dataView));
-  };
-
-  const ResultsGrid = () => {
-    let resultsArray = [];
-    let dataArray = Object.entries(currentData.text);
-    dataArray = dataArray.slice(0, 8);
-    dataArray.forEach(([key, value]) => {
-      resultsArray.push(
-        <Result
-          key={key}
-          icon={currentData.icon}
-          display={{
-            heading: key,
-            data: value,
-          }}
-        />
-      );
-    });
-
-    return resultsArray;
+    dispatch(setDataView(e.target.value));
   };
 
   return (
-    <div className="ResultsPage">
-      <DataTypeSlider onChange={slideHandler} />
+    <Box className="ResultsPage">
+      <DataBar onChange={slideHandler} onClick={onClick} />
       <CurrentDisplay />
 
       {dataView !== "Daily" && (
@@ -80,10 +59,6 @@ export const ResultsPage = ({ onClick }) => {
       {dataView === "Daily" && (
         <DailyDisplay dailyData={dailyData} dataView={dataView} />
       )}
-
-      <button className="returnButton" onClick={onClick}>
-        &larr; Return home
-      </button>
-    </div>
+    </Box>
   );
 };

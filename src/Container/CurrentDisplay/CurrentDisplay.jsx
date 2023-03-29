@@ -5,6 +5,7 @@ import {
   selectDataView,
 } from "../../app/appSlice";
 import { Result } from "../Result/Result";
+import "../ResultsPage/ResultsPage.css";
 
 export function CurrentDisplay() {
   const currentData = useSelector(selectCurrentWeatherData);
@@ -25,7 +26,7 @@ export function CurrentDisplay() {
     );
   });
   return (
-    <div className="CurrentDisplay">
+    <div className="CurrentDisplay dataDisplay">
       <h1 className="locationHeader">
         {city}, {state}
       </h1>
