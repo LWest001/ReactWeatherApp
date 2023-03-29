@@ -27,6 +27,7 @@ import {
 
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { Container } from "@mui/material";
 
 function App() {
   const dispatch = useDispatch();
@@ -137,10 +138,10 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <Container className="App">
       {view === "LocationForm" && <LocationForm />}
       {view === "ResultsPage" && <ResultsPage onClick={handleReturnHome} />}
-    </div>
+    </Container>
   );
 }
 

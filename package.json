@@ -10,6 +10,9 @@
     "debug": "netlify dev --inspect"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.15",
     "@reduxjs/toolkit": "^1.9.2",
     "axios": "^1.2.0",
     "node-fetch": "^2.6.7",
