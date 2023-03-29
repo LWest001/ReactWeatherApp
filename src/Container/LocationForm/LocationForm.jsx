@@ -98,7 +98,7 @@ export const LocationForm = ({ isValidLocation }) => {
         onClick={() => handleGeolocate()}
         sx={{ width: "223px" }}
       >
-        Locate me
+        <Typography>Locate me</Typography>
       </Button>
       <Typography sx={{ my: 1 }}>or</Typography>
       <Stack component="form" onSubmit={handleSubmit}>
@@ -121,11 +121,16 @@ export const LocationForm = ({ isValidLocation }) => {
           variant="contained"
           id="submit"
           type="submit"
-          color="success"
           disabled={!isValidLocation}
-          sx={{ m: 1, width: "223px" }}
+          sx={{
+            m: 1,
+            width: "223px",
+            bgcolor: "#ffab03",
+            color: "black",
+            "&:hover": { bgcolor: "#ffd480" },
+          }}
         >
-          {submitButtonText()}
+          <Typography>{submitButtonText()}</Typography>
         </Button>
       </Stack>
     </Box>

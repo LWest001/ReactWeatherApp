@@ -27,7 +27,7 @@ export const DataBar = ({ onChange, onClick }) => {
         minHeight: "42px",
         maxHeight: "42px",
         background:
-          "radial-gradient(ellipse at bottom, #e7e7e7 30%, slategrey)",
+          "radial-gradient(ellipse at bottom, #ffab03 30%, #fff0d3)",
       }}
     >
       <IconButton sx={{ mr: [1, 4] }} tabIndex={0} onClick={onClick}>
