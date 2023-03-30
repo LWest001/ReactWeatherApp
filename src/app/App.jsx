@@ -58,7 +58,7 @@ function App() {
   // Event handlers
   const handleReturnHome = () => {
     dispatch(setView("LocationForm"));
-    dispatch(setCoordinates({ latitude: "", longitude: "" }));
+    dispatch(setCoordinates({ lat: "", lon: "" }));
     dispatch(
       setWeatherData({
         currentData: {
@@ -95,7 +95,6 @@ function App() {
     );
     window.scroll(0, 0);
   };
-
 
   return (
     <Container className="App">

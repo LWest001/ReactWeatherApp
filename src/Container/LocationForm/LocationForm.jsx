@@ -98,12 +98,7 @@ export const LocationForm = () => {
   }
 
   // Set location data if default coordinates exist
-  if (
-    defaultCoordinates?.lat &&
-    view === "LocationForm" &&
-    status === "idle" &&
-    !postalCode.length
-  ) {
+  if (defaultCoordinates?.lat && !coordinates.lat && !postalCode) {
     const { lat, lon, city, state } = defaultCoordinates;
     dispatch(
       setCoordinates({
@@ -117,7 +112,11 @@ export const LocationForm = () => {
   // Automatically fire weather data submission if new session
 
   useEffect(() => {
-    if (!sessionStorage.getItem("session") && defaultCoordinates?.lat) {
+    if (
+      !sessionStorage.getItem("session") &&
+      defaultCoordinates?.lat &&
+      coordinates?.lat
+    ) {
       dispatch(setView("ResultsPage"));
       handleSubmit(new Event("click"));
     }
