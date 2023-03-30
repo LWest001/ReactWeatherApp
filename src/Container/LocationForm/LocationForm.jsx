@@ -116,14 +116,12 @@ export const LocationForm = () => {
 
   // Automatically fire weather data submission if new session
 
-  /*
   useEffect(() => {
     if (!sessionStorage.getItem("session") && defaultCoordinates?.lat) {
       dispatch(setView("ResultsPage"));
       handleSubmit(new Event("click"));
     }
   }, [coordinates]);
-*/
 
   const handleCheckboxChange = (event) => {
     setChecked(event.target.checked);
