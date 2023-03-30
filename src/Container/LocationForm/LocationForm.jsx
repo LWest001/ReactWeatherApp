@@ -87,9 +87,11 @@ export const LocationForm = () => {
       state,
       units,
     };
-    if (checked && data !== defaultCoordinates) {
+
+    if (checked && data?.lat) {
       localStorage.setItem("defaultCoordinates", JSON.stringify(data));
     }
+
     dispatch(getLocalWeatherData(data));
     window.scrollTo(0, 0);
     !checked && localStorage.removeItem("defaultCoordinates");
@@ -113,12 +115,15 @@ export const LocationForm = () => {
   }
 
   // Automatically fire weather data submission if new session
+
+  /*
   useEffect(() => {
     if (!sessionStorage.getItem("session") && defaultCoordinates?.lat) {
       dispatch(setView("ResultsPage"));
       handleSubmit(new Event("click"));
     }
   }, [coordinates]);
+*/
 
   const handleCheckboxChange = (event) => {
     setChecked(event.target.checked);
