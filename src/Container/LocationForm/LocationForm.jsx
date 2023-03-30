@@ -11,46 +11,116 @@ import {
   setCoordinates,
   getLocalWeatherData,
   selectUnits,
+  selectView,
+  getLocationFromCoordinates,
+  getCoordinates,
+  setStatus,
+  setIsValidLocation,
+  selectIsValidLocation,
 } from "../../app/appSlice";
-import { Box, Button, Input, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Input,
+  TextField,
+  Typography,
+} from "@mui/material";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import { Stack } from "@mui/system";
+import { useState } from "react";
 
-export const LocationForm = ({ isValidLocation }) => {
+export const LocationForm = () => {
   const dispatch = useDispatch();
   // selectors
-  const { postalCode, city, state, country } = useSelector(selectLocation);
+  const { city, state, country } = useSelector(selectLocation);
   const coordinates = useSelector(selectCoordinates);
   const status = useSelector(selectStatus);
   const location = useSelector(selectLocation);
   const units = useSelector(selectUnits);
+  const view = useSelector(selectView);
+  const isValidLocation = useSelector(selectIsValidLocation);
+  const { postalCode } = location;
 
-  const displayInvalidPostalCode =
-    postalCode.length >= 5 && !coordinates && status !== "loading"
-      ? { display: "block" }
-      : { display: "none" };
+  const [checked, setChecked] = useState(true);
 
-  function handleGeolocate(e) {
-    navigator.geolocation.getCurrentPosition((position) =>
+  // Event handlers
+  function handleGeolocate() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude: lat, longitude: lon } = position.coords;
       dispatch(
         setCoordinates({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          lat,
+          lon,
         })
-      )
-    );
+      );
+      dispatch(
+        getLocationFromCoordinates({
+          lat,
+          lon,
+        })
+      );
+    });
   }
-  async function handleSubmit(e) {
+
+  function handleSubmit(e) {
     e.preventDefault();
+    const { lat, lon } = coordinates;
+    const data = {
+      lat,
+      lon,
+      city,
+      state,
+      units,
+    };
+    checked && localStorage.setItem("defaultCoordinates", JSON.stringify(data));
+    dispatch(getLocalWeatherData(data));
+    window.scrollTo(0, 0);
+    !checked && localStorage.removeItem("defaultCoordinates");
+  }
+
+  const defaultCoordinates = JSON.parse(
+    localStorage.getItem("defaultCoordinates")
+  );
+
+  if (
+    defaultCoordinates?.lat &&
+    view === "LocationForm" &&
+    status === "idle" &&
+    !postalCode.length
+  ) {
+    const { lat, lon, city, state } = defaultCoordinates;
     dispatch(
-      getLocalWeatherData({
-        lat: coordinates.latitude,
-        lon: coordinates.longitude,
-        units: units,
+      setCoordinates({
+        lat,
+        lon,
       })
     );
-    window.scroll(0, 0);
+    dispatch(setLocation({ city, state, postalCode: "" }));
   }
+
+  const handleCheckboxChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
+  function handleInputChange(e) {
+    const postalCode = e.target.value;
+    dispatch(setLocation({ ...location, postalCode }));
+    if (country.code === "US") {
+      if (postalCode.length === 5) {
+        dispatch(getCoordinates({ postalCode, countryCode: country.code }));
+      } else {
+        dispatch(setIsValidLocation(false));
+        if (postalCode.length < 5) {
+          dispatch(setStatus("idle"));
+        } else {
+          dispatch(setStatus("error"));
+        }
+      }
+    }
+  }
+
   function submitButtonText() {
     if (status === "loading") {
       return "Loading...";
@@ -65,6 +135,7 @@ export const LocationForm = ({ isValidLocation }) => {
       return `Invalid ${country.name} postal code`;
     }
   }
+
   return (
     <Box
       className="LocationForm"
@@ -74,6 +145,7 @@ export const LocationForm = ({ isValidLocation }) => {
         alignItems: "center",
         // justifyContent: "space-between",
         height: "90vh",
+        m: 2,
       }}
     >
       <Box className="logoContainer">
@@ -95,7 +167,7 @@ export const LocationForm = ({ isValidLocation }) => {
         variant="outlined"
         startIcon={<MyLocationIcon />}
         className="get-current-position"
-        onClick={() => handleGeolocate()}
+        onClick={handleGeolocate}
         sx={{ width: "223px" }}
       >
         <Typography>Locate me</Typography>
@@ -111,9 +183,8 @@ export const LocationForm = ({ isValidLocation }) => {
           placeholder="Postal code (5-digit)"
           pattern="/^\d{5}$/"
           autoComplete="postal-code"
-          onChange={(e) =>
-            dispatch(setLocation({ ...location, postalCode: e.target.value }))
-          }
+          sx={{ width: "223px" }}
+          onChange={handleInputChange}
         ></TextField>
         {/* <label htmlFor="CountrySelector">Country or territory:</label> */}
         {/* <CountrySelector id="CountrySelector" /> */}
@@ -132,6 +203,16 @@ export const LocationForm = ({ isValidLocation }) => {
         >
           <Typography>{submitButtonText()}</Typography>
         </Button>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={checked}
+              onChange={handleCheckboxChange}
+              inputProps={{ "aria-label": "controlled" }}
+            />
+          }
+          label="Use as default location"
+        />
       </Stack>
     </Box>
   );

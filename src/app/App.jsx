@@ -6,7 +6,6 @@ import { backgroundSelector } from "../functions/backgroundSelector";
 
 import {
   // Fetch functions
-  getCoordinates,
   getLocationFromCoordinates,
   // State setters
   setBackgroundImage,
@@ -19,7 +18,6 @@ import {
   setWeatherData,
   // State selectors
   selectCoordinates,
-  selectIsValidLocation,
   selectLocation,
   selectView,
   selectWeatherData,
@@ -33,60 +31,32 @@ function App() {
   const dispatch = useDispatch();
 
   // selectors
-  const { postalCode, country } = useSelector(selectLocation);
+  const { country } = useSelector(selectLocation);
   const coordinates = useSelector(selectCoordinates);
-  const isValidLocation = useSelector(selectIsValidLocation);
   const view = useSelector(selectView);
   const weatherData = useSelector(selectWeatherData);
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
     setUnits(
-      country.code === "US" || country.code === "LR" || country.code === "MM"
+      country?.code === "US" || country?.code === "LR" || country?.code === "MM"
         ? "imperial"
         : "metric"
     );
   }, [country]);
 
-  // Set status and get coordinates when a 5-digit code is entered (US)
-  useEffect(() => {
-    if (country.code === "US") {
-      if (postalCode.length === 5) {
-        dispatch(getCoordinates({ postalCode, countryCode: country.code }));
-      }
-      if (postalCode.length < 5) {
-        dispatch(setStatus("idle"));
-        dispatch(setIsValidLocation(false));
-      }
-      if (postalCode.length > 5) {
-        dispatch(setStatus("error"));
-        dispatch(setIsValidLocation(false));
-      }
-    }
-  }, [postalCode]);
-
   // Get location when coordinates are valid
   useEffect(() => {
-    if (coordinates?.latitude) {
+    if (coordinates?.lat) {
+      const { lat, lon } = coordinates;
       dispatch(
         getLocationFromCoordinates({
-          lat: coordinates.latitude,
-          lon: coordinates.longitude,
+          lat,
+          lon,
         })
       );
     }
   }, [coordinates]);
-
-  // Set background based on weather and day segment
-  useEffect(() => {
-    if (weatherData.currentData.text.Temperature) {
-      const background = backgroundSelector(
-        weatherData.currentData.weather,
-        weatherData.currentData.daySegment
-      );
-      dispatch(setBackgroundImage(background));
-    }
-  }, [weatherData]);
 
   // Event handlers
   const handleReturnHome = (e) => {
@@ -131,9 +101,7 @@ function App() {
 
   return (
     <Container className="App">
-      {view === "LocationForm" && (
-        <LocationForm isValidLocation={isValidLocation} />
-      )}
+      {view === "LocationForm" && <LocationForm />}
       {view === "ResultsPage" && <ResultsPage onClick={handleReturnHome} />}
     </Container>
   );

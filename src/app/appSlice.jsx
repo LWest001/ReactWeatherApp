@@ -48,10 +48,10 @@ export const getCoordinates = createAsyncThunk(
     try {
       const response = await fetch(url);
       if (response.ok) {
-        const responseObject = await response.json();
+        const { lat, lon } = await response.json();
         const coordinates = {
-          latitude: responseObject["lat"],
-          longitude: responseObject["lon"],
+          lat,
+          lon,
         };
         return coordinates;
       } else {

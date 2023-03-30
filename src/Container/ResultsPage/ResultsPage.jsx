@@ -4,20 +4,19 @@ import { HourlyDisplay } from "../HourlyDisplay/HourlyDisplay";
 import { DailyDisplay } from "../DailyDisplay/DailyDisplay";
 import { CurrentDisplay } from "../CurrentDisplay/CurrentDisplay";
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectWeatherData,
   selectDataView,
-  selectLocation,
+  setBackgroundImage,
 } from "../../app/appSlice";
-import { setDataView } from "../../app/appSlice";
 import { Box } from "@mui/material";
+import { backgroundSelector } from "../../functions/backgroundSelector";
 
 export const ResultsPage = ({ onClick }) => {
+  const dispatch = useDispatch();
   const { currentData, hourlyData, dailyData } = useSelector(selectWeatherData);
   const dataView = useSelector(selectDataView);
-
-  const dispatch = useDispatch();
   const [dates, setDates] = useState({
     today: currentData.Date,
   });
@@ -30,23 +29,20 @@ export const ResultsPage = ({ onClick }) => {
     });
   }, [currentData]);
 
-  const slideHandler = (e) => {
-    let dataView;
-    if (e == 0) {
-      dataView = "Now";
+  // Set background based on weather and day segment
+  useEffect(() => {
+    if (currentData.text.Temperature) {
+      const background = backgroundSelector(
+        currentData.weather,
+        currentData.daySegment
+      );
+      dispatch(setBackgroundImage(background));
     }
-    if (e == 50) {
-      dataView = "Hourly";
-    }
-    if (e == 100) {
-      dataView = "Daily";
-    }
-    dispatch(setDataView(e.target.value));
-  };
+  }, [currentData]);
 
   return (
     <Box className="ResultsPage">
-      <DataBar onChange={slideHandler} onClick={onClick} />
+      <DataBar onClick={onClick} />
       <CurrentDisplay />
 
       {dataView !== "Daily" && (

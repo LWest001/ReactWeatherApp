@@ -8,12 +8,15 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
+import { useDispatch } from "react-redux";
+import { setDataView } from "../../app/appSlice";
 
 export const DataBar = ({ onChange, onClick }) => {
   const [value, setValue] = useState("Now");
+  const dispatch = useDispatch();
   const handleValue = (e) => {
     setValue(e.target.value);
-    onChange(e);
+    dispatch(setDataView(e.target.value));
   };
 
   return (
@@ -26,8 +29,7 @@ export const DataBar = ({ onChange, onClick }) => {
         maxWidth: ["640px", "1200px"],
         minHeight: "42px",
         maxHeight: "42px",
-        background:
-          "radial-gradient(ellipse at bottom, #ffab03 30%, #fff0d3)",
+        background: "radial-gradient(ellipse at bottom, #ffab03 30%, #fff0d3)",
       }}
     >
       <IconButton sx={{ mr: [1, 4] }} tabIndex={0} onClick={onClick}>
@@ -35,7 +37,7 @@ export const DataBar = ({ onChange, onClick }) => {
       </IconButton>
       <FormControl fullWidth>
         <RadioGroup
-          fullWidth
+          
           defaultValue="Now"
           name="radio-buttons-group"
           row
