@@ -1,3 +1,4 @@
+import { Skeleton } from "@mui/material";
 import { useSelector } from "react-redux";
 import {
   selectCurrentWeatherData,
@@ -30,9 +31,13 @@ export function CurrentDisplay() {
       <h1 className="locationHeader">
         {city}, {state}
       </h1>
-      <h2 className="dateTime">
-        {currentData.text.Date} | {currentData.text.Time}
-      </h2>
+      {currentData.text.Date ? (
+        <h2 className="dateTime">
+          {currentData.text.Date} | {currentData.text.Time}
+        </h2>
+      ) : (
+        <Skeleton animation="wave" className="dateTime" width={210} height= {32} sx={{mx:"auto"}}/>
+      )}
       {dataView === "Now" && resultsArray}
     </div>
   );

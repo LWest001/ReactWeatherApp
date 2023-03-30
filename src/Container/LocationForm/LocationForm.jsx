@@ -22,6 +22,7 @@ import {
   setIsValidLocation,
   setLocation,
   setStatus,
+  setView,
 } from "../../app/appSlice";
 
 // MUI components
@@ -74,6 +75,7 @@ export const LocationForm = () => {
     });
   }
 
+  // Handler for submit button, and auto-fire if new session & default coords
   function handleSubmit(e) {
     e.preventDefault();
     sessionStorage.setItem("session", Date.now());
@@ -91,6 +93,7 @@ export const LocationForm = () => {
     !checked && localStorage.removeItem("defaultCoordinates");
   }
 
+  // Set location data if default coordinates exist
   if (
     defaultCoordinates?.lat &&
     view === "LocationForm" &&
@@ -107,8 +110,10 @@ export const LocationForm = () => {
     dispatch(setLocation({ city, state, postalCode: "" }));
   }
 
+  // Automatically fire weather data submission if new session
   useEffect(() => {
     if (!sessionStorage.getItem("session") && defaultCoordinates?.lat) {
+      dispatch(setView("ResultsPage"));
       handleSubmit(new Event("click"));
     }
   }, [coordinates]);
