@@ -1,51 +1,61 @@
 import { CountrySelector } from "../../Component/CountrySelector/CountrySelector";
 import "./LocationForm.css";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+// Hooks
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
+// Slice imports
 import {
+  // Selectors
   selectCoordinates,
+  selectIsValidLocation,
   selectLocation,
   selectStatus,
-  setLocation,
-  setCoordinates,
-  getLocalWeatherData,
   selectUnits,
   selectView,
-  getLocationFromCoordinates,
+  // fetchers
   getCoordinates,
-  setStatus,
+  getLocalWeatherData,
+  getLocationFromCoordinates,
+  // setters
+  setCoordinates,
   setIsValidLocation,
-  selectIsValidLocation,
+  setLocation,
+  setStatus,
 } from "../../app/appSlice";
+
+// MUI components
 import {
   Box,
   Button,
   Checkbox,
   FormControlLabel,
-  Input,
   TextField,
+  Stack,
   Typography,
 } from "@mui/material";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
-import { Stack } from "@mui/system";
-import { useState } from "react";
 
 export const LocationForm = () => {
   const dispatch = useDispatch();
-  // selectors
-  const { city, state, country } = useSelector(selectLocation);
+
+  /* ===== Selectors ===== */
+  const { city, state, country, postalCode } = useSelector(selectLocation);
   const coordinates = useSelector(selectCoordinates);
   const status = useSelector(selectStatus);
   const location = useSelector(selectLocation);
   const units = useSelector(selectUnits);
   const view = useSelector(selectView);
   const isValidLocation = useSelector(selectIsValidLocation);
-  const { postalCode } = location;
 
   const [checked, setChecked] = useState(true);
 
-  // Event handlers
+  // Find default coordinates
+  const defaultCoordinates = JSON.parse(
+    localStorage.getItem("defaultCoordinates")
+  );
+
+  /* ===== Event handlers ===== */
   function handleGeolocate() {
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude: lat, longitude: lon } = position.coords;
@@ -66,6 +76,7 @@ export const LocationForm = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+    sessionStorage.setItem("session", Date.now());
     const { lat, lon } = coordinates;
     const data = {
       lat,
@@ -79,10 +90,6 @@ export const LocationForm = () => {
     window.scrollTo(0, 0);
     !checked && localStorage.removeItem("defaultCoordinates");
   }
-
-  const defaultCoordinates = JSON.parse(
-    localStorage.getItem("defaultCoordinates")
-  );
 
   if (
     defaultCoordinates?.lat &&
@@ -99,6 +106,12 @@ export const LocationForm = () => {
     );
     dispatch(setLocation({ city, state, postalCode: "" }));
   }
+
+  useEffect(() => {
+    if (!sessionStorage.getItem("session") && defaultCoordinates?.lat) {
+      handleSubmit(new Event("click"));
+    }
+  }, [coordinates]);
 
   const handleCheckboxChange = (event) => {
     setChecked(event.target.checked);

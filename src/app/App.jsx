@@ -2,7 +2,6 @@ import "./App.css";
 import { LocationForm } from "../Container/LocationForm/LocationForm";
 import { useEffect } from "react";
 import { ResultsPage } from "../Container/ResultsPage/ResultsPage";
-import { backgroundSelector } from "../functions/backgroundSelector";
 
 import {
   // Fetch functions
@@ -20,7 +19,6 @@ import {
   selectCoordinates,
   selectLocation,
   selectView,
-  selectWeatherData,
 } from "./appSlice";
 
 import { useSelector } from "react-redux";
@@ -34,7 +32,6 @@ function App() {
   const { country } = useSelector(selectLocation);
   const coordinates = useSelector(selectCoordinates);
   const view = useSelector(selectView);
-  const weatherData = useSelector(selectWeatherData);
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
@@ -59,7 +56,7 @@ function App() {
   }, [coordinates]);
 
   // Event handlers
-  const handleReturnHome = (e) => {
+  const handleReturnHome = () => {
     dispatch(setView("LocationForm"));
     dispatch(setCoordinates({ latitude: "", longitude: "" }));
     dispatch(
@@ -98,6 +95,7 @@ function App() {
     );
     window.scroll(0, 0);
   };
+
 
   return (
     <Container className="App">

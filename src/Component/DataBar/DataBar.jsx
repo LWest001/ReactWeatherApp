@@ -11,7 +11,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useDispatch } from "react-redux";
 import { setDataView } from "../../app/appSlice";
 
-export const DataBar = ({ onChange, onClick }) => {
+export const DataBar = ({ onClick }) => {
   const [value, setValue] = useState("Now");
   const dispatch = useDispatch();
   const handleValue = (e) => {
