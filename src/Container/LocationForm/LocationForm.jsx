@@ -87,7 +87,9 @@ export const LocationForm = () => {
       state,
       units,
     };
-    checked && localStorage.setItem("defaultCoordinates", JSON.stringify(data));
+    if (checked && data !== defaultCoordinates) {
+      localStorage.setItem("defaultCoordinates", JSON.stringify(data));
+    }
     dispatch(getLocalWeatherData(data));
     window.scrollTo(0, 0);
     !checked && localStorage.removeItem("defaultCoordinates");
