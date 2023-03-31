@@ -7,6 +7,7 @@ import BedtimeRoundedIcon from "@mui/icons-material/BedtimeRounded";
 import AirRoundedIcon from "@mui/icons-material/AirRounded";
 import WaterRoundedIcon from "@mui/icons-material/WaterRounded";
 import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
+import ExploreIcon from "@mui/icons-material/Explore";
 
 export const Result = (props) => {
   const { display, styleDisplay } = props;
@@ -27,19 +28,25 @@ export const Result = (props) => {
         className="heading"
         sx={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: ["initial", "initial", "center"],
           alignItems: "center",
           gap: 1,
         }}
       >
-        <Typography variant="h4" display="inline-block">
-          {data ? heading : <Skeleton animation="wave" height={38} />}
-        </Typography>
         {heading === "Sunrise" && <WbTwilightRoundedIcon />}
         {heading === "Sunset" && <BedtimeRoundedIcon fontSize="small" />}
         {heading === "Wind speed" && <AirRoundedIcon />}
+        {heading === "Wind direction" && <ExploreIcon />}
         {heading === "Humidity" && <WaterRoundedIcon />}
         {heading === "UV index" && <WbSunnyRoundedIcon />}
+        <Typography
+          variant="h4"
+          fontSize={["1rem", "1rem", "19.2px"]}
+          display="inline-block"
+          textAlign={["left", "left", "center"]}
+        >
+          {data ? heading : <Skeleton animation="wave" height={38} />}
+        </Typography>
       </Box>
       {heading === "Temperature" &&
         (icon ? (
@@ -53,12 +60,22 @@ export const Result = (props) => {
             animation="wave"
           />
         ))}
-      <p className="data">
+      <Typography
+        fontWeight="bold"
+        className="data"
+        fontSize={["1rem", "1rem", "19.2px"]}
+        textAlign={
+          !fullGridWidth.includes(heading)
+            ? ["left", "left", "center"]
+            : "center"
+        }
+        pl={!fullGridWidth.includes(heading) && 4}
+      >
         {data ||
           (heading !== "Temperature" && (
             <Skeleton animation="wave" height={38} />
           ))}
-      </p>
+      </Typography>
     </div>
   );
 };

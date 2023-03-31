@@ -82,7 +82,7 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 499px) {
   .Result:not(.Temperature, .Weather, .Feels) {
     padding: 0.2rem;
     grid-template-columns: 1fr 1fr;

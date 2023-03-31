@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import countriesJson from "../assets/data/countries.json";
+import getWindDirection from "../functions/getWindDirection";
 
 const initialState = {
   status: "idle",
@@ -258,7 +259,11 @@ function formatData(object, timezone, dataType) {
     );
   }
 
-  let date = getDateObject("dt", { timeZone: timezone }, "date");
+  let date = getDateObject(
+    "dt",
+    { timeZone: timezone, weekday: "short", day: "numeric", month: "short" },
+    "date"
+  );
   let weekDay = getDateObject(
     "dt",
     { timeZone: timezone, weekday: "short" },
@@ -280,14 +285,16 @@ function formatData(object, timezone, dataType) {
       return {
         Weather: `${weather["main"]} (${weather["description"]})`,
         Temperature: Math.round(object["temp"]) + "\xB0 F",
-        "Feels like": object["feels_like"] + "\xB0 F",
+        "Feels like": Math.round(object["feels_like"]) + "\xB0 F",
         Sunrise: sunriseTime,
         Sunset: sunsetTime,
         "Wind speed": object["wind_speed"] + "mph",
+        "Wind direction": getWindDirection(object["wind_deg"]),
         Humidity: object["humidity"] + "%",
         "UV index": object["uvi"],
         Time: time,
         Date: date,
+        Weekday: weekDay,
       };
     } else if (dataType === "hour") {
       return {

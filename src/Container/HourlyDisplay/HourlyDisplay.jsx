@@ -91,6 +91,7 @@ export const HourlyDisplay = ({ dates }) => {
       sx={{
         gridTemplateColumns: dataView === "Hourly" && "1fr",
         bgcolor: "initial",
+        // gridColumn: [1, 1, "initial"],
       }}
     >
       {hoursArray}

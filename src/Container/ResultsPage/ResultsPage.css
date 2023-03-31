@@ -27,7 +27,8 @@
   display: grid;
   background: radial-gradient(ellipse at top, #e7e7e7, transparent),
     radial-gradient(ellipse at bottom, #c0c0c0, transparent);
-  width: 95%;
+  width: 100%;
+  max-width: 40rem;
 }
 
 .CurrentDisplay {
@@ -43,10 +44,10 @@
 }
 
 .Result.fullGridWidth {
-  grid-column: 1/3
+  grid-column: 1/3;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 499px) {
   .CurrentDisplay {
     grid-template-columns: 1fr;
   }
