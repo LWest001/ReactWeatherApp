@@ -50,7 +50,7 @@ export const Result = ({ display }) => {
           display="inline-block"
           textAlign={["left", "left", "center"]}
         >
-          {data ? heading : <Skeleton animation="wave" height={38} />}
+          {data !== null ? heading : <Skeleton animation="wave" height={38} />}
         </Typography>
       </Box>
       {heading === "Temperature" &&
