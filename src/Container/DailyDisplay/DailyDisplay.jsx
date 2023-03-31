@@ -1,4 +1,4 @@
-
+import { Paper } from "@mui/material";
 import { Day } from "./Day/Day";
 
 export const DailyDisplay = ({ dailyData }) => {
@@ -6,5 +6,9 @@ export const DailyDisplay = ({ dailyData }) => {
     return <Day key={day.text.Date} index={i} />;
   });
 
-  return <div className="DailyDisplay dataDisplay">{daysArray}</div>;
+  return (
+    <Paper sx={{ bgcolor: "initial" }} className="DailyDisplay dataDisplay">
+      {daysArray}
+    </Paper>
+  );
 };

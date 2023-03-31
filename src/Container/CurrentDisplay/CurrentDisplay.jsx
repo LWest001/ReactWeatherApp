@@ -1,4 +1,4 @@
-import { Skeleton } from "@mui/material";
+import { Paper, Skeleton } from "@mui/material";
 import { useSelector } from "react-redux";
 import {
   selectCurrentWeatherData,
@@ -7,6 +7,7 @@ import {
 } from "../../app/appSlice";
 import { Result } from "../Result/Result";
 import "../ResultsPage/ResultsPage.css";
+import stateCodes from "../../assets/data/stateCodes.json";
 
 export function CurrentDisplay() {
   const currentData = useSelector(selectCurrentWeatherData);
@@ -27,18 +28,24 @@ export function CurrentDisplay() {
     );
   });
   return (
-    <div className="CurrentDisplay dataDisplay">
+    <Paper sx={{ bgcolor: "initial" }} className="CurrentDisplay dataDisplay">
       <h1 className="locationHeader">
-        {city}, {state}
+        {city}, {stateCodes[state]}
       </h1>
       {currentData.text.Date ? (
         <h2 className="dateTime">
           {currentData.text.Date} | {currentData.text.Time}
         </h2>
       ) : (
-        <Skeleton animation="wave" className="dateTime" width={210} height= {32} sx={{mx:"auto"}}/>
+        <Skeleton
+          animation="wave"
+          className="dateTime"
+          width={210}
+          height={32}
+          sx={{ mx: "auto" }}
+        />
       )}
       {dataView === "Now" && resultsArray}
-    </div>
+    </Paper>
   );
 }

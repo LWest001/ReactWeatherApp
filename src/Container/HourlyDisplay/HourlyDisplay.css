@@ -1,6 +1,6 @@
 .HourlyDisplay {
 
-  grid-template-columns: repeat(48, 1fr);
+  grid-template-columns: repeat(51, 1fr);
   overflow-x: scroll;
   margin: 1em;
   margin-top: 0;

@@ -32,6 +32,7 @@ function App() {
   const { country } = useSelector(selectLocation);
   const coordinates = useSelector(selectCoordinates);
   const view = useSelector(selectView);
+ 
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
