@@ -1,14 +1,9 @@
 import "./Result.css";
 import { useSelector } from "react-redux";
 import { selectWeatherData } from "../../../app/appSlice";
-import { Box, Skeleton, Typography } from "@mui/material";
-import WbTwilightRoundedIcon from "@mui/icons-material/WbTwilightRounded";
-import BedtimeRoundedIcon from "@mui/icons-material/BedtimeRounded";
-import AirRoundedIcon from "@mui/icons-material/AirRounded";
-import WaterRoundedIcon from "@mui/icons-material/WaterRounded";
-import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
-import ExploreIcon from "@mui/icons-material/Explore";
+import { Box, Skeleton } from "@mui/material";
 import ResultData from "./ResultData";
+import ResultHeading from "./ResultHeading";
 
 export const Result = ({ display }) => {
   const { currentData } = useSelector(selectWeatherData);
@@ -20,7 +15,9 @@ export const Result = ({ display }) => {
 
   return (
     <Box
-      className={`Result ${heading} ${fullGridWidth() && "fullGridWidth"}`}
+      className={`Result ${heading}${
+        fullGridWidth() ? " fullGridWidth" : ""
+      }`}
       sx={{
         padding: !fullGridWidth() && "0.5rem",
         display: !fullGridWidth() ? "grid" : "flex",
@@ -28,31 +25,12 @@ export const Result = ({ display }) => {
         alignItems: "center",
       }}
     >
-      <Box
-        variant="h4"
-        className="heading"
-        sx={{
-          display: "flex",
-          justifyContent: ["initial", "initial", "center"],
-          alignItems: "center",
-          gap: 1,
-        }}
-      >
-        {heading === "Sunrise" && <WbTwilightRoundedIcon />}
-        {heading === "Sunset" && <BedtimeRoundedIcon fontSize="small" />}
-        {heading === "Wind speed" && <AirRoundedIcon />}
-        {heading === "Wind direction" && <ExploreIcon />}
-        {heading === "Humidity" && <WaterRoundedIcon />}
-        {heading === "UV index" && <WbSunnyRoundedIcon />}
-        <Typography
-          variant="h4"
-          fontSize={["1rem", "1rem", "19.2px"]}
-          display="inline-block"
-          textAlign={["left", "left", "center"]}
-        >
-          {data !== null ? heading : <Skeleton animation="wave" height={38} />}
-        </Typography>
-      </Box>
+      {data !== null ? (
+        <ResultHeading heading={heading} />
+      ) : (
+        <Skeleton animation="wave" height={38} />
+      )}
+
       {heading === "Temperature" &&
         (icon ? (
           <img id="weatherIcon" src={icon} alt="icon of current weather" />
@@ -66,10 +44,7 @@ export const Result = ({ display }) => {
           />
         ))}
       {data !== null ? (
-        <ResultData
-          data={data}
-          fullGridWidth={fullGridWidth()}
-        />
+        <ResultData data={data} fullGridWidth={fullGridWidth()} />
       ) : (
         heading !== "Temperature" && <Skeleton animation="wave" height={38} />
       )}
