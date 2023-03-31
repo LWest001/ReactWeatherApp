@@ -1,7 +1,7 @@
 import "./Hour.css";
 import { useSelector } from "react-redux";
-import { selectDataView, selectWeatherData } from "../../../app/appSlice";
-import hourBgColor from "../../../functions/hourBgColor";
+import { selectDataView, selectWeatherData } from "../../../../app/appSlice";
+import hourBgColor from "../../../../functions/hourBgColor";
 export const Hour = (props) => {
   const { date, dates, index } = props;
   const dataView = useSelector(selectDataView);

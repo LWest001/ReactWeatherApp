@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import hourBgColor from "../../functions/hourBgColor";
+import hourBgColor from "../../../functions/hourBgColor";
 
 export default function DaySeparator({date, dates, dataView, displayText}) {
   return (

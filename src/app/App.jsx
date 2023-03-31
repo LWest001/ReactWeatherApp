@@ -32,7 +32,6 @@ function App() {
   const { country } = useSelector(selectLocation);
   const coordinates = useSelector(selectCoordinates);
   const view = useSelector(selectView);
- 
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
@@ -59,25 +58,26 @@ function App() {
   // Event handlers
   const handleReturnHome = () => {
     dispatch(setView("LocationForm"));
-    dispatch(setCoordinates({ lat: "", lon: "" }));
+    dispatch(setCoordinates({ lat: null, lon: null }));
     dispatch(
       setWeatherData({
         currentData: {
           text: {
-            Temperature: "",
-            Weather: "",
-            "Feels like": "",
-            "Wind speed": "",
-            Humidity: "",
-            Sunrise: "",
-            Sunset: "",
-            "UV index": "",
-            Time: "",
-            Date: "",
+            Temperature: null,
+            Weather: null,
+            "Feels like": null,
+            "Wind speed": null,
+            "Wind direction": null,
+            Humidity: null,
+            Sunrise: null,
+            Sunset: null,
+            "UV index": null,
+            Time: null,
+            Date: null,
           },
-          icon: "",
-          daySegment: "",
-          weatherType: "",
+          icon: null,
+          daySegment: null,
+          weatherType: null,
         },
         hourlyData: [],
         dailyData: [],
@@ -88,9 +88,9 @@ function App() {
     dispatch(setIsValidLocation(false));
     dispatch(
       setLocation({
-        postalCode: "",
-        city: "",
-        state: "",
+        postalCode: null,
+        city: null,
+        state: null,
         country: { name: "United States", code: "US" },
       })
     );
@@ -98,7 +98,15 @@ function App() {
   };
 
   return (
-    <Container className="App">
+    <Container
+      className="App"
+      sx={{
+        textAlign: "center",
+        backgroundSize: "cover",
+        backgroundPosition: "bottom",
+        backgroundAttachment: "fixed",
+      }}
+    >
       {view === "LocationForm" && <LocationForm />}
       {view === "ResultsPage" && <ResultsPage onClick={handleReturnHome} />}
     </Container>

@@ -19,13 +19,14 @@ const initialState = {
   weatherData: {
     currentData: {
       text: {
-        Temperature: null,
         Weather: null,
+        Temperature: null,
         "Feels like": null,
-        "Wind speed": null,
-        Humidity: null,
         Sunrise: null,
         Sunset: null,
+        "Wind speed": null,
+        "Wind direction": null,
+        Humidity: null,
         "UV index": null,
         Time: null,
         Date: null,
@@ -288,13 +289,12 @@ function formatData(object, timezone, dataType) {
         "Feels like": Math.round(object["feels_like"]) + "\xB0 F",
         Sunrise: sunriseTime,
         Sunset: sunsetTime,
-        "Wind speed": object["wind_speed"] + "mph",
+        "Wind speed": Math.round(object["wind_speed"]) + " mph",
         "Wind direction": getWindDirection(object["wind_deg"]),
         Humidity: object["humidity"] + "%",
         "UV index": object["uvi"],
         Time: time,
         Date: date,
-        Weekday: weekDay,
       };
     } else if (dataType === "hour") {
       return {

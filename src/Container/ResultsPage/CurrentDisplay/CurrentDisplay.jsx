@@ -4,10 +4,10 @@ import {
   selectCurrentWeatherData,
   selectLocation,
   selectDataView,
-} from "../../app/appSlice";
+} from "../../../app/appSlice";
 import { Result } from "../Result/Result";
-import "../ResultsPage/ResultsPage.css";
-import stateCodes from "../../assets/data/stateCodes.json";
+import "../ResultsPage.css";
+import stateCodes from "../../../assets/data/stateCodes.json";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
@@ -31,21 +31,23 @@ export function CurrentDisplay() {
   });
   return (
     <Paper sx={{ bgcolor: "initial" }} className="CurrentDisplay dataDisplay">
-      <h1 className="locationHeader">
+      <Typography variant="h1" className="locationHeader">
         {city}, {stateCodes[state]}
-      </h1>
+      </Typography>
       {currentData.text.Date ? (
         <Stack
           flexDirection="row"
-          justifyContent="space-evenly"
+          justifyContent="center"
           alignItems="center"
           className="dateTime"
+          gap={2}
+          my={["0.5rem", "0.5rem", "1.5rem"]}
         >
           <Typography
             variant="h2"
             display="inline-block"
             gap={1}
-            sx={{ display: "flex" }}
+            sx={{ display: "flex", fontSize: ["1.2rem", "1.3rem", "1.5rem"] }}
           >
             <CalendarMonthIcon />
             {currentData.text.Date}
@@ -54,7 +56,7 @@ export function CurrentDisplay() {
             gap={1}
             variant="h2"
             display="inline-block"
-            sx={{ display: "flex" }}
+            sx={{ display: "flex", fontSize: ["1.2rem", "1.3rem", "1.5rem"] }}
           >
             <AccessTimeIcon />
             {currentData.text.Time}

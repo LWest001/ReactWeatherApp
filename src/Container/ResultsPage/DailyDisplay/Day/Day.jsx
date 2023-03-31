@@ -1,6 +1,6 @@
 import "./Day.css";
 import { useSelector } from "react-redux";
-import { selectWeatherData } from "../../../app/appSlice";
+import { selectWeatherData } from "../../../../app/appSlice";
 import { Paper, Typography } from "@mui/material";
 
 export const Day = ({ index }) => {

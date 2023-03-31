@@ -1,8 +1,8 @@
 import "./ResultsPage.css";
 import { DataBar } from "../../Component/DataBar/DataBar";
-import { HourlyDisplay } from "../HourlyDisplay/HourlyDisplay";
-import { DailyDisplay } from "../DailyDisplay/DailyDisplay";
-import { CurrentDisplay } from "../CurrentDisplay/CurrentDisplay";
+import { HourlyDisplay } from "./HourlyDisplay/HourlyDisplay";
+import { DailyDisplay } from "./DailyDisplay/DailyDisplay";
+import { CurrentDisplay } from "./CurrentDisplay/CurrentDisplay";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {

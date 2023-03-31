@@ -106,7 +106,7 @@ export const LocationForm = () => {
         lon,
       })
     );
-    dispatch(setLocation({ city, state, postalCode: "", country }));
+    dispatch(setLocation({ city, state, postalCode: null, country }));
   }
 
   // Automatically fire weather data submission if new session

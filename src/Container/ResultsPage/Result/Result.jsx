@@ -1,6 +1,6 @@
 import "./Result.css";
 import { useSelector } from "react-redux";
-import { selectWeatherData } from "../../app/appSlice";
+import { selectWeatherData } from "../../../app/appSlice";
 import { Box, Skeleton, Typography } from "@mui/material";
 import WbTwilightRoundedIcon from "@mui/icons-material/WbTwilightRounded";
 import BedtimeRoundedIcon from "@mui/icons-material/BedtimeRounded";
@@ -8,20 +8,25 @@ import AirRoundedIcon from "@mui/icons-material/AirRounded";
 import WaterRoundedIcon from "@mui/icons-material/WaterRounded";
 import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
 import ExploreIcon from "@mui/icons-material/Explore";
+import ResultData from "./ResultData";
 
-export const Result = (props) => {
-  const { display, styleDisplay } = props;
+export const Result = ({ display }) => {
   const { currentData } = useSelector(selectWeatherData);
   const icon = currentData.icon;
   const { heading, data } = display;
-  const fullGridWidth = ["Feels like", "Weather", "Temperature"];
+  function fullGridWidth() {
+    return ["Feels like", "Weather", "Temperature"].includes(heading);
+  }
 
   return (
-    <div
-      className={`Result ${heading} ${
-        fullGridWidth.includes(heading) && "fullGridWidth"
-      }`}
-      style={{ display: styleDisplay }}
+    <Box
+      className={`Result ${heading} ${fullGridWidth() && "fullGridWidth"}`}
+      sx={{
+        padding: !fullGridWidth() && "0.5rem",
+        display: !fullGridWidth() ? "grid" : "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
       <Box
         variant="h4"
@@ -60,22 +65,11 @@ export const Result = (props) => {
             animation="wave"
           />
         ))}
-      <Typography
-        fontWeight="bold"
-        className="data"
-        fontSize={["1rem", "1rem", "19.2px"]}
-        textAlign={
-          !fullGridWidth.includes(heading)
-            ? ["left", "left", "center"]
-            : "center"
-        }
-        pl={!fullGridWidth.includes(heading) && 4}
-      >
-        {data ||
-          (heading !== "Temperature" && (
-            <Skeleton animation="wave" height={38} />
-          ))}
-      </Typography>
-    </div>
+      {data !== null ? (
+        <ResultData heading={heading} data={data} />
+      ) : (
+        heading !== "Temperature" && <Skeleton animation="wave" height={38} />
+      )}
+    </Box>
   );
 };

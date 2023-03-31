@@ -1,7 +1,7 @@
 import { Hour } from "./Hour/Hour";
 import "./HourlyDisplay.css";
 import { useSelector } from "react-redux";
-import { selectWeatherData, selectDataView } from "../../app/appSlice";
+import { selectWeatherData, selectDataView } from "../../../app/appSlice";
 import { Paper } from "@mui/material";
 import DaySeparator from "./DaySeparator";
 
