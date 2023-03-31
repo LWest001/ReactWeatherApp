@@ -66,7 +66,10 @@ export const Result = ({ display }) => {
           />
         ))}
       {data !== null ? (
-        <ResultData heading={heading} data={data} />
+        <ResultData
+          data={data}
+          fullGridWidth={fullGridWidth()}
+        />
       ) : (
         heading !== "Temperature" && <Skeleton animation="wave" height={38} />
       )}
