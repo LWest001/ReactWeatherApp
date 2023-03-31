@@ -46,7 +46,6 @@ export const LocationForm = () => {
   const status = useSelector(selectStatus);
   const location = useSelector(selectLocation);
   const units = useSelector(selectUnits);
-  const view = useSelector(selectView);
   const isValidLocation = useSelector(selectIsValidLocation);
 
   const [checked, setChecked] = useState(true);
@@ -85,6 +84,7 @@ export const LocationForm = () => {
       lon,
       city,
       state,
+      country,
       units,
     };
 
@@ -99,14 +99,14 @@ export const LocationForm = () => {
 
   // Set location data if default coordinates exist
   if (defaultCoordinates?.lat && !coordinates.lat && !postalCode) {
-    const { lat, lon, city, state } = defaultCoordinates;
+    const { lat, lon, city, state, country } = defaultCoordinates;
     dispatch(
       setCoordinates({
         lat,
         lon,
       })
     );
-    dispatch(setLocation({ city, state, postalCode: "" }));
+    dispatch(setLocation({ city, state, postalCode: "", country }));
   }
 
   // Automatically fire weather data submission if new session
@@ -129,7 +129,7 @@ export const LocationForm = () => {
   function handleInputChange(e) {
     const postalCode = e.target.value;
     dispatch(setLocation({ ...location, postalCode }));
-    if (country.code === "US") {
+    if (country?.code === "US") {
       if (postalCode.length === 5) {
         dispatch(getCoordinates({ postalCode, countryCode: country.code }));
       } else {

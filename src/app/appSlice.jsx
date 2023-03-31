@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import countriesJson from "../assets/data/countries.json";
 
 const initialState = {
   status: "idle",
@@ -210,10 +211,18 @@ const appSlice = createSlice({
       })
       .addCase(getLocationFromCoordinates.fulfilled, (state, action) => {
         state.status = "succeeded";
+        const country = countriesJson.find(
+          (country) => country.code === action.payload[0].country
+        );
+
         state.location = {
           ...state.location,
           city: action.payload[0].name,
           state: action.payload[0].state,
+          country: {
+            code: country.code,
+            name: country.name,
+          },
         };
         state.isValidLocation = true;
       });
@@ -269,13 +278,13 @@ function formatData(object, timezone, dataType) {
   const formattedData = () => {
     if (dataType === "current") {
       return {
-        Temperature: Math.round(object["temp"]) + "\xB0 F",
         Weather: `${weather["main"]} (${weather["description"]})`,
+        Temperature: Math.round(object["temp"]) + "\xB0 F",
         "Feels like": object["feels_like"] + "\xB0 F",
-        "Wind speed": object["wind_speed"] + "mph",
-        Humidity: object["humidity"] + "%",
         Sunrise: sunriseTime,
         Sunset: sunsetTime,
+        "Wind speed": object["wind_speed"] + "mph",
+        Humidity: object["humidity"] + "%",
         "UV index": object["uvi"],
         Time: time,
         Date: date,

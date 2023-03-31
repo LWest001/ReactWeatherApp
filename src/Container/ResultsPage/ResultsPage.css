@@ -42,6 +42,10 @@
   height: 4rem;
 }
 
+.Result.fullGridWidth {
+  grid-column: 1/3
+}
+
 @media (max-width: 500px) {
   .CurrentDisplay {
     grid-template-columns: 1fr;
@@ -50,11 +54,9 @@
     margin-top: 0;
     margin-bottom: 0;
   }
-
   .dateTime,
   .locationHeader,
-  .Result.Weather,
-  .Result.Temperature {
+  .Result.fullGridWidth {
     grid-column: 1;
   }
 }

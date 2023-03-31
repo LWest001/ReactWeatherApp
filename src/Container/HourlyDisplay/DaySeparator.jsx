@@ -16,7 +16,7 @@ export default function DaySeparator({date, dates, dataView, displayText}) {
       }}
     >
       {/* <TodayIcon fontSize="large"/> */}
-      {displayText}'s weather:
+      {displayText}
     </Box>
   );
 }
