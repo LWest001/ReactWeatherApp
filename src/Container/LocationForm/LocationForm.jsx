@@ -140,6 +140,7 @@ export const LocationForm = () => {
         alignItems: "center",
         height: "90vh",
         m: 2,
+        color: "background.contrastText",
       }}
     >
       <Box className="logoContainer">
@@ -153,7 +154,7 @@ export const LocationForm = () => {
           WeatherNow
         </Typography>
       </Box>
-      <Typography variant="h2" my={1} color="background.contrastText">
+      <Typography variant="h2" my={1}>
         Get local weather information!
       </Typography>
       <Button
@@ -177,20 +178,6 @@ export const LocationForm = () => {
           type="number"
           variant="outlined"
           sx={{ width: "223px" }}
-          InputLabelProps={{
-            sx: {
-              "@media (prefers-color-scheme: dark)": {
-                color: "whitesmoke",
-              },
-            },
-          }}
-          InputProps={{
-            sx: {
-              "@media (prefers-color-scheme: dark)": {
-                backgroundColor: "darkslategrey",
-              },
-            },
-          }}
           onChange={handleInputChange}
         ></TextField>
         {/* <label htmlFor="CountrySelector">Country or territory:</label> */}
