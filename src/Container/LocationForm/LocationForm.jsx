@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   // Selectors
   selectCoordinates,
-  selectIsValidLocation,
   selectLocation,
   selectStatus,
   selectUnits,
@@ -134,13 +133,11 @@ export const LocationForm = () => {
   }
 
   return (
-    <Box
+    <Stack
       className="LocationForm"
       sx={{
-        display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        // justifyContent: "space-between",
         height: "90vh",
         m: 2,
       }}
@@ -149,21 +146,14 @@ export const LocationForm = () => {
         <img src="/favicon.svg" alt="WeatherNow logo" className="logo-image" />
         <Typography
           variant="h1"
-          fontSize="2.2rem"
-          height={0}
           position="relative"
-          top="-55%"
+          top="-50%"
           className="logoMark"
         >
           WeatherNow
         </Typography>
       </Box>
-      <Typography
-        variant="h2"
-        fontSize="1.5rem"
-        my={1}
-        color="background.contrastText"
-      >
+      <Typography variant="h2" my={1} color="background.contrastText">
         Get local weather information!
       </Typography>
       <Button
@@ -176,18 +166,17 @@ export const LocationForm = () => {
         Locate me
       </Button>
       <Typography sx={{ my: 1 }}>or</Typography>
-      <Stack component="form" onSubmit={handleSubmit}>
+      <Stack component="form" onSubmit={handleSubmit} alignItems="center">
         <TextField
-          label="US postal code"
-          variant="outlined"
-          id="postalCodeInput"
-          type="number"
-          max={99999}
-          placeholder="Postal code (5-digit)"
-          pattern="/^\d{5}$/"
           autoComplete="postal-code"
-          sx={{ width: "223px" }}
           error={status === "error"}
+          id="postalCodeInput"
+          label="US postal code"
+          pattern="/^\d{5}$/"
+          placeholder="Postal code (5-digit)"
+          type="number"
+          variant="outlined"
+          sx={{ width: "223px" }}
           InputLabelProps={{
             sx: {
               "@media (prefers-color-scheme: dark)": {
@@ -219,6 +208,6 @@ export const LocationForm = () => {
           label="Use as default location"
         />
       </Stack>
-    </Box>
+    </Stack>
   );
 };

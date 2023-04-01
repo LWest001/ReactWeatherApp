@@ -1,4 +1,3 @@
-
 .logoContainer {
   display: flex;
   flex-direction: column;
@@ -10,40 +9,6 @@
 .logo-image {
   width: 100%;
   max-width: 20rem;
-}
-
-.LocationForm form {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-label {
-  display: block;
-  font-size: larger;
-  /* margin-top: 1rem; */
-}
-
-input,
-select {
-  font-size: large;
-  width: 13rem;
-}
-
-.form-icon {
-  width: 5rem;
-  margin: auto;
-}
-
-span.locationForm {
-  margin: .5rem;
-  font-size:large
-}
-
-.invalidPostalCode {
-  display: none;
-  color: red;
 }
 
 /* disable number input arrows for zip code input */

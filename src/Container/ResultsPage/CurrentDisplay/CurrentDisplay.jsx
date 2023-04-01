@@ -43,12 +43,7 @@ export function CurrentDisplay() {
           gap={2}
           my={["0.5rem", "0.5rem", "1.5rem"]}
         >
-          <Typography
-            variant="h2"
-            display="inline-block"
-            gap={1}
-            sx={{ display: "flex", fontSize: ["1.2rem", "1.3rem", "1.5rem"] }}
-          >
+          <Typography variant="h2" display="inline-block" gap={1}>
             <CalendarMonthIcon />
             {currentData.text.Date}
           </Typography>
