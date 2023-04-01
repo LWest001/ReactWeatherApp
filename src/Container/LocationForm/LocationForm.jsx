@@ -1,5 +1,6 @@
 import { CountrySelector } from "../../Component/CountrySelector/CountrySelector";
 import "./LocationForm.css";
+
 // Hooks
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,9 +19,7 @@ import {
   getLocationFromCoordinates,
   // setters
   setCoordinates,
-  setIsValidLocation,
   setLocation,
-  setStatus,
   setView,
 } from "../../app/appSlice";
 
@@ -109,7 +108,6 @@ export const LocationForm = () => {
   }
 
   // Automatically fire weather data submission if new session
-
   useEffect(() => {
     if (
       !sessionStorage.getItem("session") &&
@@ -142,7 +140,10 @@ export const LocationForm = () => {
     if (status === "succeeded") {
       return (
         <>
-          Get weather for <Typography variant="span" fontWeight="bold">{city}</Typography>
+          Get weather for{" "}
+          <Typography variant="span" fontWeight="bold">
+            {city}
+          </Typography>
         </>
       );
     }
@@ -183,11 +184,11 @@ export const LocationForm = () => {
         Get local weather information!
       </Typography>
       <Button
-        variant="outlined"
+        variant="contained"
         startIcon={<MyLocationIcon />}
         className="get-current-position"
         onClick={handleGeolocate}
-        sx={{ width: "223px" }}
+        sx={{ width: "223px", }}
       >
         Locate me
       </Button>
@@ -230,9 +231,8 @@ export const LocationForm = () => {
           sx={{
             m: 1,
             width: "223px",
-            bgcolor: "#ffab03",
             color: "black",
-            "&:hover": { bgcolor: "#ffd480" },
+            "&:hover": { bgcolor: "primary.dark" },
           }}
         >
           <Typography color={status === "error" ? "red" : "black"}>
