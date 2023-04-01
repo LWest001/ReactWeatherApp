@@ -6,14 +6,14 @@ import { Paper, Typography } from "@mui/material";
 export const Day = ({ index }) => {
   const { dailyData } = useSelector(selectWeatherData);
   const { Weekday, Min, Max } = dailyData[index];
-  const { icon, weather } = dailyData[index];
+  const { icon, weatherType } = dailyData[index];
 
   return (
     <div className={"Day"}>
       <Typography fontWeight="bold">
         {index !== 0 ? Weekday : "Today"}
       </Typography>
-      <img src={icon} alt={weather} />
+      <img src={icon} alt={weatherType} />
       <Paper
         sx={{
           background:
@@ -24,7 +24,7 @@ export const Day = ({ index }) => {
         <p>{Min}</p>
         <p>{Max}</p>
       </Paper>
-      <p>{weather}</p>
+      <p>{weatherType}</p>
     </div>
   );
 };
