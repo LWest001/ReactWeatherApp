@@ -22,153 +22,45 @@ import ThunderstormDay from "../assets/img/bg/Thunderstorm-day.jpg";
 import TornadoDay from "../assets/img/bg/Tornado-day.jpg";
 import TornadoNight from "../assets/img/bg/Tornado-night.jpg";
 
-// No picture for weather type
-import AshDay from "../assets/img/bg/Smoke-day.jpg";
-import AshNight from "../assets/img/bg/Smoke-night.jpg";
-import SandDay from "../assets/img/bg/Dust-day.jpg";
-import SandNight from "../assets/img/bg/Dust-night.jpg";
-import SquallDay from "../assets/img/bg/Snow-day.jpg";
-import SquallNight from "../assets/img/bg/Snow-night.jpg";
-
-// Night weather using day pic
-import ThunderstormNight from "../assets/img/bg/Thunderstorm-day.jpg";
-
 const images = {
-  day: {
+  d: {
+    Clear: ClearDay,
     Clouds: CloudsDay,
-    Thunderstorm: ThunderstormDay,
     Drizzle: DrizzleDay,
-    Rain: RainDay,
-    Snow: SnowDay,
-    Mist: MistDay,
-    Smoke: SmokeDay,
-    Haze: HazeDay,
     Dust: DustDay,
     Fog: FogDay,
-    Sand: SandDay,
-    Ash: AshDay,
-    Squall: SquallDay,
+    Haze: HazeDay,
+    Mist: MistDay,
+    Rain: RainDay,
+    Snow: SnowDay,
+    Smoke: SmokeDay,
+    Thunderstorm: ThunderstormDay,
     Tornado: TornadoDay,
-    Clear: ClearDay,
+    // Fallback pic used
+    Ash: SmokeDay,
+    Sand: DustDay,
+    Squall: SnowDay,
   },
-  night: {
+  n: {
+    Clear: ClearNight,
     Clouds: CloudsNight,
-    Thunderstorm: ThunderstormNight,
     Drizzle: DrizzleNight,
-    Rain: RainNight,
-    Snow: SnowNight,
-    Mist: MistNight,
-    Smoke: SmokeNight,
-    Haze: HazeNight,
     Dust: DustNight,
     Fog: FogNight,
-    Sand: SandNight,
-    Ash: AshNight,
-    Squall: SquallNight,
+    Haze: HazeNight,
+    Mist: MistNight,
+    Rain: RainNight,
+    Smoke: SmokeNight,
+    Snow: SnowNight,
     Tornado: TornadoNight,
-    Clear: ClearNight,
+    // Fallback pic used
+    Ash: SmokeNight,
+    Sand: DustNight,
+    Squall: SnowNight,
+    Thunderstorm: ThunderstormDay,
   },
 };
 
-export const backgroundSelector = (weather, daySegment) => {
-  switch (daySegment) {
-    case "d": {
-      switch (weather) {
-        case "Clouds": {
-          return images.day.Clouds;
-        }
-        case "Thunderstorm": {
-          return images.day.Thunderstorm;
-        }
-        case "Drizzle": {
-          return images.day.Drizzle;
-        }
-        case "Rain": {
-          return images.day.Rain;
-        }
-        case "Snow": {
-          return images.day.Snow;
-        }
-        case "Mist": {
-          return images.day.Mist;
-        }
-        case "Smoke": {
-          return images.day.Smoke;
-        }
-        case "Haze": {
-          return images.day.Haze;
-        }
-        case "Dust": {
-          return images.day.Dust;
-        }
-        case "Fog": {
-          return images.day.Fog;
-        }
-        case "Sand": {
-          return images.day.Sand;
-        }
-        case "Ash": {
-          return images.day.Ash;
-        }
-        case "Squall": {
-          return images.day.Squall;
-        }
-        case "Tornado": {
-          return images.day.Tornado;
-        }
-        case "Clear": {
-          return images.day.Clear;
-        }
-      }
-    }
-    case "n": {
-      switch (weather) {
-        case "Clouds": {
-          return images.night.Clouds;
-        }
-        case "Thunderstorm": {
-          return images.night.Thunderstorm;
-        }
-        case "Drizzle": {
-          return images.night.Drizzle;
-        }
-        case "Rain": {
-          return images.night.Rain;
-        }
-        case "Snow": {
-          return images.night.Snow;
-        }
-        case "Mist": {
-          return images.night.Mist;
-        }
-        case "Smoke": {
-          return images.night.Smoke;
-        }
-        case "Haze": {
-          return images.night.Haze;
-        }
-        case "Dust": {
-          return images.night.Dust;
-        }
-        case "Fog": {
-          return images.night.Fog;
-        }
-        case "Sand": {
-          return images.night.Sand;
-        }
-        case "Ash": {
-          return images.night.Ash;
-        }
-        case "Squall": {
-          return images.night.Squall;
-        }
-        case "Tornado": {
-          return images.night.Tornado;
-        }
-        case "Clear": {
-          return images.night.Clear;
-        }
-      }
-    }
-  }
-};
+export function backgroundSelector(weather, daySegment) {
+  return images[daySegment][weather];
+}
