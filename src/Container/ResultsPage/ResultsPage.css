@@ -1,8 +1,7 @@
 .dataDisplay {
   margin: 1em;
   display: grid;
-  background: radial-gradient(ellipse at top, #e7e7e7, transparent),
-    radial-gradient(ellipse at bottom, #c0c0c0, transparent);
+
   width: 100%;
   max-width: 40rem;
 }

@@ -20,12 +20,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background: rgb(117, 192, 234);
-  background: linear-gradient(
-    90deg,
-    rgba(117, 192, 234, 0.5) 0%,
-    rgba(237, 27, 36, 0.5) 100%
-  );
+
 }
 
 .minMax p {

@@ -14,7 +14,13 @@ export const Day = ({ index }) => {
         {index !== 0 ? Weekday : "Today"}
       </Typography>
       <img src={icon} alt={weather} />
-      <Paper sx={{ bgcolor: "initial" }} className="minMax">
+      <Paper
+        sx={{
+          background:
+            "linear-gradient(90deg,rgba(117, 192, 234, 0.5) 0%,rgba(237, 27, 36, 0.5) 100%)",
+        }}
+        className="minMax"
+      >
         <p>{Min}</p>
         <p>{Max}</p>
       </Paper>

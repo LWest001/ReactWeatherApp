@@ -29,51 +29,28 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useMemo } from "react";
+import { breakpoints, getDesignTokens, typography } from "../theme";
 
 function App() {
   const dispatch = useDispatch();
 
+  /* THEMING */
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
     ? "dark"
     : "light";
 
-  let theme = useMemo(() => createTheme(getDesignTokens(prefersDarkMode)), [
-    prefersDarkMode,
-  ]);
+  let theme = useMemo(
+    () =>
+      createTheme({
+        ...getDesignTokens(prefersDarkMode),
+        ...breakpoints,
+      }),
+    [prefersDarkMode]
+  );
 
-  theme = createTheme(theme, {
-    values: {
-      xs: 0,
-      sm: 350,
-      md: 500,
-      lg: 900,
-      xl: 1200,
-    },
-  });
+  theme = createTheme({ ...theme, ...typography(theme) });
 
-  theme.typography.h1 = {
-    margin: "inherit",
-    [theme.breakpoints.up("xs")]: {
-      fontSize: "2rem",
-    },
-    [theme.breakpoints.up("sm")]: {
-      fontSize: "2.2rem",
-    },
-    [theme.breakpoints.up("md")]: {
-      fontSize: "2.5rem",
-    },
-  };
-
-  theme.typography.h2 = {
-    // fontSize: "1.2rem",
-    fontWeight: "bold",
-  };
-  theme.typography.h4 = {
-    fontSize: "19.2px",
-    fontWeight: "normal",
-  };
-
-  // selectors
+  // SELECTORS
   const { country, postalCode } = useSelector(selectLocation);
   const coordinates = useSelector(selectCoordinates);
   const view = useSelector(selectView);
@@ -169,42 +146,6 @@ function App() {
       </Container>
     </ThemeProvider>
   );
-}
-
-function getDesignTokens(mode) {
-  return {
-    palette: {
-      mode,
-      ...(mode === "light"
-        ? {
-            // palette values for light mode
-            primary: {
-              main: "#ffab03",
-              light: "rgb(255, 187, 53)",
-              dark: "rgb(178, 119, 2)",
-            },
-            secondary: {
-              main: "#640061",
-            },
-            background: {
-              default: "d3d3d3",
-            },
-          }
-        : {
-            // palette values for dark mode
-            primary: {
-              main: "#ffab03",
-              light: "rgb(255, 187, 53)",
-            },
-            secondary: {
-              main: "#640061",
-            },
-            background: {
-              default: "darkslategrey",
-            },
-          }),
-    },
-  };
 }
 
 export const { theme } = App;

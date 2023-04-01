@@ -34,6 +34,7 @@ import {
   Typography,
 } from "@mui/material";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
+import SubmitButton from "./SubmitButton";
 
 export const LocationForm = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,6 @@ export const LocationForm = () => {
   const status = useSelector(selectStatus);
   const location = useSelector(selectLocation);
   const units = useSelector(selectUnits);
-  const isValidLocation = useSelector(selectIsValidLocation);
 
   const [checked, setChecked] = useState(true);
 
@@ -133,28 +133,6 @@ export const LocationForm = () => {
     }
   }
 
-  function submitButtonText() {
-    if (status === "loading") {
-      return "Loading...";
-    }
-    if (status === "succeeded") {
-      return (
-        <>
-          Get weather for{" "}
-          <Typography variant="span" fontWeight="bold">
-            {city}
-          </Typography>
-        </>
-      );
-    }
-    if (status === "idle") {
-      return "Enter a location";
-    }
-    if (status === "error") {
-      return `Invalid ${country.name} postal code`;
-    }
-  }
-
   return (
     <Box
       className="LocationForm"
@@ -180,7 +158,12 @@ export const LocationForm = () => {
           WeatherNow
         </Typography>
       </Box>
-      <Typography variant="h2" fontSize="1.5rem" my={1}>
+      <Typography
+        variant="h2"
+        fontSize="1.5rem"
+        my={1}
+        color="background.contrastText"
+      >
         Get local weather information!
       </Typography>
       <Button
@@ -188,7 +171,7 @@ export const LocationForm = () => {
         startIcon={<MyLocationIcon />}
         className="get-current-position"
         onClick={handleGeolocate}
-        sx={{ width: "223px", }}
+        sx={{ width: "223px" }}
       >
         Locate me
       </Button>
@@ -223,22 +206,8 @@ export const LocationForm = () => {
         ></TextField>
         {/* <label htmlFor="CountrySelector">Country or territory:</label> */}
         {/* <CountrySelector id="CountrySelector" /> */}
-        <Button
-          variant="contained"
-          id="submit"
-          type="submit"
-          disabled={!isValidLocation}
-          sx={{
-            m: 1,
-            width: "223px",
-            color: "black",
-            "&:hover": { bgcolor: "primary.dark" },
-          }}
-        >
-          <Typography color={status === "error" ? "red" : "black"}>
-            {submitButtonText()}
-          </Typography>
-        </Button>
+
+        <SubmitButton />
         <FormControlLabel
           control={
             <Checkbox

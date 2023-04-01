@@ -12,6 +12,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useDispatch } from "react-redux";
 import { setDataView } from "../../app/appSlice";
 import DataBarLabel from "./DataBarLabel";
+import { purple } from "@mui/material/colors";
 
 export const DataBar = ({ onClick }) => {
   const [value, setValue] = useState("Now");
@@ -33,7 +34,7 @@ export const DataBar = ({ onClick }) => {
         maxWidth: ["640px", "640px", "1200px"],
         minHeight: ["42px", "42px", "50px"],
         maxHeight: "42px",
-        background: "radial-gradient(ellipse at bottom, #ffab03 30%, #fff0d3)",
+        background: "radial-gradient(circle at left, #ffab03, #fff0d3)",
       }}
     >
       <IconButton sx={{ mr: [1, 1, 4] }} tabIndex={0} onClick={onClick}>
@@ -58,7 +59,15 @@ export const DataBar = ({ onClick }) => {
             return (
               <FormControlLabel
                 value={option}
-                control={<Radio />}
+                control={
+                  <Radio
+                    sx={{
+                      "&.Mui-checked": {
+                        color: purple[300],
+                      },
+                    }}
+                  />
+                }
                 label={<DataBarLabel label={option} />}
                 tabIndex={1}
                 key={"DataBar" + option}
