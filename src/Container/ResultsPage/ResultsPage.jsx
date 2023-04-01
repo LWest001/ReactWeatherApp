@@ -23,17 +23,18 @@ export const ResultsPage = ({ onClick }) => {
 
   useEffect(() => {
     setDates({
-      today: currentData.text.Date,
-      tomorrow: hourlyData[24]?.text.Date,
-      followingDay: hourlyData[47]?.text.Date,
+      today: currentData.Date,
+      tomorrow: hourlyData[24]?.Date,
+      followingDay: hourlyData[47]?.Date,
+      followingDayName: hourlyData[47]?.Weekday,
     });
   }, [currentData]);
 
   // Set background based on weather and day segment
   useEffect(() => {
-    if (currentData.text.Temperature) {
+    if (currentData.Temperature) {
       const background = backgroundSelector(
-        currentData.weather,
+        currentData.weatherType,
         currentData.daySegment
       );
       dispatch(setBackgroundImage(background));
@@ -41,11 +42,7 @@ export const ResultsPage = ({ onClick }) => {
   }, [currentData]);
 
   return (
-    <Stack
-      className="ResultsPage"
-      alignItems="center"
-      flexDirection="column"
-    >
+    <Stack className="ResultsPage" alignItems="center" flexDirection="column">
       <DataBar onClick={onClick} />
       <CurrentDisplay />
 

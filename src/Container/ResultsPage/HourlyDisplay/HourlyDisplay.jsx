@@ -8,27 +8,15 @@ import DaySeparator from "./DaySeparator";
 export const HourlyDisplay = ({ dates }) => {
   const { hourlyData } = useSelector(selectWeatherData);
   const dataView = useSelector(selectDataView);
-  const { today, tomorrow, followingDay } = dates;
-
-  const dayNameMap = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  const followingDayName = dayNameMap[new Date(followingDay).getDay()];
+  const { today, tomorrow, followingDay, followingDayName } = dates;
 
   // Create Hour elements array
   let hoursArray = hourlyData.map((hour, i) => {
     return (
       <Hour
-        key={hour.text.Time + hour.text.Date}
+        key={hour.Time + hour.Date}
         index={i}
-        date={hour.text.Date}
+        date={hour.Date}
         dates={dates}
         type="hour"
       />
@@ -91,7 +79,6 @@ export const HourlyDisplay = ({ dates }) => {
       sx={{
         gridTemplateColumns: dataView === "Hourly" && "1fr",
         bgcolor: "initial",
-        // gridColumn: [1, 1, "initial"],
       }}
     >
       {hoursArray}

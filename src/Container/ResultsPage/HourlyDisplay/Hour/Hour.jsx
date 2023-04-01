@@ -13,9 +13,9 @@ export const Hour = (props) => {
       className={"Hour " + dataView}
       style={{ background: hourBgColor(date, dates, dataView) }}
     >
-      <h4>{hourData.text.Time}</h4>
+      <h4>{hourData.Time}</h4>
       <img src={hourData.icon} alt={hourData.weather} />
-      <p>{hourData.text.Temperature}</p>
+      <p>{hourData.Temperature}</p>
       <p>{hourData.weather}</p>
     </div>
   );

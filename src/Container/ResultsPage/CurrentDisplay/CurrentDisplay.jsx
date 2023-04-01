@@ -15,7 +15,7 @@ export function CurrentDisplay() {
   const currentData = useSelector(selectCurrentWeatherData);
   const { city, state } = useSelector(selectLocation);
   const dataView = useSelector(selectDataView);
-  let dataArray = Object.entries(currentData.text);
+  let dataArray = Object.entries(currentData);
   dataArray = dataArray.slice(0, 9);
   let resultsArray = dataArray.map(([key, value]) => {
     return (
@@ -34,7 +34,7 @@ export function CurrentDisplay() {
       <Typography variant="h1" className="locationHeader fullGridWidth">
         {city}, {stateCodes[state]}
       </Typography>
-      {currentData.text.Date ? (
+      {currentData.Date ? (
         <Stack
           flexDirection="row"
           justifyContent="center"
@@ -45,7 +45,7 @@ export function CurrentDisplay() {
         >
           <Typography variant="h2" display="inline-block" gap={1}>
             <CalendarMonthIcon />
-            {currentData.text.Date}
+            {currentData.Date}
           </Typography>
           <Typography
             gap={1}
@@ -54,7 +54,7 @@ export function CurrentDisplay() {
             sx={{ display: "flex", fontSize: ["1.2rem", "1.3rem", "1.5rem"] }}
           >
             <AccessTimeIcon />
-            {currentData.text.Time}
+            {currentData.Time}
           </Typography>
         </Stack>
       ) : (

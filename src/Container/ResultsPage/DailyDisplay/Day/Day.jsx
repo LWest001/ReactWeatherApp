@@ -5,7 +5,7 @@ import { Paper, Typography } from "@mui/material";
 
 export const Day = ({ index }) => {
   const { dailyData } = useSelector(selectWeatherData);
-  const { Weekday, Min, Max } = dailyData[index].text;
+  const { Weekday, Min, Max } = dailyData[index];
   const { icon, weather } = dailyData[index];
 
   return (

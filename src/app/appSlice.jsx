@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import countriesJson from "../assets/data/countries.json";
 import getWindDirection from "../functions/getWindDirection";
 
-const initialState = {
+export const initialState = {
   status: "idle",
   view: "LocationForm", // LocationForm | ResultsPage
   dataView: "Now", // "Now" | "Hourly" | "Daily"
@@ -18,21 +18,20 @@ const initialState = {
   backgroundImage: null,
   weatherData: {
     currentData: {
-      text: {
-        Weather: null,
-        Temperature: null,
-        "Feels like": null,
-        Sunrise: null,
-        Sunset: null,
-        "Wind speed": null,
-        "Wind direction": null,
-        Humidity: null,
-        "UV index": null,
-        Time: null,
-        Date: null,
-      },
-      icon: null,
+      Weather: null,
+      Temperature: null,
+      "Feels like": null,
+      Sunrise: null,
+      Sunset: null,
+      "Wind speed": null,
+      "Wind direction": null,
+      Humidity: null,
+      "UV index": null,
+      Time: null,
+      Date: null,
+      Weekday: null,
       daySegment: null,
+      icon: null,
       weatherType: null,
     },
     hourlyData: [],
@@ -179,6 +178,11 @@ const appSlice = createSlice({
         state.weatherData = action.payload;
       },
     },
+    resetState: {
+      reducer(state) {
+        state = initialState;
+      },
+    },
   },
   extraReducers(builder) {
     builder
@@ -243,9 +247,11 @@ function formatData(object, timezone, dataType) {
   let options = {
     timeZone: timezone,
   };
+
   if (dataType === "current") {
     options.timeStyle = "short";
   }
+
   if (dataType === "hour") {
     options.hour = "numeric";
   }
@@ -268,7 +274,7 @@ function formatData(object, timezone, dataType) {
     { timeZone: timezone, weekday: "short", day: "numeric", month: "short" },
     "date"
   );
-  let weekDay = getDateObject(
+  let weekday = getDateObject(
     "dt",
     { timeZone: timezone, weekday: "short" },
     "date"
@@ -284,44 +290,41 @@ function formatData(object, timezone, dataType) {
   const daySegment = weather["icon"][2];
 
   // build object to display in list
-  const formattedData = () => {
+  function buildObject() {
+    const product = {
+      Weather: `${weather["main"]} (${weather["description"]})`,
+      Temperature: Math.round(object["temp"]) + "\xB0 F",
+      "Feels like": null,
+      Sunrise: null,
+      Sunset: null,
+      "Wind speed": null,
+      "Wind direction": null,
+      Humidity: null,
+      "UV index": null,
+      Time: time,
+      Date: date,
+      Weekday: weekday,
+    };
     if (dataType === "current") {
-      return {
-        Weather: `${weather["main"]} (${weather["description"]})`,
-        Temperature: Math.round(object["temp"]) + "\xB0 F",
-        "Feels like": Math.round(object["feels_like"]) + "\xB0 F",
-        Sunrise: sunriseTime,
-        Sunset: sunsetTime,
-        "Wind speed": Math.round(object["wind_speed"]) + " mph",
-        "Wind direction": getWindDirection(object["wind_deg"]),
-        Humidity: object["humidity"] + "%",
-        "UV index": object["uvi"],
-        Time: time,
-        Date: date,
-      };
-    } else if (dataType === "hour") {
-      return {
-        Weather: `${weather["main"]} (${weather["description"]})`,
-        Temperature: Math.round(object["temp"]) + "\xB0 F",
-        Time: time,
-        Date: date,
-      };
+      product["Feels like"] = Math.round(object["feels_like"]) + "\xB0 F";
+      product["Sunrise"] = sunriseTime;
+      product["Sunset"] = sunsetTime;
+      product["Wind speed"] = Math.round(object["wind_speed"]) + " mph";
+      product["Wind direction"] = getWindDirection(object["wind_deg"]);
+      product["Humidity"] = object["humidity"] + "%";
+      product["UV index"] = object["uvi"];
+      product["daySegment"] = daySegment;
     } else if (dataType === "day") {
-      return {
-        Weather: `${weather["main"]} (${weather["description"]})`,
-        Min: Math.round(object.temp.min) + "\xB0 F",
-        Max: Math.round(object.temp.max) + "\xB0 F",
-        Date: date,
-        Weekday: weekDay,
-      };
+      product["Min"] = Math.round(object.temp.min) + "\xB0 F";
+      product["Max"] = Math.round(object.temp.max) + "\xB0 F";
     }
-  };
+    return product;
+  }
 
   const returnObj = {
-    text: formattedData(),
+    ...buildObject(),
     icon: icon,
-    weather: weather.main,
-    daySegment: daySegment,
+    weatherType: weather.main,
   };
 
   return returnObj;
