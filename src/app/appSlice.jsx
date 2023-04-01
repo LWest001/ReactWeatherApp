@@ -168,9 +168,6 @@ const appSlice = createSlice({
     setBackgroundImage: {
       reducer(state, action) {
         state.backgroundImage = action.payload;
-        document.querySelector(
-          ":root"
-        ).style.backgroundImage = `url(${state.backgroundImage})`;
       },
     },
     setWeatherData: {
@@ -179,8 +176,16 @@ const appSlice = createSlice({
       },
     },
     resetState: {
-      reducer(state) {
-        state = initialState;
+      reducer(state, action) {
+        state.backgroundImage = null;
+        state.coordinates = initialState.coordinates;
+        state.dataView = initialState.dataView;
+        state.isValidLocation = initialState.isValidLocation;
+        state.location = initialState.location;
+        state.status = initialState.status;
+        state.units = initialState.units;
+        state.view = initialState.view;
+        state.weatherData = initialState.weatherData;
       },
     },
   },
@@ -356,5 +361,6 @@ export const {
   setView,
   setWeatherData,
   setDataView,
+  resetState,
 } = appSlice.actions;
 export default appSlice.reducer;

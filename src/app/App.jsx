@@ -6,18 +6,16 @@ import {
   // Fetch functions
   getLocationFromCoordinates,
   // State setters
-  setBackgroundImage,
   setIsValidLocation,
   setStatus,
-  setCoordinates,
-  setLocation,
   setUnits,
-  setView,
-  setWeatherData,
   // State selectors
   selectCoordinates,
   selectLocation,
   selectView,
+  resetState,
+  initialState,
+  selectBackgroundImage,
 } from "./appSlice";
 
 import { useSelector } from "react-redux";
@@ -54,6 +52,7 @@ function App() {
   const { country, postalCode } = useSelector(selectLocation);
   const coordinates = useSelector(selectCoordinates);
   const view = useSelector(selectView);
+  const backgroundImage = useSelector(selectBackgroundImage);
 
   // Validate postal code
   useEffect(() => {
@@ -91,44 +90,15 @@ function App() {
     }
   }, [coordinates]);
 
+  useEffect(() => {
+    document.querySelector(
+      ":root"
+    ).style.backgroundImage = `url(${backgroundImage})`;
+  }, [backgroundImage]);
+
   // Event handlers
   const handleReturnHome = () => {
-    dispatch(setView("LocationForm"));
-    dispatch(setCoordinates({ lat: null, lon: null }));
-    dispatch(
-      setWeatherData({
-        currentData: {
-          Weather: null,
-          Temperature: null,
-          "Feels like": null,
-          Sunrise: null,
-          Sunset: null,
-          "Wind direction": null,
-          "Wind speed": null,
-          Humidity: null,
-          "UV index": null,
-          Time: null,
-          Date: null,
-          Weekday: null,
-          daySegment: null,
-          icon: null,
-          weatherType: null,
-        },
-        hourlyData: [],
-        dailyData: [],
-      })
-    );
-    dispatch(setBackgroundImage(null));
-    dispatch(setStatus("idle"));
-    dispatch(setIsValidLocation(false));
-    dispatch(
-      setLocation({
-        postalCode: null,
-        city: null,
-        state: null,
-        country: { name: "United States", code: "US" },
-      })
-    );
+    dispatch(resetState(initialState));
     window.scroll(0, 0);
   };
 

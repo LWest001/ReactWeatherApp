@@ -40,17 +40,18 @@ export function CurrentDisplay() {
           justifyContent="center"
           alignItems="center"
           className="dateTime fullGridWidth"
-          gap={2}
+          gap={3}
           my={["0.5rem", "0.5rem", "1.5rem"]}
         >
-          <Typography variant="h2" display="inline-block" gap={1}>
+          <Typography variant="h2" display="flex" alignItems="center" gap={1}>
             <CalendarMonthIcon />
             {currentData.Date}
           </Typography>
           <Typography
             gap={1}
             variant="h2"
-            display="inline-block"
+            display="flex"
+            alignItems="center"
             sx={{ display: "flex", fontSize: ["1.2rem", "1.3rem", "1.5rem"] }}
           >
             <AccessTimeIcon />

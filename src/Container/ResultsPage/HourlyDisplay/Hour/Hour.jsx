@@ -16,7 +16,7 @@ export const Hour = (props) => {
       <h4>{hourData.Time}</h4>
       <img src={hourData.icon} alt={hourData.weather} />
       <p>{hourData.Temperature}</p>
-      <p>{hourData.weather}</p>
+      <p>{hourData.weatherType}</p>
     </div>
   );
 };

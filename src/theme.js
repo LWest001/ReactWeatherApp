@@ -39,8 +39,8 @@ export function getDesignTokens(mode) {
           root: {
             backgroundImage:
               mode === "light"
-                ? "radial-gradient(ellipse at top, #e7e7e7, transparent), radial-gradient(ellipse at bottom, #c0c0c0, transparent)"
-                : "radial-gradient(ellipse at top, rgba(23,24,59,1), transparent), radial-gradient(ellipse at bottom, #c0c0c0, transparent)",
+                ? "radial-gradient(ellipse at bottom left, #e7e7e7, transparent), radial-gradient(ellipse at top right, #c0c0c0, transparent)"
+                : "radial-gradient(ellipse at bottom left, rgba(23,24,59,1), transparent), radial-gradient(ellipse at top right, #c0c0c0, transparent)",
           },
         },
       },
