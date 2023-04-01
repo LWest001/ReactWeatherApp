@@ -31,10 +31,9 @@ import { breakpoints, getDesignTokens, typography } from "../theme";
 
 function App() {
   const dispatch = useDispatch();
-
-  /* THEMING */
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
-    ? "dark"
+    ? /* THEMING */
+      "dark"
     : "light";
 
   let theme = useMemo(
@@ -102,6 +101,7 @@ function App() {
     window.scroll(0, 0);
   };
 
+
   return (
     <ThemeProvider theme={theme}>
       <Container
@@ -117,6 +117,6 @@ function App() {
   );
 }
 
-export const { theme } = App;
+export const { theme, prefersDarkMode } = App;
 
 export default App;

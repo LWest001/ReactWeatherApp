@@ -1,4 +1,5 @@
 import {
+  AppBar,
   FormControl,
   FormControlLabel,
   IconButton,
@@ -6,13 +7,13 @@ import {
   RadioGroup,
   Toolbar,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import { useDispatch } from "react-redux";
 import { setDataView } from "../../app/appSlice";
 import DataBarLabel from "./DataBarLabel";
-import { purple } from "@mui/material/colors";
 
 export const DataBar = ({ onClick }) => {
   const [value, setValue] = useState("Now");
@@ -22,60 +23,49 @@ export const DataBar = ({ onClick }) => {
     dispatch(setDataView(e.target.value));
   };
 
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
+    ? /* THEMING */
+      "dark"
+    : "light";
+
   const optionsArr = ["Now", "Hourly", "Daily"];
 
   return (
-    <Toolbar
-      className="DataBar"
+    <AppBar
       sx={{
-        width: "100%",
-        position: "sticky",
-        top: 0,
-        maxWidth: ["640px", "640px", "1200px"],
-        minHeight: ["42px", "42px", "50px"],
-        maxHeight: "42px",
-        background: "radial-gradient(circle at left, #ffab03, #fff0d3)",
+        background:
+          prefersDarkMode === "light"
+            ? "radial-gradient(circle at left, #fff0d3, #ffd177)"
+            : "none",
       }}
     >
-      <IconButton sx={{ mr: [1, 1, 4] }} tabIndex={0} onClick={onClick}>
-        <HomeIcon />
-      </IconButton>
-      <FormControl fullWidth>
-        <RadioGroup
-          defaultValue="Now"
-          name="radio-buttons-group"
-          row
-          onChange={handleValue}
-          value={value}
-          sx={{
-            justifyContent: ["end", "end", "space-between"],
-            width: "100%",
-            px: [0, 0, 3],
-            maxWidth: "100%",
-            boxSizing: "border-box",
-          }}
-        >
-          {optionsArr.map((option) => {
-            return (
-              <FormControlLabel
-                value={option}
-                control={
-                  <Radio
-                    sx={{
-                      "&.Mui-checked": {
-                        color: purple[300],
-                      },
-                    }}
-                  />
-                }
-                label={<DataBarLabel label={option} />}
-                tabIndex={1}
-                key={"DataBar" + option}
-              />
-            );
-          })}
-        </RadioGroup>
-      </FormControl>
-    </Toolbar>
+      <Toolbar className="DataBar">
+        <IconButton sx={{ mr: [1, 1, 4] }} tabIndex={0} onClick={onClick}>
+          <HomeIcon />
+        </IconButton>
+        <FormControl fullWidth>
+          <RadioGroup
+            defaultValue="Now"
+            name="radio-buttons-group"
+            row
+            onChange={handleValue}
+            value={value}
+            sx={{ justifyContent: "space-between" }}
+          >
+            {optionsArr.map((option) => {
+              return (
+                <FormControlLabel
+                  value={option}
+                  control={<Radio />}
+                  label={<DataBarLabel label={option} />}
+                  tabIndex={1}
+                  key={"DataBar" + option}
+                />
+              );
+            })}
+          </RadioGroup>
+        </FormControl>
+      </Toolbar>
+    </AppBar>
   );
 };
