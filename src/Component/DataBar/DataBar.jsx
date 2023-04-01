@@ -36,7 +36,7 @@ export const DataBar = ({ onClick }) => {
         background:
           prefersDarkMode === "light"
             ? "radial-gradient(circle at left, #fff0d3, #ffd177)"
-            : "none",
+            : "radial-gradient(ellipse at bottom left, rgba(23,24,59,1)), radial-gradient(ellipse at top right, #c0c0c0)",
       }}
     >
       <Toolbar className="DataBar">
