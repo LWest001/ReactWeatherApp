@@ -170,7 +170,7 @@ const appSlice = createSlice({
       reducer(state, action) {
         state.backgroundImage = action.payload;
         document.querySelector(
-          ".App"
+          ":root"
         ).style.backgroundImage = `url(${state.backgroundImage})`;
       },
     },
@@ -213,6 +213,7 @@ const appSlice = createSlice({
       })
       .addCase(getLocationFromCoordinates.fulfilled, (state, action) => {
         state.status = "succeeded";
+        state.isValidLocation = true;
         const country = countriesJson.find(
           (country) => country.code === action.payload[0].country
         );
@@ -226,7 +227,9 @@ const appSlice = createSlice({
             name: country.name,
           },
         };
-        state.isValidLocation = true;
+      })
+      .addCase(getLocationFromCoordinates.rejected, (state, action) => {
+        state.status = "error";
       });
   },
 });

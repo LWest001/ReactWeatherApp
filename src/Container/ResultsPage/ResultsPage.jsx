@@ -10,7 +10,7 @@ import {
   selectDataView,
   setBackgroundImage,
 } from "../../app/appSlice";
-import { Box } from "@mui/material";
+import { Stack } from "@mui/material";
 import { backgroundSelector } from "../../functions/backgroundSelector";
 
 export const ResultsPage = ({ onClick }) => {
@@ -41,7 +41,11 @@ export const ResultsPage = ({ onClick }) => {
   }, [currentData]);
 
   return (
-    <Box className="ResultsPage">
+    <Stack
+      className="ResultsPage"
+      alignItems="center"
+      flexDirection="column"
+    >
       <DataBar onClick={onClick} />
       <CurrentDisplay />
 
@@ -55,6 +59,6 @@ export const ResultsPage = ({ onClick }) => {
       {dataView === "Daily" && (
         <DailyDisplay dailyData={dailyData} dataView={dataView} />
       )}
-    </Box>
+    </Stack>
   );
 };

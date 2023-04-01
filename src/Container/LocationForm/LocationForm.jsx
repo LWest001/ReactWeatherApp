@@ -12,7 +12,6 @@ import {
   selectLocation,
   selectStatus,
   selectUnits,
-  selectView,
   // fetchers
   getCoordinates,
   getLocalWeatherData,
@@ -132,13 +131,6 @@ export const LocationForm = () => {
     if (country?.code === "US") {
       if (postalCode.length === 5) {
         dispatch(getCoordinates({ postalCode, countryCode: country.code }));
-      } else {
-        dispatch(setIsValidLocation(false));
-        if (postalCode.length < 5) {
-          dispatch(setStatus("idle"));
-        } else {
-          dispatch(setStatus("error"));
-        }
       }
     }
   }
@@ -148,7 +140,11 @@ export const LocationForm = () => {
       return "Loading...";
     }
     if (status === "succeeded") {
-      return `Get weather for ${city}!`;
+      return (
+        <>
+          Get weather for <Typography variant="span" fontWeight="bold">{city}</Typography>
+        </>
+      );
     }
     if (status === "idle") {
       return "Enter a location";
@@ -178,6 +174,7 @@ export const LocationForm = () => {
           height={0}
           position="relative"
           top="-55%"
+          className="logoMark"
         >
           WeatherNow
         </Typography>
@@ -192,7 +189,7 @@ export const LocationForm = () => {
         onClick={handleGeolocate}
         sx={{ width: "223px" }}
       >
-        <Typography>Locate me</Typography>
+        Locate me
       </Button>
       <Typography sx={{ my: 1 }}>or</Typography>
       <Stack component="form" onSubmit={handleSubmit}>
@@ -201,11 +198,26 @@ export const LocationForm = () => {
           variant="outlined"
           id="postalCodeInput"
           type="number"
-          max="99999"
+          max={99999}
           placeholder="Postal code (5-digit)"
           pattern="/^\d{5}$/"
           autoComplete="postal-code"
           sx={{ width: "223px" }}
+          error={status === "error"}
+          InputLabelProps={{
+            sx: {
+              "@media (prefers-color-scheme: dark)": {
+                color: "whitesmoke",
+              },
+            },
+          }}
+          InputProps={{
+            sx: {
+              "@media (prefers-color-scheme: dark)": {
+                backgroundColor: "darkslategrey",
+              },
+            },
+          }}
           onChange={handleInputChange}
         ></TextField>
         {/* <label htmlFor="CountrySelector">Country or territory:</label> */}
@@ -223,7 +235,9 @@ export const LocationForm = () => {
             "&:hover": { bgcolor: "#ffd480" },
           }}
         >
-          <Typography>{submitButtonText()}</Typography>
+          <Typography color={status === "error" ? "red" : "black"}>
+            {submitButtonText()}
+          </Typography>
         </Button>
         <FormControlLabel
           control={

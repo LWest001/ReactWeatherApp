@@ -1,4 +1,3 @@
-import "./App.css";
 import { LocationForm } from "../Container/LocationForm/LocationForm";
 import { useEffect } from "react";
 import { ResultsPage } from "../Container/ResultsPage/ResultsPage";
@@ -29,9 +28,23 @@ function App() {
   const dispatch = useDispatch();
 
   // selectors
-  const { country } = useSelector(selectLocation);
+  const { country, postalCode } = useSelector(selectLocation);
   const coordinates = useSelector(selectCoordinates);
   const view = useSelector(selectView);
+
+  // Validate postal code
+  useEffect(() => {
+    if (postalCode === null) return;
+    if (country?.code === "US") {
+      if (postalCode.length === 5) return;
+      dispatch(setIsValidLocation(false));
+      if (postalCode.length > 5) {
+        dispatch(setStatus("error"));
+      } else if (postalCode.length < 5) {
+        dispatch(setStatus("idle"));
+      }
+    }
+  }, [postalCode]);
 
   // Set units to imperial for US, Liberia, and Myanmar
   useEffect(() => {
@@ -102,9 +115,6 @@ function App() {
       className="App"
       sx={{
         textAlign: "center",
-        backgroundSize: "cover",
-        backgroundPosition: "bottom",
-        backgroundAttachment: "fixed",
       }}
     >
       {view === "LocationForm" && <LocationForm />}

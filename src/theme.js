@@ -10,18 +10,29 @@ const theme = createTheme({
       xl: 1200,
     },
   },
+  palette: {
+    type: "light",
+    primary: {
+      main: "#ffab03",
+    },
+    secondary: {
+      main: "#640061",
+    },
+    background: {
+      default: "d3d3d3",
+    },
+  },
 });
 
-theme.components.MuiContainer = {};
-
 theme.typography.h1 = {
-  [theme.breakpoints.up('xs')]: {
+  margin: "inherit",
+  [theme.breakpoints.up("xs")]: {
     fontSize: "2rem",
   },
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.up("sm")]: {
     fontSize: "2.2rem",
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up("md")]: {
     fontSize: "2.5rem",
   },
 };

@@ -31,7 +31,7 @@ export function CurrentDisplay() {
   });
   return (
     <Paper sx={{ bgcolor: "initial" }} className="CurrentDisplay dataDisplay">
-      <Typography variant="h1" className="locationHeader">
+      <Typography variant="h1" className="locationHeader fullGridWidth">
         {city}, {stateCodes[state]}
       </Typography>
       {currentData.text.Date ? (
@@ -39,7 +39,7 @@ export function CurrentDisplay() {
           flexDirection="row"
           justifyContent="center"
           alignItems="center"
-          className="dateTime"
+          className="dateTime fullGridWidth"
           gap={2}
           my={["0.5rem", "0.5rem", "1.5rem"]}
         >
