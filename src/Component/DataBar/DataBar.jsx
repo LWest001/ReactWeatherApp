@@ -39,7 +39,7 @@ export const DataBar = ({ onClick }) => {
             : "radial-gradient(ellipse at bottom left, rgba(23,24,59,1)), radial-gradient(ellipse at top right, #c0c0c0)",
       }}
     >
-      <Toolbar className="DataBar">
+      <Toolbar className="DataBar" sx={{ width: "95%", maxWidth:"40rem", m:"auto", alignItems:"space-between",}}>
         <IconButton sx={{ mr: [1, 1, 4] }} tabIndex={0} onClick={onClick}>
           <HomeIcon />
         </IconButton>
