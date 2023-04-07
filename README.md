@@ -2,14 +2,14 @@
 
 **Live production build here: https://weathernow-lw.netlify.app/.**
 
-This frontend web application delivers local weather information based on postal code using the [OpenWeather API](https://openweathermap.org/) and [ZipCodeBase API](https://zipcodebase.com/). It is built using [React](https://reactjs.org/) with [Redux](https://redux.js.org/).
+This web application delivers local weather information based on postal code or your current location using the [OpenWeather API](https://openweathermap.org/)). It is built using [React](https://reactjs.org/) with [Redux](https://redux.js.org/).
 
 ## Features
 
 - Lookup by postal code
 - Lookup using browser Geolocation API
-- Current, hourly forecast, and 7-day forecast weather data
-- Filter data type using the slider at the top of the results page
+- Set a default location for auto-lookup upon opening the app.
+- Current weather, hourly forecast, and 7-day forecast weather data
 - Dynamic background image based on current weather and day vs. night
 - Desktop and mobile support
 
@@ -17,12 +17,5 @@ This frontend web application delivers local weather information based on postal
 
 - International support (currently US only)
 - Lookup by other location parameters (eg. city or region)
-- Persistent user data in browser based on previous lookup
-- Routing using React Router
-
-## Current limitations and known bugs
-
-- The country selector works but only US lookup is available
-- Weather icons do not load on iOS when using Geolocation API.
 
 All code written by Leo Westebbe.
