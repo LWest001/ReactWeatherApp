@@ -42,7 +42,14 @@ export const ResultsPage = ({ onClick }) => {
   }, [currentData]);
 
   return (
-    <Stack className="ResultsPage" alignItems="center" flexDirection="column" pt={["46px", "54px"]}>
+    <Stack
+      className="ResultsPage"
+      alignItems="center"
+      flexDirection="column"
+      pt={["54px", "70px"]}
+      alignSelf={dataView === "Hourly" && "start"}
+      maxWidth="100%"
+    >
       <DataBar onClick={onClick} />
       <CurrentDisplay />
 
